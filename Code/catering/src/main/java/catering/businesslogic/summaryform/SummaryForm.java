@@ -1,19 +1,11 @@
 package catering.businesslogic.summaryform;
 
 import catering.businesslogic.user.User;
-import catering.persistence.PersistenceManager;
-import catering.persistence.ResultHandler;
-import catering.util.LogManager;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.List;
 import catering.businesslogic.event.Event;
 import catering.businesslogic.staff.Role;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SummaryForm {
     private String description;
@@ -23,7 +15,13 @@ public class SummaryForm {
     private List<Event> associatedEvents;
     private List<Role> associatedRoles;
 
-    public SummaryForm(User owner, String description) {
+    // Factory method consigliato
+    public static SummaryForm create(User owner, String description) {
+        return new SummaryForm(owner, description);
+    }
+
+    // Costruttore reso private o package-private per forzare uso del factory
+    SummaryForm(User owner, String description) {
         this.owner = owner;
         this.description = description;
         this.inUse = false;

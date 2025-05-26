@@ -2,37 +2,31 @@ package catering.businesslogic.holidays;
 
 import catering.businesslogic.user.User;
 import catering.businesslogic.staff.Staff;
-import catering.persistence.PersistenceManager;
-import catering.persistence.ResultHandler;
-import catering.util.LogManager;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.Date;
+import java.util.Objects;
 
 public class Holidays {
 
-    // Attributi basati sul DCD [1] e contratti [5]
+    // Attributi principali secondo il DCD
     private Staff worker;
-    private Date period; // DCD specifica Date [1], contratto gestisciRichiestaFeriePersonale specifica testo [5]
-    private User owner;  // Definito nel metodo create nel DCD [1]
+    private Date period;
+    private final User owner;
 
-    // Metodo di creazione/costruttore come indicato nel DCD [1]
-    // "È stata creata un’istanza f di ferie" [5] - contratto gestisciRichiestaFeriePersonale
-    public static Holidays create(User owner, Staff worker, Date period) {
-        Holidays holidays = new Holidays();
-        holidays.owner = owner;
-        holidays.worker = worker;
-        holidays.period = period; // f.period = periodo [5]
-        // f appartiene a p [5] - questa relazione sarà gestita altrove
-        return holidays;
+    // Costruttore privato per forzare uso di create()
+    public Holidays(User owner, Staff worker, Date period) {
+        this.owner = owner;
+        this.worker = worker;
+        this.period = period;
     }
 
-    // Getter basati sul DCD [1]
-    public Staff getStaff() {
+    // Factory method conforme al DCD e contratto use case
+    public static Holidays create(User owner, Staff worker, Date period) {
+        return new Holidays(owner, worker, period);
+    }
+
+    // Getter
+    public Staff getWorker() {
         return worker;
     }
 
@@ -40,7 +34,11 @@ public class Holidays {
         return period;
     }
 
-    // Setter basati sul DCD [1]
+    public User getOwner() {
+        return owner;
+    }
+
+    // Setter solo per worker e period, NON per owner
     public void setWorker(Staff worker) {
         this.worker = worker;
     }
@@ -49,13 +47,24 @@ public class Holidays {
         this.period = period;
     }
 
-    // Metodo isOwner() basato sul DCD [1]
+    // Controlla se l'utente è proprietario della richiesta ferie
     public boolean isOwner(User user) {
-        // Logica per verificare se l'utente fornito è l'owner della richiesta ferie
         return this.owner != null && this.owner.equals(user);
     }
 
-    // Nota: I metodi assegnaRichiestaFeriePersonale [6] ed eliminaRichiestaFeriePersonale [6]
-    // sarebbero chiamati su istanze di Ferie tramite un gestore (Manager),
-    // e potrebbero modificare lo stato di disponibilità del lavoratore (p.disponibile = no) [6].
+    // equals e hashCode (opzionali, ma utili se gestisci liste o mappe di ferie)
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Holidays)) return false;
+        Holidays holidays = (Holidays) o;
+        return Objects.equals(worker, holidays.worker) &&
+                Objects.equals(period, holidays.period) &&
+                Objects.equals(owner, holidays.owner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(worker, period, owner);
+    }
 }

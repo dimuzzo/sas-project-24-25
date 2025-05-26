@@ -1,16 +1,8 @@
 package catering.businesslogic.summaryform;
 
 import catering.businesslogic.user.User;
-import catering.persistence.PersistenceManager;
-import catering.persistence.ResultHandler;
-import catering.util.LogManager;
 
-import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.List;
 
 public class SummaryFormManager {
@@ -32,11 +24,9 @@ public class SummaryFormManager {
         for (SummaryFormEventReceiver r : receivers) r.updateSummaryFormDeleted(sf);
     }
 
-    public SummaryForm createSummaryForm(String description) {
-        SummaryForm sf = new SummaryForm();
-        sf.setDescription(description);
+    public SummaryForm createSummaryForm(User owner, String description) {
+        SummaryForm sf = SummaryForm.create(owner, description);
         notifySummaryFormCreated(sf);
         return sf;
     }
 }
-

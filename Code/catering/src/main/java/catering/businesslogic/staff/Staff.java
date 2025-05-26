@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public class Staff {
 
-    // Attributi principali, incluso l'id gestito internamente
-    private int id;
+    // Attributi principali
+    private final int serialNumber;  // identificatore unico e immutabile
     private String name;
     private String email;
     private int phoneNumber;
@@ -15,12 +15,12 @@ public class Staff {
     private boolean permanent;
 
     /**
-     * Costruttore principale, usato da StaffManager per creare nuovi lavoratori.
-     * L'id viene assegnato successivamente dal database al momento della persistenza.
+     * Costruttore principale.
+     * Il serialNumber viene assegnato una volta sola al momento della creazione.
      */
-    public Staff(String name, String email, int phoneNumber, String taxCode,
-                 String primaryMansion, boolean permanent) {
-        this.id = 0;  // 0 = non ancora salvato nel database
+    public Staff(int serialNumber, String name, String email, int phoneNumber,
+                 String taxCode, String primaryMansion, boolean permanent) {
+        this.serialNumber = serialNumber;
         this.name = Objects.requireNonNull(name, "Name cannot be null");
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -34,8 +34,8 @@ public class Staff {
     // Getter
     // ========================
 
-    public int getId() {
-        return id;
+    public int getSerialNumber() {
+        return serialNumber;
     }
 
     public String getName() {
@@ -67,15 +67,8 @@ public class Staff {
     }
 
     // ========================
-    // Setter
+    // Setter (solo per attributi modificabili)
     // ========================
-
-    /**
-     * Setter dell'id usato solo dal livello di persistenza.
-     */
-    void setId(int id) {
-        this.id = id;
-    }
 
     public void setName(String name) {
         this.name = Objects.requireNonNull(name, "Name cannot be null");
@@ -111,7 +104,7 @@ public class Staff {
 
     @Override
     public String toString() {
-        return name + " (" + email + ")";
+        return name + " (" + email + "), SN: " + serialNumber;
     }
 
     @Override
@@ -119,11 +112,11 @@ public class Staff {
         if (this == o) return true;
         if (!(o instanceof Staff)) return false;
         Staff other = (Staff) o;
-        return taxCode.equals(other.taxCode);
+        return serialNumber == other.serialNumber;
     }
 
     @Override
     public int hashCode() {
-        return taxCode.hashCode();
+        return Integer.hashCode(serialNumber);
     }
 }

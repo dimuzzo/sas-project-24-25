@@ -2,8 +2,9 @@ package catering.businesslogic.holidays;
 
 import catering.businesslogic.staff.Staff;
 import catering.businesslogic.staff.StaffManager;
+import catering.businesslogic.user.User;
 
-import java.sql.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,15 +32,15 @@ public class HolidaysManager {
         for (HolidaysEventReceiver r : receivers) r.updateHolidaysDeleted(h);
     }
 
-    // Ora getStaff delega a StaffManager
-    public Staff getStaff(int id) {
-        return staffManager.getStaff(id);
+    /**
+     * Ottiene uno staff usando il serialNumber come chiave univoca.
+     */
+    public Staff getStaffBySerialNumber(int serialNumber) {
+        return staffManager.getStaffBySerialNumber(serialNumber);
     }
 
-    public Holidays createHolidays(Staff worker, Date period) {
-        Holidays h = new Holidays();
-        h.setWorker(worker);
-        h.setPeriod(period);
+    public Holidays createHolidays(User owner, Staff worker, Date period) {
+        Holidays h = Holidays.create(owner, worker, period);
         notifyHolidaysCreated(h);
         return h;
     }

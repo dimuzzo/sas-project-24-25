@@ -58,9 +58,12 @@ public class StaffManager {
         for (StaffEventReceiver r : receivers) r.updateStaffDataDeleted(s, sdl);
     }
 
-    public Staff getStaff(int id) {
+    /**
+     * Cerca uno staff nella lista tramite serialNumber.
+     */
+    public Staff getStaffBySerialNumber(int serialNumber) {
         for (Staff s : staffDataList.getStaff()) {
-            if (s.getId() == id) {
+            if (s.getSerialNumber() == serialNumber) {
                 return s;
             }
         }

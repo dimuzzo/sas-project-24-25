@@ -71,7 +71,7 @@ public class Role {
         return "Role{" +
                 "name='" + name + '\'' +
                 ", isAssigned=" + isAssigned +
-                ", worker=" + (worker != null ? worker.getId() : "null") +
+                ", worker=" + (worker != null ? worker.getSerialNumber() : "null") +
                 '}';
     }
 }

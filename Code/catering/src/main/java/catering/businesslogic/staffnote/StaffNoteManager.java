@@ -2,14 +2,15 @@ package catering.businesslogic.staffnote;
 
 import catering.businesslogic.staff.Staff;
 import catering.businesslogic.staff.StaffManager;
+import catering.businesslogic.user.User;
 
-import java.sql.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 public class StaffNoteManager {
     private List<StaffNoteEventReceiver> receivers = new ArrayList<>();
-    private final StaffManager staffManager;  // riferimento a StaffManager
+    private final StaffManager staffManager;
 
     public StaffNoteManager(StaffManager staffManager) {
         this.staffManager = staffManager;
@@ -31,16 +32,12 @@ public class StaffNoteManager {
         for (StaffNoteEventReceiver r : receivers) r.updateStaffNoteDeleted(n);
     }
 
-    // getStaff delegato a StaffManager con id
-    public Staff getStaff(int id) {
-        return staffManager.getStaff(id);
+    public Staff getStaffBySerialNumber(int serialNumber) {
+        return staffManager.getStaffBySerialNumber(serialNumber);
     }
 
-    public StaffNote createStaffNote(Staff worker, String description, Date date) {
-        StaffNote n = new StaffNote();
-        n.setWorker(worker);
-        n.setDescription(description);
-        n.setDate(date);
+    public StaffNote createStaffNote(User owner, Staff worker, String description, Date date) {
+        StaffNote n = StaffNote.create(owner, worker, description, date);
         notifyStaffNoteCreated(n);
         return n;
     }

@@ -120,7 +120,7 @@ public class EventManager {
      * @param name      Event name
      * @param dateStart Start date
      * @param dateEnd   End date (can be null)
-     * @param organizer User organizing the event
+     * @param chef User organizing the event
      * @return The newly created event
      */
     public Event createEvent(String name, Date dateStart, Date dateEnd, User chef) {
