@@ -1,0 +1,1564 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>90</x>
+      <y>1008</y>
+      <w>588</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>SummaryFormManagement
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1116</x>
+      <y>348</y>
+      <w>1182</w>
+      <h>504</h>
+    </coordinates>
+    <panel_attributes>StaffManagement</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1650</x>
+      <y>366</y>
+      <w>210</w>
+      <h>270</h>
+    </coordinates>
+    <panel_attributes>Staff
+--
+-serialNumber: int
+-name: String
+-email: String
+-phoneNumber: String
+-taxCode: String
+-primaryMansion: String
+-available: boolean
+-permanent: boolean
+--
+
++getSerialNumber(): int
++getName(): String
++setName(name: String)
++getEmail(): String
++setEmail(email: String)
++getPhoneNumber(): String
++setPhoneNumber(phoneNumber: String)
++getTaxCode(): String
++setTaxCode(taxCode: String)
++getPrimaryMansion(): String
++setPrimaryMansion(primaryMansion: String)
++isAvailable(): boolean
++setAvailability(availability: boolean)
++isPermanent(): boolean
++setPermanent(permanent: boolean)
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1122</x>
+      <y>366</y>
+      <w>378</w>
+      <h>276</h>
+    </coordinates>
+    <panel_attributes>StaffManager
+--
+-staffFeatures: String[]
+--
+
++addReceiver(er: StaffEventReceiver)
++removeReceiver(er: StaffEventReceiver)
+
+-notifyStaffAdded(s: Staff)
+-notifyStaffRemoved(s: Staff)
+-notifyRoleCreated(rl: Role)
+-notifyRoleDeleted(rl: Role)
+-notifyRoleAssigned(rl: Role)
+-notifyStaffDataListCreated(sdl: StaffDataList)
+-notifyStaffDataListDeleted(sdl: StaffDataList)
+-notifyStaffDataAdded(s: Staff, sdl: StaffDataList)
+-notifyStaffDataListDeleted(sdl: StaffDataList)
+-notifyStaffDataDeleted(s: Staff, sdl: StaffDataList)
+
+--
+
++getStaff(serialNumber: int): Staff
++addStaffNote(n: StaffNote)
++addHolidays(h: Holidays)
++getStaffDataList(): StaffDataList
++getSummaryForm(): SummaryForm
++createRole(worker: Staff, name: String, description: String, date: Date, assigned: boolean): Role
++assignRole(worker: Staff, rl: Role)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>1032</y>
+      <w>168</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>SummaryForm
+--
+-description: String
+-inUse: boolean
+--
+
++create(owner: User, description: String)
++isOwner(user: User): boolean
++getDescription(): String
++setDescription(description: String)
++isInUse(): boolean
++containsEvent(ev: Event): boolean
++containsRole(r: Role): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1440</x>
+      <y>702</y>
+      <w>456</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>StaffDataList
+--
+-staffDataList: List&lt;Staff&gt;
+--
+
++getStaff(serialNumber: int): Staff
++insertStaffData(s: Staff): boolean
++updateStaffData(s: Staff, serialNumber: int, name: String, newEmail: String, newPhoneNumber: String, taxCode: String, 
+newPrimaryMansion: String, availability: boolean, permanent: boolean)
++removeStaffData(s: Staff): boolean
++getAvailable(availability: boolean): List&lt;Staff&gt;
++getPermanent(permanent: boolean): List&lt;Staff&gt;
++isOwner(user: User): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>918</x>
+      <y>474</y>
+      <w>144</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>User
+--
+-name: String
+--
++isOrganizer(): boolean
++isChef(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1128</x>
+      <y>708</y>
+      <w>234</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>«interface»
+StaffEventReceiver
+--
+
+--
+/+updateStaffAdded(s: Staff)/
+/+updateStaffRemoved(s: Staff)/
+/+updateRoleCreated(rl: Role)/
+/+updateRoleDeleted(rl: Role)/
+/+updateRoleAssigned(rl: Role)/
+/+updateStaffDataListCreated(sdl: StaffDataList)/
+/+updateStaffDataListDeleted(sdl: StaffDataList)/
+/+updateStaffDataAdded(s: Staff, sdl: StaffDataList)/
+/+updateStaffDataDeleted(s: Staff, sdl: StaffDataList)/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1494</x>
+      <y>426</y>
+      <w>168</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+currentStaff
+m2=1...n</panel_attributes>
+    <additional_attributes>10.0;20.0;260.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1758</x>
+      <y>942</y>
+      <w>258</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>StaffNote
+--
+-worker: Staff
+-description: String
+-date: Date
+--
+
++create(owner: User, worker: Staff, description: String, date: Date)
++getStaff(serialNumber: int): Staff
++setWorker(worker: Staff)
++getDescription(): String
++setDescription(decription: String)
++getDate(): Date
++setDate(date: Date)
++isOwner(): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1218</x>
+      <y>636</y>
+      <w>72</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+eventReceivers
+m1=0...n</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>978</x>
+      <y>408</y>
+      <w>66</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+   currentUser
+m2=     0...1
+fg=black</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1692</x>
+      <y>630</y>
+      <w>48</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+dataList
+m1=1</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>96</x>
+      <y>1026</y>
+      <w>246</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>SummaryFormManager
+--
+-summaryFormFeatures: String[]
+--
++addReceiver(er: SummaryFormEventReceiver)
++removeReceiver(er: SummaryFormEventReceiver)
+
+-notifySummaryFormCreated(sf: SummaryForm)
+-notifySummaryFormDeleted(sf: SummaryForm)
+
+--
+
++createSummaryForm(description: String): SummaryForm
+
+fg=black
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1362</x>
+      <y>924</y>
+      <w>660</w>
+      <h>318</h>
+    </coordinates>
+    <panel_attributes>StaffNoteManagement
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1368</x>
+      <y>942</y>
+      <w>282</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>StaffNoteManager
+--
+-staffNoteFeatures: String[]
+--
+
++addReceiver(er: StaffNoteEventReceiver)
++removeReceiver(er: StaffNoteEventReceiver)
+
+-notifyStaffNoteCreated(n: StaffNote)
+-notifyStaffNoteDeleted(n: StaffNote)
+
+--
+
++getStaff(serialNumber: int): Staff
++createStaffNote(worker: Staff, description: String, date: Date): StaffNote
+
+fg=black
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>900</x>
+      <y>276</y>
+      <w>168</w>
+      <h>276</h>
+    </coordinates>
+    <panel_attributes>UserManagement
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>300</x>
+      <y>90</y>
+      <w>552</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>MenuManagement</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>882</x>
+      <y>66</y>
+      <w>180</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>RecipeManagement
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>312</x>
+      <y>114</y>
+      <w>210</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>MenuManager
+--
+-menuFeatures: String[]
+--
+
++addEventReceiver(er: MenuEventReceiver)
++removeEventReceiver(er: MenuEventReceiver)
+
+-notifySectionAdded(sec: Section)
+-notifyMenuItemAdded(mi: MenuItem)
+-notifyMenuCreated(m: Menu)
+-notifyMenuDeleted(m: Menu)
+-notifySectionsRearranged(m: Menu)
+
+--
+
++defineSection(name: String)
++insertItem(r: Recipe, sec?: Section, desc?: String)
++createMenu(title: String): Menu
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>588</x>
+      <y>108</y>
+      <w>222</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>Menu
+--
+-title: String
+-published: boolean
+-inUse: boolean
+-features: Map&lt;String, Boolean&gt;
+--
+
++create(owner: User, title: String, features: String[])
++addSection(name: String)
++addItem(r: Recipe, sec?: Section, desc?: String)
++isOwner(user: User): boolean
++isInUse(): boolean
++hasSection(sec: Section): boolean
++sectionsSize(): int
++moveSection(sec: Section, pos: int)
+
++getKitchenProcesses():ArrayList&lt;KitchenProcess&gt;
+
+fg=BLACK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>198</y>
+      <w>84</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+currentMenu
+m1=0..1</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>684</x>
+      <y>354</y>
+      <w>156</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>MenuItem
+--
+description: String
+--
++create(rec: Recipe, desc?: String)
++create(mi: MenuItem)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>924</x>
+      <y>144</y>
+      <w>72</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>«interface»
+KitchenProcess
+fg=gray
+--
+-name</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>84</y>
+      <w>102</w>
+      <h>282</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+itemRecipe</panel_attributes>
+    <additional_attributes>150.0;10.0;10.0;10.0;10.0;450.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>702</x>
+      <y>276</y>
+      <w>54</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+freeItems</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>552</x>
+      <y>306</y>
+      <w>126</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Section
+--
+name: String
+--
+
++create(name: String)
++create(sec: Section)
++addItem(mi: MenuItem)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>528</x>
+      <y>228</y>
+      <w>78</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+sections</panel_attributes>
+    <additional_attributes>90.0;130.0;90.0;100.0;10.0;100.0;10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>570</x>
+      <y>372</y>
+      <w>126</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..n
+sectionItems</panel_attributes>
+    <additional_attributes>190.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>6</x>
+      <y>336</y>
+      <w>132</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>UseCaseLogicException
+--
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>336</y>
+      <w>78</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Exception
+--
+
+fg=magenta
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>132</x>
+      <y>354</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>306</x>
+      <y>324</y>
+      <w>234</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>«interface»
+MenuEventReceiver
+--
+
+--
+/+updateSectionAdded(m: Menu, sec: Section)/
+/+updateMenuItemAdded(m: Menu, mi: MenuItem)/
+/+updateMenuCreated(m: Menu)/
+/+updateMenuDeleted(m: Menu)/
+/+updateSectionsRearranged(m: Menu)/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>282</y>
+      <w>72</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+eventReceivers
+
+
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>0</x>
+      <y>318</y>
+      <w>294</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>General module
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>906</x>
+      <y>294</y>
+      <w>156</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>UserManager
+--
+
+--
+*event sender methods*
+
+
+--
+*operations methods*
++getCurrentUser(): User
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>804</x>
+      <y>252</y>
+      <w>144</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+owner
+m1=1</panel_attributes>
+    <additional_attributes>210.0;370.0;210.0;330.0;110.0;330.0;110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>888</x>
+      <y>204</y>
+      <w>114</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>RecipeManager
+--
+
+--
++getRecipeBook(): 
+	ArrayList&lt;Recipe&gt;
+
+fg=gray
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>990</x>
+      <y>168</y>
+      <w>72</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+m2=0..n
+recipes
+fg=gray</panel_attributes>
+    <additional_attributes>20.0;100.0;60.0;100.0;60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>588</x>
+      <y>432</y>
+      <w>186</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Event module
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>594</x>
+      <y>450</y>
+      <w>174</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Event
+--
+--
++containsService(s: Service): boolean
++getChef(): User
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>594</x>
+      <y>498</y>
+      <w>174</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Service
+--
+--
++getMenu(): Menu
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>42</x>
+      <y>558</y>
+      <w>840</w>
+      <h>396</h>
+    </coordinates>
+    <panel_attributes>ShiftManagement</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1098</x>
+      <y>78</y>
+      <w>318</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>KitchenTaskManager
+--
+
+--
++addEventReceiver(er: KitchenTaskEventReceiver)
++removeEventReceiver(er: KitchenTaskEventReceiver)
+-notifySheetGenerated(sheet: SummarySheet)
+--
+
++generateSummarySheet(event: Event, service: Service): SummarySheet</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1524</x>
+      <y>78</y>
+      <w>156</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>SummarySheet
+--
+
+--
++create( )
++addTask(t: KitchenTask)
+
+fg=BLACK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1494</x>
+      <y>204</y>
+      <w>186</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>KitchenTask
+--
+
+--
++create(r: KitchenProcess)
+
+fg=BLACK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1560</x>
+      <y>132</y>
+      <w>48</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+ taskList
+m2=0..n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>990</x>
+      <y>144</y>
+      <w>114</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+  process
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1134</x>
+      <y>216</y>
+      <w>234</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>«interface»
+KitchenTaskEventReceiver
+--
+
+--
+/+updateSheetGenerated(sheet: SummarySheet)/
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1242</x>
+      <y>162</y>
+      <w>72</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+eventReceivers
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1410</x>
+      <y>96</y>
+      <w>126</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+currentSummarySheet
+m1=0..1</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>900</x>
+      <y>84</y>
+      <w>72</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Recipe
+fg=gray
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>912</x>
+      <y>108</y>
+      <w>60</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray</panel_attributes>
+    <additional_attributes>80.0;60.0;80.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>984</x>
+      <y>84</y>
+      <w>72</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>Preparation
+fg=gray
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>954</x>
+      <y>108</y>
+      <w>78</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;30.0;110.0;30.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>882</x>
+      <y>0</y>
+      <w>324</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>halign=center
+*Design Class Diagram (DCD)*
+lw=0
+fontsize=30
+fg=#128C86
+bg=#B8E0E0
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1092</x>
+      <y>60</y>
+      <w>594</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>KitchenTaskManagement</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>48</x>
+      <y>576</y>
+      <w>288</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>ShiftManager
+--
+-shiftFeatures: String[]
+--
+
++addEventReceiver(er: ShiftEventReceiver)
++removeEventReceiver(er: ShiftEventReceiver)
+
+-notifyShiftScoreboardCreated(ts: ShiftScoreboard)
+-notifyShiftScoreboardDeleted(ts: ShiftScoreboard)
+-notifyShiftAdded(tt: Shift)
+
+--
+
++createShiftScoreboard(): ShiftScoreboard
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>576</y>
+      <w>372</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>ShiftScoreboard
+--
+
+--
++create(owner: User)
++isOwner(user: User): boolean
++addShift(description: String, dateStart: Date, dateEnd: Date, started: boolean, finished: boolean))
+
+fg=black
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>330</x>
+      <y>588</y>
+      <w>186</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+currentShiftScoreboard
+m1=0...n</panel_attributes>
+    <additional_attributes>290.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>510</x>
+      <y>738</y>
+      <w>366</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>Shift
+--
+description: String
+dateStart: Date
+dateEnd: Date
+started: boolean
+finished: boolean
+--
+
++create(description: String, dateStart: Date, dateEnd: Date, started: boolean, finished: boolean)
++getDescription(): String
++setDescription(description: String)
++getDateStart(): Date
++setDateStart(dateStart: Date)
++getDateEnd(): Date
++setDateEnd(dateEnd: Date)
++isStarted(): boolean
++setStarted(started: boolean)
++isFinished(): boolean
++setFinished(finished: boolean)
+
+fg=BLACK</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>684</x>
+      <y>648</y>
+      <w>48</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+ShiftList
+
+m2= 0...n</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>48</x>
+      <y>816</y>
+      <w>234</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>«interface»
+ShiftEventReceiver
+--
+
+--
+/+updateShiftScoreboardCreated(ts: ShiftScoreboard)/
+/+updateTurnsScoreboardDeleted(ts: ShiftScoreboard)/
+/+updateShiftAdded(tt: Shift)/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>810</x>
+      <y>504</y>
+      <w>120</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+owner
+m2=1</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;20.0;180.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>162</x>
+      <y>714</y>
+      <w>72</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+eventReceivers
+
+
+m1=0..n</panel_attributes>
+    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1956</x>
+      <y>366</y>
+      <w>336</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>Role
+--
+-worker: Staff
+-name: String
+-description: String
+-date: Date
+-isAssigned: boolean
+--
+
++create(worker: Staff, name: String, description: String, date: Date, assigned: boolean)
++getStaff(serialNumber: int): Staff
++setWorker(worker: Staff)
++getName(): String
++setName(name: String)
++getDescription(): String
++setDescription(decription: String)
++getDate(): Date
++setDate(date: Date)
++isAssigned(): boolean
++setAssigned(assigned: boolean)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1854</x>
+      <y>426</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+performs
+m2=0...n</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1044</x>
+      <y>540</y>
+      <w>546</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+owner
+m2=1</panel_attributes>
+    <additional_attributes>890.0;500.0;890.0;540.0;10.0;540.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>306</y>
+      <w>948</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+manager
+m1=1</panel_attributes>
+    <additional_attributes>10.0;320.0;60.0;320.0;60.0;20.0;1560.0;20.0;1560.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>96</x>
+      <y>1230</y>
+      <w>234</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>«interface»
+SummaryFormEventReceiver
+--
+
+--
+/+updateSummaryFormCreated(sf: SummaryForm)/
+/+updateSummaryFormDeleted(sf: SummaryForm)/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>204</x>
+      <y>1146</y>
+      <w>72</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+eventReceivers
+m1=0...n</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>1062</y>
+      <w>180</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+currentSummaryForm
+m1=0...n</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>582</x>
+      <y>540</y>
+      <w>378</w>
+      <h>504</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+owner
+m2=1</panel_attributes>
+    <additional_attributes>10.0;820.0;10.0;730.0;570.0;730.0;570.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1368</x>
+      <y>1164</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>«interface»
+StaffNoteEventReceiver
+--
+
+--
+/+updateStaffNoteCreated(n: StaffNote)/
+/+updateStaffNoteDeleted(n: StaffNote)/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1452</x>
+      <y>1074</y>
+      <w>72</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+eventReceivers
+m1=0...n</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1644</x>
+      <y>990</y>
+      <w>126</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+currentStaffNote
+m1=0...n</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1020</x>
+      <y>540</y>
+      <w>768</w>
+      <h>414</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+owner
+m2=1</panel_attributes>
+    <additional_attributes>1260.0;670.0;1260.0;590.0;10.0;590.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1854</x>
+      <y>594</y>
+      <w>126</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+itemStaffNote
+
+m2= 0...n</panel_attributes>
+    <additional_attributes>10.0;10.0;110.0;10.0;110.0;580.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1104</x>
+      <y>1026</y>
+      <w>198</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Holidays
+--
+-worker: Staff
+-period: Date
+--
+
++create(owner: User, worker: Staff, period: Date)
++getStaff(serialNumber: int): Staff
++setWorker(worker: Staff)
++getPeriod(): Date
++setPeriod(date: Date)
++isOwner(): boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>732</x>
+      <y>1008</y>
+      <w>576</w>
+      <h>318</h>
+    </coordinates>
+    <panel_attributes>HolidaysManagement
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>1026</y>
+      <w>246</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>HolidaysManager
+--
+-holidaysFeatures: String[]
+--
+
++addReceiver(er: HolidaysEventReceiver)
++removeReceiver(er: HolidaysEventReceiver)
+
+-notifyHolidaysCreated(h: Holidays)
+-notifyHolidaysDeleted(h: Holidays)
+
+--
+
++getStaff(serialNumber: int): Staff
++createHolidays(worker: Staff, period: Date): Holidays
+
+fg=black
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>738</x>
+      <y>1248</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>«interface»
+HolidaysEventReceiver
+--
+
+--
+/+updateHolidaysCreated(h: Holidays)/
+/+updateHolidaysDeleted(h: Holidays)/
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>822</x>
+      <y>1158</y>
+      <w>72</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+eventReceivers
+m1=0...n</panel_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>978</x>
+      <y>1074</y>
+      <w>138</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+currentHolidays
+m1=0...n</panel_attributes>
+    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>960</x>
+      <y>540</y>
+      <w>198</w>
+      <h>498</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+owner
+m2=1</panel_attributes>
+    <additional_attributes>310.0;810.0;310.0;730.0;10.0;730.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1254</x>
+      <y>570</y>
+      <w>810</w>
+      <h>756</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+
+
+itemHolidays
+
+m2= 0...1</panel_attributes>
+    <additional_attributes>1010.0;10.0;1320.0;10.0;1320.0;1200.0;10.0;1200.0;10.0;960.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>6</x>
+      <y>390</y>
+      <w>132</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>SummaryFormException
+--
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>132</x>
+      <y>408</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>390</y>
+      <w>78</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Exception
+--
+
+fg=magenta
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>6</x>
+      <y>444</y>
+      <w>132</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>StaffDataListException
+--
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>132</x>
+      <y>462</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>444</y>
+      <w>78</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Exception
+--
+
+fg=magenta
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>6</x>
+      <y>498</y>
+      <w>132</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>RoleException
+--
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>132</x>
+      <y>516</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+fg=gray</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>498</y>
+      <w>78</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Exception
+--
+
+fg=magenta
+fg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
