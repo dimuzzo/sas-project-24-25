@@ -8,7 +8,7 @@ public class Staff {
     private final int serialNumber;  // identificatore unico e immutabile
     private String name;
     private String email;
-    private int phoneNumber;
+    private String phoneNumber;
     private String taxCode;
     private String primaryMansion;
     private boolean available;
@@ -18,7 +18,7 @@ public class Staff {
      * Costruttore principale.
      * Il serialNumber viene assegnato una volta sola al momento della creazione.
      */
-    public Staff(int serialNumber, String name, String email, int phoneNumber,
+    public Staff(int serialNumber, String name, String email, String phoneNumber,
                  String taxCode, String primaryMansion, boolean permanent) {
         this.serialNumber = serialNumber;
         this.name = Objects.requireNonNull(name, "Name cannot be null");
@@ -46,7 +46,7 @@ public class Staff {
         return email;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -78,7 +78,7 @@ public class Staff {
         this.email = email;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

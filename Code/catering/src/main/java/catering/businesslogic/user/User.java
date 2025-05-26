@@ -11,13 +11,13 @@ import java.util.Set;
 
 public class User {
 
-    public static enum Role {
+    public static enum UserRole {
         CUOCO, CHEF, ORGANIZZATORE, SERVIZIO
     };
 
     private int id;
     private String username;
-    private Set<Role> roles;
+    private Set<UserRole> userRoles;
 
     public User() {
         this(null);
@@ -26,18 +26,18 @@ public class User {
     public User(String username) {
         id = 0;
         this.username = username;
-        this.roles = new HashSet<>();
+        this.userRoles = new HashSet<>();
     }
 
     public boolean isCook() {
-        return roles.contains(Role.CUOCO);
+        return userRoles.contains(UserRole.CUOCO);
     }
 
     public boolean isChef() {
-        return roles.contains(Role.CHEF);
+        return userRoles.contains(UserRole.CHEF);
     }
 
-    public boolean isOrganizer() { return roles.contains(Role.ORGANIZZATORE); }
+    public boolean isOrganizer() { return userRoles.contains(UserRole.ORGANIZZATORE); }
 
     public String getUserName() {
         return username;
@@ -55,9 +55,9 @@ public class User {
         StringBuilder sb = new StringBuilder();
         sb.append(id).append(" ").append(username);
 
-        if (!roles.isEmpty()) {
+        if (!userRoles.isEmpty()) {
             sb.append(" : ");
-            for (User.Role r : roles) {
+            for (User.UserRole r : userRoles) {
                 sb.append(r.toString()).append(" ");
             }
         }
@@ -80,8 +80,8 @@ public class User {
      * @param role The role to add
      * @return true if the role was added, false if it was already present
      */
-    public boolean addRole(Role role) {
-        return this.roles.add(role);
+    public boolean addRole(UserRole role) {
+        return this.userRoles.add(role);
     }
 
     /**
@@ -90,8 +90,8 @@ public class User {
      * @param role The role to remove
      * @return true if the role was removed, false if it wasn't present
      */
-    public boolean removeRole(Role role) {
-        return this.roles.remove(role);
+    public boolean removeRole(UserRole role) {
+        return this.userRoles.remove(role);
     }
 
     /**
@@ -100,8 +100,8 @@ public class User {
      * @param role The role to check
      * @return true if the user has the role, false otherwise
      */
-    public boolean hasRole(Role role) {
-        return this.roles.contains(role);
+    public boolean hasRole(UserRole role) {
+        return this.userRoles.contains(role);
     }
 
     /**
@@ -109,8 +109,8 @@ public class User {
      * 
      * @return A set containing all user roles
      */
-    public Set<Role> getRoles() {
-        return new HashSet<>(this.roles); // Return a copy to prevent external modification
+    public Set<UserRole> getRoles() {
+        return new HashSet<>(this.userRoles); // Return a copy to prevent external modification
     }
 
     // STATIC METHODS FOR PERSISTENCE
@@ -181,16 +181,16 @@ public class User {
                 int role = rs.getInt("role_id");
                 switch (role) {
                     case 0:
-                        u.roles.add(User.Role.CUOCO);
+                        u.userRoles.add(UserRole.CUOCO);
                         break;
                     case 1:
-                        u.roles.add(User.Role.CHEF);
+                        u.userRoles.add(UserRole.CHEF);
                         break;
                     case 2:
-                        u.roles.add(User.Role.ORGANIZZATORE);
+                        u.userRoles.add(UserRole.ORGANIZZATORE);
                         break;
                     case 3:
-                        u.roles.add(User.Role.SERVIZIO);
+                        u.userRoles.add(UserRole.SERVIZIO);
                         break;
                 }
             }
@@ -274,7 +274,7 @@ public class User {
         PersistenceManager.executeUpdate(deleteQuery, id);
 
         // Then insert new roles
-        for (Role role : roles) {
+        for (UserRole role : userRoles) {
             String roleId = getRoleStringId(role);
             String insertQuery = "INSERT INTO UserRoles (user_id, role_id) VALUES(?, ?)";
             PersistenceManager.executeUpdate(insertQuery, id, roleId);
@@ -284,7 +284,7 @@ public class User {
     /**
      * Converts Role enum to string ID for database
      */
-    private String getRoleStringId(Role role) {
+    private String getRoleStringId(UserRole role) {
         switch (role) {
             case CUOCO:
                 return "c";

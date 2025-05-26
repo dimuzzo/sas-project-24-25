@@ -10,9 +10,6 @@ public class Role {
     private Date date;
     private boolean isAssigned;
 
-    // Costruttore privato: uso obbligatorio di create()
-    Role() {}
-
     public static Role create(String name, String description, Date date) {
         Role role = new Role();
         role.name = name;

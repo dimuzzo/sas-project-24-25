@@ -45,7 +45,7 @@ public class StaffDataList {
         return false;
     }
 
-    public boolean updateStaffData(Staff s, String name, String newEmail, int newPhoneNumber,
+    public boolean updateStaffData(Staff s, String name, String newEmail, String newPhoneNumber,
                                    String taxCode, String newPrimaryMansion,
                                    boolean availability, boolean permanent) {
         Staff existing = getStaffBySerialNumber(s.getSerialNumber());

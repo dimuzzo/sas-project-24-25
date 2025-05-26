@@ -1,5 +1,18 @@
 -- database: catering.db
 -- 1) FIRST REMOVE ALL TABLES (in reverse dependency order)
+
+DROP TABLE IF EXISTS `Holidays`;
+
+DROP TABLE IF EXISTS `Staff`;
+
+DROP TABLE IF EXISTS `StaffDataList`;
+
+DROP TABLE IF EXISTS `StaffNote`;
+
+DROP TABLE IF EXISTS `SummaryForm`;
+
+DROP TABLE IF EXISTS `EventRoles`;
+
 DROP TABLE IF EXISTS `Assignment`;
 
 DROP TABLE IF EXISTS `Tasks`;
@@ -36,10 +49,94 @@ DROP TABLE IF EXISTS `Users`;
 
 -- 2) CREATE ALL TABLES (in dependency order)
 -- Start with tables that don't depend on others
+
 CREATE TABLE
     `Users` (
+                `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+                `username` TEXT NOT NULL DEFAULT ''
+);
+
+CREATE TABLE
+    `Holidays` (
         `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-        `username` TEXT NOT NULL DEFAULT ''
+        `workerId` INTEGER NOT NULL,
+        `period` DATE NOT NULL,
+        `ownerId` INTEGER NOT NULL,
+        FOREIGN KEY (`workerId`) REFERENCES `Staff`(`serialNumber`) ON DELETE CASCADE,
+        FOREIGN KEY (`ownerId`) REFERENCES `Users`(`id`) ON DELETE CASCADE
+    );
+
+CREATE TABLE
+    `Staff` (
+        `serialNumber` INTEGER PRIMARY KEY AUTOINCREMENT,
+        `name` TEXT NOT NULL DEFAULT '',
+        `email` TEXT DEFAULT '',
+        `phoneNumber` TEXT DEFAULT '',
+        `taxCode` TEXT NOT NULL DEFAULT '',
+        `primaryMansion` TEXT DEFAULT '',
+        `available` INTEGER NOT NULL DEFAULT 1,  -- 1 = true, 0 = false
+        `permanent` INTEGER NOT NULL DEFAULT 0   -- 1 = true, 0 = false
+    );
+
+CREATE TABLE
+    `StaffDataList` (
+        `ownerId` INTEGER NOT NULL,
+        `staffSerialNumber` INTEGER NOT NULL,
+        PRIMARY KEY (`ownerId`, `staffSerialNumber`),
+        FOREIGN KEY (`ownerId`) REFERENCES `Users`(`id`) ON DELETE CASCADE,
+        FOREIGN KEY (`staffSerialNumber`) REFERENCES `Staff`(`serialNumber`) ON DELETE CASCADE
+    );
+
+CREATE TABLE
+    `StaffNotes` (
+        `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+        `workerSerialNumber` INTEGER NOT NULL,
+        `ownerId` INTEGER NOT NULL,
+        `description` TEXT NOT NULL DEFAULT '',
+        `noteDate` DATE NOT NULL,
+        FOREIGN KEY (`workerSerialNumber`) REFERENCES `Staff`(`serialNumber`) ON DELETE CASCADE,
+        FOREIGN KEY (`ownerId`) REFERENCES `Users`(`id`) ON DELETE CASCADE
+    );
+
+-- === Tabella principale SummaryForms ===
+CREATE TABLE
+    `SummaryForms` (
+        `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+        `description` TEXT NOT NULL DEFAULT '',
+        `inUse` INTEGER NOT NULL DEFAULT 0,
+        `ownerId` INTEGER NOT NULL,
+        FOREIGN KEY (`ownerId`) REFERENCES `Users`(`id`) ON DELETE CASCADE
+    );
+
+-- === Tabella ponte SummaryFormEvents ===
+CREATE TABLE
+    `SummaryFormEvents` (
+        `summaryFormId` INTEGER NOT NULL,
+        `eventId` INTEGER NOT NULL,
+        PRIMARY KEY (`summaryFormId`, `eventId`),
+        FOREIGN KEY (`summaryFormId`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
+        FOREIGN KEY (`eventId`) REFERENCES `Events`(`id`) ON DELETE CASCADE
+    );
+
+-- === Tabella ponte SummaryFormRoles ===
+CREATE TABLE
+    `SummaryFormRoles` (
+        `summaryFormId` INTEGER NOT NULL,
+        `roleId` INTEGER NOT NULL,
+        PRIMARY KEY (`summaryFormId`, `roleId`),
+        FOREIGN KEY (`summaryFormId`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
+        FOREIGN KEY (`roleId`) REFERENCES `Roles`(`id`) ON DELETE CASCADE
+    );
+
+CREATE TABLE
+    `EventRoles` (
+        `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+        `name` TEXT NOT NULL,
+        `description` TEXT,
+        `date` DATE NOT NULL,
+        `isAssigned` INTEGER NOT NULL DEFAULT 0,
+        `staffId` INTEGER,  -- può essere NULL se non assegnato
+        FOREIGN KEY (`staffId`) REFERENCES `Staff`(`serialNumber`) ON DELETE SET NULL
     );
 
 CREATE TABLE
