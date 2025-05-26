@@ -1,0 +1,4154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>9</zoom_level>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>261</x>
+      <y>1260</y>
+      <w>333</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+
+SSD per l'UC Gestire il personale
+
+Scenario estensioni 2a, 2b
+ed eccezioni 2a.1a, 2b.1a
+
+lw=0
+fontsize=20
+bg=#7DF9FF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>162</x>
+      <y>1377</y>
+      <w>90</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Organizzatore</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>612</x>
+      <y>1395</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Sistema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1458</y>
+      <w>27</w>
+      <h>1089</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1190.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>1431</y>
+      <w>27</w>
+      <h>1116</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1476</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+1. apreSchedaRiepilogativa()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1503</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Scheda riepilogativa
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1917</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+3. ottieneElencoDatiPersonale()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1953</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1566</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2. scriveRuolo(nome, descrizione, data, assegnato)</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1602</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ruolo da assegnare</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>108</x>
+      <y>1557</y>
+      <w>603</w>
+      <h>351</h>
+    </coordinates>
+    <panel_attributes>OPT
+fg=#128C86
+bg=#B8E0E0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>54</x>
+      <y>1548</y>
+      <w>666</w>
+      <h>369</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>0</x>
+      <y>1539</y>
+      <w>738</w>
+      <h>963</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>612</x>
+      <y>0</y>
+      <w>90</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Organizzatore</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>1062</x>
+      <y>18</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Sistema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>81</y>
+      <w>27</w>
+      <h>810</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;880.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1098</x>
+      <y>54</y>
+      <w>27</w>
+      <h>837</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;910.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>99</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+1. apreSchedaRiepilogativa(evento, servizio)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>126</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Scheda riepilogativa
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>270</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+3. ottieneElencoDatiPersonale()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>306</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>360</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+4. inserisceDatiPersonale(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>396</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>477</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+5. assegnaPersonaleDisponibile(Personale)
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>513</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale disponibile
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>756</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8. gestisceFeriePersonale(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>792</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Date eventi e richieste di ferie
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>576</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6. scriveNoteSulPersonale(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>612</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Note sulle prestazioni del personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>666</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+7. valutaAssunzionePermanente(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>702</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>189</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2. scriveRuoliPersonale()
+fg=GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>648</x>
+      <y>225</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ruoli da assegnare
+fg=GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>603</x>
+      <y>180</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>603</x>
+      <y>351</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>549</x>
+      <y>342</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>603</x>
+      <y>468</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>603</x>
+      <y>567</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>603</x>
+      <y>657</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>603</x>
+      <y>747</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>495</x>
+      <y>450</y>
+      <w>684</w>
+      <h>387</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>549</x>
+      <y>171</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>486</x>
+      <y>162</y>
+      <w>702</w>
+      <h>684</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1638</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2a. eliminaRuolo(Ruolo)
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1683</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1773</y>
+      <w>477</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2b. modificaRuoloPersonale(Ruolo, nuovaDescrizione, nuovaData,
+assegnato)
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1818</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>153</x>
+      <y>1566</y>
+      <w>549</w>
+      <h>333</h>
+    </coordinates>
+    <panel_attributes>ALT
+fg=#761C8C
+bg=#e7bfff
+lw=1
+--
+
+
+
+-.
+
+
+
+
+
+
+
+
+
+-.
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>252</x>
+      <y>2709</y>
+      <w>333</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+
+SSD per l'UC Gestire il personale
+
+Scenario estensione 3a
+
+lw=0
+fontsize=20
+bg=#7DF9FF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>135</x>
+      <y>2781</y>
+      <w>99</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Organizzatore</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>594</x>
+      <y>2799</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Sistema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>2862</y>
+      <w>27</w>
+      <h>909</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;990.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>2835</y>
+      <w>27</w>
+      <h>927</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1010.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>2880</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+1. apreSchedaRiepilogativa()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>2907</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Scheda riepilogativa
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3069</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+3. ottieneElencoDatiPersonale()
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3105</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3240</y>
+      <w>477</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+4. inserisceDatiPersonale(matricola, nome, email, numeroTelefono, 
+codiceFiscale,  mansionePrimaria, disponibile, permanente)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3276</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>2970</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2. scriveRuolo(nome, descrizione, data, assegnato)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3006</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ruolo da assegnare
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>135</x>
+      <y>2961</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>135</x>
+      <y>3231</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>81</x>
+      <y>3222</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>81</x>
+      <y>2952</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>18</x>
+      <y>2943</y>
+      <w>702</w>
+      <h>783</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=-3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3141</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+3a. eliminaElencoDatiPersonale(elencoDatiPersonale)
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3177</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>81</x>
+      <y>3060</y>
+      <w>612</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>ALT
+fg=#761C8C
+bg=#e7bfff
+lw=1
+--
+
+
+
+-.
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1755</x>
+      <y>2538</y>
+      <w>333</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+
+SSD per l'UC Gestire il personale
+
+Scenario estensioni 5a e 5b
+ed eccezione 5c.1a
+
+lw=0
+fontsize=20
+bg=#7DF9FF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>1629</x>
+      <y>1341</y>
+      <w>90</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Organizzatore</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>2079</x>
+      <y>1359</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Sistema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1422</y>
+      <w>27</w>
+      <h>1008</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2115</x>
+      <y>1395</y>
+      <w>27</w>
+      <h>1035</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1440</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+1. apreSchedaRiepilogativa()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1467</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Scheda riepilogativa
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1611</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+3. ottieneElencoDatiPersonale()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1647</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1710</y>
+      <w>477</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+4. inserisceDatiPersonale(matricola, nome, email, numeroTelefono, 
+codiceFiscale, mansionePrimaria, disponibile, permanente)
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1746</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1530</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2. scriveRuolo(nome, descrizione, data, assegnato)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1566</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ruolo da assegnare
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1620</x>
+      <y>1521</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1575</x>
+      <y>1692</y>
+      <w>603</w>
+      <h>279</h>
+    </coordinates>
+    <panel_attributes>OPT
+fg=#128C86
+bg=#B8E0E0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1521</x>
+      <y>1683</y>
+      <w>666</w>
+      <h>297</h>
+    </coordinates>
+    <panel_attributes>LOOP
+fg=blue
+bg=#8CB4FF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1566</x>
+      <y>1512</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1503</x>
+      <y>1503</y>
+      <w>702</w>
+      <h>882</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=-3</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1620</x>
+      <y>1701</y>
+      <w>549</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>ALT
+fg=#761C8C
+bg=#e7bfff
+lw=1
+--
+
+
+
+-.
+
+
+
+
+
+
+
+
+-.
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1647</x>
+      <y>1773</y>
+      <w>513</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+4a. modificaDatiPersonale(Personale, matricola, nome, nuovaEmail, 
+nuovoNumeroTelefono, codiceFiscale, nuovaMansionePrimaria, disponibile, permanente)
+fg=MAGENTA
+layer=2</panel_attributes>
+    <additional_attributes>530.0;20.0;30.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1809</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1854</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+4a.1a Errore scrittura dati
+fg=red
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1899</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+4b. eliminaDatiPersonale(Personale)
+fg=MAGENTA
+layer=2</panel_attributes>
+    <additional_attributes>510.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>1926</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1629</x>
+      <y>1809</y>
+      <w>531</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>ALT
+bg=#ffaaaa
+--
+
+-.
+fg=#D3001B
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>2115</x>
+      <y>1818</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>2115</x>
+      <y>1863</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1737</x>
+      <y>1233</y>
+      <w>333</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+
+SSD per l'UC Gestire il personale
+
+Scenario estensioni 4a, 4b
+ed eccezione 4a.1a
+
+lw=0
+fontsize=20
+bg=#7DF9FF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>1647</x>
+      <y>2646</y>
+      <w>90</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Organizzatore</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>2097</x>
+      <y>2664</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Sistema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>2727</y>
+      <w>27</w>
+      <h>1035</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2133</x>
+      <y>2700</y>
+      <w>27</w>
+      <h>1062</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>2745</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+1. apreSchedaRiepilogativa()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>2772</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Scheda riepilogativa
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>2916</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+3. ottieneElencoDatiPersonale()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>2952</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3006</y>
+      <w>477</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+4. inserisceDatiPersonale(matricola, nome, email, numeroTelefono, 
+codiceFiscale, mansionePrimaria, disponibile, permanente)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3042</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3150</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+5. assegnaRuoloPersonaleDisponibile(Personale, Ruolo)
+fg=BLACK
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3186</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale e scheda riepilogativa aggiornati
+fg=BLACK
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3627</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8. gestisceRichiestaFeriePersonale(Personale, periodo)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3663</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Date eventi e richieste di ferie
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3447</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6. scriveNotaPersonale(Personale, descrizione, data)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3483</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Note sulle prestazioni del personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3537</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+7. valutaAssunzionePermanente(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3573</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>2835</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2. scriveRuolo(nome, descrizione, data, assegnato)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>2871</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ruolo da assegnare
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1638</x>
+      <y>2826</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1638</x>
+      <y>2997</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1584</x>
+      <y>2988</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1593</x>
+      <y>3141</y>
+      <w>603</w>
+      <h>279</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY
+fg=#128C86
+bg=#B8E0E0
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1638</x>
+      <y>3438</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1638</x>
+      <y>3528</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1638</x>
+      <y>3618</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1485</x>
+      <y>3105</y>
+      <w>729</w>
+      <h>603</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1584</x>
+      <y>2817</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1476</x>
+      <y>2808</y>
+      <w>747</w>
+      <h>909</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3231</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+5c.1a Errore assegnazione personale non disponibile
+fg=red
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>2133</x>
+      <y>3195</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>2133</x>
+      <y>3240</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1647</x>
+      <y>3186</y>
+      <w>531</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>ALT
+bg=#ffaaaa
+--
+
+-.
+fg=#D3001B
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>549</x>
+      <y>459</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2016</y>
+      <w>477</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+4. inserisceDatiPersonale(matricola, nome, email, numeroTelefono, 
+codiceFiscale,  mansionePrimaria, disponibile, permanente)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2052</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>153</x>
+      <y>2007</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>99</x>
+      <y>1998</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>45</x>
+      <y>2106</y>
+      <w>684</w>
+      <h>387</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>99</x>
+      <y>2115</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>153</x>
+      <y>2124</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2133</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+5. assegnaRuoloPersonaleDisponibile(Personale, Ruolo)
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2169</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale e scheda riepilogativa aggiornati
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>153</x>
+      <y>2223</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>153</x>
+      <y>2313</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>153</x>
+      <y>2403</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2412</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8. gestisceRichiestaFeriePersonale(Personale, periodo)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2448</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Date eventi e richieste di ferie
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2358</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2322</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+7. valutaAssunzionePermanente(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2268</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Note sulle prestazioni del personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>2232</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6. scriveNotaPersonale(Personale, descrizione, data)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>27</x>
+      <y>3330</y>
+      <w>684</w>
+      <h>387</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=-2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>81</x>
+      <y>3339</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>135</x>
+      <y>3348</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3357</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+5. assegnaRuoloPersonaleDisponibile(Personale, Ruolo)
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3393</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale e scheda riepilogativa aggiornati
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>135</x>
+      <y>3447</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>135</x>
+      <y>3537</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>135</x>
+      <y>3627</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3636</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8. gestisceRichiestaFeriePersonale(Personale, periodo)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3672</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Date eventi e richieste di ferie
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3582</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3546</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+7. valutaAssunzionePermanente(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3492</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Note sulle prestazioni del personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>180</x>
+      <y>3456</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6. scriveNotaPersonale(Personale, descrizione, data)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1512</x>
+      <y>1989</y>
+      <w>684</w>
+      <h>387</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=-2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1566</x>
+      <y>1998</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=-1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1620</x>
+      <y>2007</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>2016</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+5. assegnaRuoloPersonaleDisponibile(Personale, Ruolo)
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>2052</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale e scheda riepilogativa aggiornati
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1620</x>
+      <y>2106</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1620</x>
+      <y>2196</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1620</x>
+      <y>2286</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>2295</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8. gestisceRichiestaFeriePersonale(Personale, periodo)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>2331</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Date eventi e richieste di ferie
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>2241</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>2205</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+7. valutaAssunzionePermanente(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>2151</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Note sulle prestazioni del personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1665</x>
+      <y>2115</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6. scriveNotaPersonale(Personale, descrizione, data)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1539</x>
+      <y>3114</y>
+      <w>666</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+fg=blue
+bg=#8CB4FF
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>3177</x>
+      <y>1224</y>
+      <w>333</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+
+SSD per l'UC Gestire il personale
+
+Scenario estensioni 6a, 6b
+
+lw=0
+fontsize=20
+bg=#7DF9FF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>3051</x>
+      <y>1323</y>
+      <w>99</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Organizzatore</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>3519</x>
+      <y>1341</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Sistema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1404</y>
+      <w>27</w>
+      <h>990</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1080.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3555</x>
+      <y>1377</y>
+      <w>27</w>
+      <h>1017</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1422</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+1. apreSchedaRiepilogativa()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1449</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Scheda riepilogativa
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1593</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+3. ottieneElencoDatiPersonale()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1629</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1683</y>
+      <w>477</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+4. inserisceDatiPersonale(matricola, nome, email, numeroTelefono, 
+codiceFiscale, mansionePrimaria, disponibile, permanente)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1719</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1800</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+5. assegnaRuoloPersonaleDisponibile(Personale, Ruolo)
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1836</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale e scheda riepilogativa aggiornati
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>2259</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8. gestisceRichiestaFeriePersonale(Personale, periodo)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>2295</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Date eventi e richieste di ferie
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1899</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6. scriveNotaPersonale(Personale, descrizione, data)
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1935</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Note sulle prestazioni del personale
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>2169</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+7. valutaAssunzionePermanente(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>2205</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1512</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2. scriveRuolo(nome, descrizione, data, assegnato)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1548</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ruolo da assegnare
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3060</x>
+      <y>1503</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3060</x>
+      <y>1674</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3006</x>
+      <y>1665</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3060</x>
+      <y>1791</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3006</x>
+      <y>1890</y>
+      <w>621</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>OPT
+fg=#128C86
+bg=#B8E0E0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3060</x>
+      <y>2160</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3060</x>
+      <y>2250</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>2952</x>
+      <y>1773</y>
+      <w>684</w>
+      <h>567</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3006</x>
+      <y>1494</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>2943</x>
+      <y>1485</y>
+      <w>702</w>
+      <h>864</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3006</x>
+      <y>1782</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>1980</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6a. modificaNotaPersonale(Nota, nuovaDescrizione, data)
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>2016</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>2061</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6b. eliminaNotaSulPersonale(Nota)
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3105</x>
+      <y>2097</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3069</x>
+      <y>1899</y>
+      <w>549</w>
+      <h>243</h>
+    </coordinates>
+    <panel_attributes>ALT
+fg=#761C8C
+bg=#e7bfff
+lw=1
+--
+
+
+
+-.
+
+
+
+
+
+
+-.
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>3177</x>
+      <y>2601</y>
+      <w>333</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+
+SSD per l'UC Gestire il personale
+
+Scenario estensione 7a
+
+lw=0
+fontsize=20
+bg=#7DF9FF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>3069</x>
+      <y>2691</y>
+      <w>99</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Organizzatore</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>3528</x>
+      <y>2709</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Sistema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>2772</y>
+      <w>27</w>
+      <h>900</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;980.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3564</x>
+      <y>2745</y>
+      <w>27</w>
+      <h>927</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1010.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>2790</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+1. apreSchedaRiepilogativa()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>2817</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Scheda riepilogativa
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>2961</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+3. ottieneElencoDatiPersonale()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>2997</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3051</y>
+      <w>477</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+4. inserisceDatiPersonale(matricola, nome, email, numeroTelefono, 
+codiceFiscale, mansionePrimaria, disponibile, permanente)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3087</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3168</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+5. assegnaRuoloPersonaleDisponibile(Personale, Ruolo)
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3204</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale e scheda riepilogativa aggiornati
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3537</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8. gestisceRichiestaFeriePersonale(Personale, periodo)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3573</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Date eventi e richieste di ferie
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3267</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6. scriveNotaPersonale(Personale, descrizione, data)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3303</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Note sulle prestazioni del personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3357</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+7. valutaAssunzionePermanente(Personale)
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3393</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>2880</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2. scriveRuolo(nome, descrizione, data, assegnato)
+fg=GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>2916</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ruolo da assegnare
+fg=GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3069</x>
+      <y>2871</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3069</x>
+      <y>3042</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3015</x>
+      <y>3033</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3069</x>
+      <y>3159</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3069</x>
+      <y>3258</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3015</x>
+      <y>3348</y>
+      <w>621</w>
+      <h>171</h>
+    </coordinates>
+    <panel_attributes>OPT
+fg=#128C86
+bg=#B8E0E0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3069</x>
+      <y>3528</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>2961</x>
+      <y>3141</y>
+      <w>684</w>
+      <h>477</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3015</x>
+      <y>2862</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>2952</x>
+      <y>2853</y>
+      <w>702</w>
+      <h>774</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3015</x>
+      <y>3150</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3438</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+7a. modificaTipologiaAssunzione(Personale)
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>3114</x>
+      <y>3474</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>3078</x>
+      <y>3357</y>
+      <w>549</w>
+      <h>153</h>
+    </coordinates>
+    <panel_attributes>ALT
+fg=#761C8C
+bg=#e7bfff
+lw=1
+--
+
+
+
+-.
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>4581</x>
+      <y>1179</y>
+      <w>333</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>valign=center
+halign=center
+
+SSD per l'UC Gestire il personale
+
+Scenario estensioni 8a, 8b
+ed eccezione 8a.1a
+
+lw=0
+fontsize=20
+bg=#7DF9FF</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLActor</id>
+    <coordinates>
+      <x>4473</x>
+      <y>1296</y>
+      <w>90</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Organizzatore</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLDeployment</id>
+    <coordinates>
+      <x>4923</x>
+      <y>1314</y>
+      <w>99</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>Sistema</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1377</y>
+      <w>27</w>
+      <h>1026</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4959</x>
+      <y>1350</y>
+      <w>27</w>
+      <h>1044</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1395</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+1. apreSchedaRiepilogativa()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1422</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Scheda riepilogativa
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1566</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+3. ottieneElencoDatiPersonale()
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1602</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1656</y>
+      <w>477</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+4. inserisceDatiPersonale(matricola, nome, email, numeroTelefono, 
+codiceFiscale, mansionePrimaria, disponibile, permanente)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1692</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1773</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+5. assegnaRuoloPersonaleDisponibile(Personale, Ruolo)
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1809</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale e scheda riepilogativa aggiornati
+fg=DARK_GRAY
+layer=3</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>2052</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8. gestisceRichiestaFeriePersonale(Personale, periodo)
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>2088</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Date eventi e richieste di ferie
+fg=BLACK</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1872</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+6. scriveNotaPersonale(Personale, descrizione, data)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1908</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Note sulle prestazioni del personale
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1962</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+7. valutaAssunzionePermanente(Personale)
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1998</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Elenco dati personale aggiornato
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1485</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+2. scriveRuolo(nome, descrizione, data, assegnato)
+fg=GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>1521</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ruolo da assegnare
+fg=GRAY</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4464</x>
+      <y>1476</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=DARK_GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4464</x>
+      <y>1647</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4410</x>
+      <y>1638</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4464</x>
+      <y>1764</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4464</x>
+      <y>1863</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4464</x>
+      <y>1953</y>
+      <w>558</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>OPT
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4374</x>
+      <y>2043</y>
+      <w>657</w>
+      <h>297</h>
+    </coordinates>
+    <panel_attributes>OPT
+fg=#128C86
+bg=#B8E0E0</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4356</x>
+      <y>1746</y>
+      <w>684</w>
+      <h>603</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4410</x>
+      <y>1467</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4347</x>
+      <y>1458</y>
+      <w>702</w>
+      <h>900</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4410</x>
+      <y>1755</y>
+      <w>621</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>LOOP
+bg=TRANSPARENT
+fg=GRAY
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>2133</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8a assegnaRichiestaFeriePersonale(Personale, Ferie)
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>2169</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA
+layer=1</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>2259</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;
+8b. eliminaRichiestaFeriePersonale(Personale, Ferie)
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>2295</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4419</x>
+      <y>2052</y>
+      <w>603</w>
+      <h>279</h>
+    </coordinates>
+    <panel_attributes>ALT
+fg=#761C8C
+bg=#e7bfff
+lw=1
+--
+
+
+
+-.
+
+
+
+
+
+
+
+
+
+-.
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>4473</x>
+      <y>2160</y>
+      <w>540</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>ALT
+bg=#ffaaaa
+--
+
+-.
+fg=#D3001B
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>4509</x>
+      <y>2205</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+8a.1a Errore periodo di ferie già assegnato
+fg=red
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>4959</x>
+      <y>2178</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>4959</x>
+      <y>2214</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>648</x>
+      <y>1692</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>648</x>
+      <y>1827</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1719</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+2a.1a Errore ruolo in uso
+fg=red
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>198</x>
+      <y>1854</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+2b.1a Errore ruolo in uso
+fg=red
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>171</x>
+      <y>1809</y>
+      <w>522</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>ALT
+bg=#ffaaaa
+--
+
+-.
+fg=#D3001B
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>171</x>
+      <y>1674</y>
+      <w>522</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>ALT
+bg=#ffaaaa
+--
+
+-.
+fg=#D3001B
+layer=1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>648</x>
+      <y>1728</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>648</x>
+      <y>1863</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>type=termination
+fg=red
+lw=2
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>1638</x>
+      <y>3150</y>
+      <w>549</w>
+      <h>261</h>
+    </coordinates>
+    <panel_attributes>ALT
+fg=#761C8C
+bg=#e7bfff
+lw=1
+--
+
+
+
+
+
+
+-.
+
+
+
+
+
+-.
+layer=2</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3276</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+5a. modificaAssegnazioneRuoloPersonaleDisponibile(Personale, Ruolo)
+fg=MAGENTA
+layer=2</panel_attributes>
+    <additional_attributes>510.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3303</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3348</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+5b. eliminaAssegnazioneRuoloPersonaleDisponibile(Personale, Ruolo)
+fg=MAGENTA
+layer=2</panel_attributes>
+    <additional_attributes>510.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1683</x>
+      <y>3375</y>
+      <w>477</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Ok
+fg=MAGENTA
+layer=2</panel_attributes>
+    <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
+  </element>
+</diagram>
