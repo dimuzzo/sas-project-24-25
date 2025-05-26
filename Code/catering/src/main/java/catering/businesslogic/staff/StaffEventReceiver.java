@@ -9,5 +9,6 @@ public interface StaffEventReceiver {
     void updateStaffDataListCreated(StaffDataList sdl);
     void updateStaffDataListDeleted(StaffDataList sdl);
     void updateStaffDataAdded(Staff s, StaffDataList sdl);
+    void updateStaffDataUpdated(Staff s, StaffDataList sdl);
     void updateStaffDataDeleted(Staff s, StaffDataList sdl);
 }

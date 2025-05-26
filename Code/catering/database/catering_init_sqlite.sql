@@ -52,50 +52,50 @@ DROP TABLE IF EXISTS `Users`;
 
 CREATE TABLE
     `Users` (
-                `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-                `username` TEXT NOT NULL DEFAULT ''
+        `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+        `username` TEXT NOT NULL DEFAULT ''
 );
 
 CREATE TABLE
-    `Holidays` (
-        `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-        `workerId` INTEGER NOT NULL,
-        `period` DATE NOT NULL,
-        `ownerId` INTEGER NOT NULL,
-        FOREIGN KEY (`workerId`) REFERENCES `Staff`(`serialNumber`) ON DELETE CASCADE,
-        FOREIGN KEY (`ownerId`) REFERENCES `Users`(`id`) ON DELETE CASCADE
-    );
-
-CREATE TABLE
     `Staff` (
-        `serialNumber` INTEGER PRIMARY KEY AUTOINCREMENT,
+        `serial_number` INTEGER PRIMARY KEY,
         `name` TEXT NOT NULL DEFAULT '',
         `email` TEXT DEFAULT '',
-        `phoneNumber` TEXT DEFAULT '',
-        `taxCode` TEXT NOT NULL DEFAULT '',
-        `primaryMansion` TEXT DEFAULT '',
+        `phone_number` TEXT DEFAULT '',
+        `tax_code` TEXT NOT NULL DEFAULT '',
+        `primary_mansion` TEXT DEFAULT '',
         `available` INTEGER NOT NULL DEFAULT 1,  -- 1 = true, 0 = false
         `permanent` INTEGER NOT NULL DEFAULT 0   -- 1 = true, 0 = false
     );
 
 CREATE TABLE
+    `Holidays` (
+        `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+        `worker_id` INTEGER NOT NULL,
+        `period` DATE NOT NULL,
+        `owner_id` INTEGER NOT NULL,
+        FOREIGN KEY (`worker_id`) REFERENCES `Staff`(`serial_number`) ON DELETE CASCADE,
+        FOREIGN KEY (`owner_id`) REFERENCES `Users`(`id`) ON DELETE CASCADE
+    );
+
+CREATE TABLE
     `StaffDataList` (
-        `ownerId` INTEGER NOT NULL,
-        `staffSerialNumber` INTEGER NOT NULL,
-        PRIMARY KEY (`ownerId`, `staffSerialNumber`),
-        FOREIGN KEY (`ownerId`) REFERENCES `Users`(`id`) ON DELETE CASCADE,
-        FOREIGN KEY (`staffSerialNumber`) REFERENCES `Staff`(`serialNumber`) ON DELETE CASCADE
+        `owner_id` INTEGER NOT NULL,
+        `staff_serial_number` INTEGER NOT NULL,
+        PRIMARY KEY (`owner_id`, `staff_serial_number`),
+        FOREIGN KEY (`owner_id`) REFERENCES `Users`(`id`) ON DELETE CASCADE,
+        FOREIGN KEY (`staff_serial_number`) REFERENCES `Staff`(`serial_number`) ON DELETE CASCADE
     );
 
 CREATE TABLE
     `StaffNotes` (
         `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-        `workerSerialNumber` INTEGER NOT NULL,
-        `ownerId` INTEGER NOT NULL,
+        `worker_serial_number` INTEGER NOT NULL,
+        `owner_id` INTEGER NOT NULL,
         `description` TEXT NOT NULL DEFAULT '',
-        `noteDate` DATE NOT NULL,
-        FOREIGN KEY (`workerSerialNumber`) REFERENCES `Staff`(`serialNumber`) ON DELETE CASCADE,
-        FOREIGN KEY (`ownerId`) REFERENCES `Users`(`id`) ON DELETE CASCADE
+        `note_date` DATE NOT NULL,
+        FOREIGN KEY (`worker_serial_number`) REFERENCES `Staff`(`serial_number`) ON DELETE CASCADE,
+        FOREIGN KEY (`owner_id`) REFERENCES `Users`(`id`) ON DELETE CASCADE
     );
 
 -- === Tabella principale SummaryForms ===
@@ -103,29 +103,29 @@ CREATE TABLE
     `SummaryForms` (
         `id` INTEGER PRIMARY KEY AUTOINCREMENT,
         `description` TEXT NOT NULL DEFAULT '',
-        `inUse` INTEGER NOT NULL DEFAULT 0,
-        `ownerId` INTEGER NOT NULL,
-        FOREIGN KEY (`ownerId`) REFERENCES `Users`(`id`) ON DELETE CASCADE
+        `in_use` INTEGER NOT NULL DEFAULT 0,
+        `owner_id` INTEGER NOT NULL,
+        FOREIGN KEY (`owner_id`) REFERENCES `Users`(`id`) ON DELETE CASCADE
     );
 
 -- === Tabella ponte SummaryFormEvents ===
 CREATE TABLE
     `SummaryFormEvents` (
-        `summaryFormId` INTEGER NOT NULL,
-        `eventId` INTEGER NOT NULL,
-        PRIMARY KEY (`summaryFormId`, `eventId`),
-        FOREIGN KEY (`summaryFormId`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
-        FOREIGN KEY (`eventId`) REFERENCES `Events`(`id`) ON DELETE CASCADE
+        `summary_form_id` INTEGER NOT NULL,
+        `event_id` INTEGER NOT NULL,
+        PRIMARY KEY (`summary_form_id`, `event_id`),
+        FOREIGN KEY (`summary_form_id`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
+        FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`) ON DELETE CASCADE
     );
 
 -- === Tabella ponte SummaryFormRoles ===
 CREATE TABLE
     `SummaryFormRoles` (
-        `summaryFormId` INTEGER NOT NULL,
-        `roleId` INTEGER NOT NULL,
-        PRIMARY KEY (`summaryFormId`, `roleId`),
-        FOREIGN KEY (`summaryFormId`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
-        FOREIGN KEY (`roleId`) REFERENCES `Roles`(`id`) ON DELETE CASCADE
+        `summary_form_id` INTEGER NOT NULL,
+        `role_id` INTEGER NOT NULL,
+        PRIMARY KEY (`summary_form_id`, `role_id`),
+        FOREIGN KEY (`summary_form_id`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
+        FOREIGN KEY (`role_id`) REFERENCES `Roles`(`id`) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -134,9 +134,9 @@ CREATE TABLE
         `name` TEXT NOT NULL,
         `description` TEXT,
         `date` DATE NOT NULL,
-        `isAssigned` INTEGER NOT NULL DEFAULT 0,
-        `staffId` INTEGER,  -- può essere NULL se non assegnato
-        FOREIGN KEY (`staffId`) REFERENCES `Staff`(`serialNumber`) ON DELETE SET NULL
+        `is_assigned` INTEGER NOT NULL DEFAULT 0,
+        `staff_id` INTEGER,  -- può essere NULL se non assegnato
+        FOREIGN KEY (`staff_id`) REFERENCES `Staff`(`serial_number`) ON DELETE SET NULL
     );
 
 CREATE TABLE

@@ -1,6 +1,5 @@
 package catering.businesslogic.staff;
 
-import catering.businesslogic.user.User;
 import catering.businesslogic.summaryform.SummaryForm;
 import catering.businesslogic.staffnote.StaffNote;
 import catering.businesslogic.holidays.Holidays;
@@ -8,11 +7,17 @@ import catering.businesslogic.holidays.Holidays;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class StaffManager {
     private List<StaffEventReceiver> receivers = new ArrayList<>();
     private StaffDataList staffDataList = new StaffDataList();
     private SummaryForm summaryForm;
+
+    // Mappe per associare note e ferie agli staff
+    private Map<Staff, List<StaffNote>> staffNotesMap = new HashMap<>();
+    private Map<Staff, List<Holidays>> staffHolidaysMap = new HashMap<>();
 
     public void addReceiver(StaffEventReceiver er) {
         receivers.add(er);
@@ -52,6 +57,10 @@ public class StaffManager {
 
     public void notifyStaffDataAdded(Staff s, StaffDataList sdl) {
         for (StaffEventReceiver r : receivers) r.updateStaffDataAdded(s, sdl);
+    }
+
+    public void notifyStaffDataUpdated(Staff s, StaffDataList sdl) {
+        for (StaffEventReceiver r : receivers) r.updateStaffDataUpdated(s, sdl);
     }
 
     public void notifyStaffDataDeleted(Staff s, StaffDataList sdl) {
@@ -96,10 +105,22 @@ public class StaffManager {
     }
 
     public void addStaffNote(StaffNote n) {
-        // logica per associare nota a staff
+        Staff staff = getStaffBySerialNumber(n.getStaff().getSerialNumber());
+        if (staff == null) {
+            System.out.println("Staff not found for note.");
+            return;
+        }
+        staffNotesMap.computeIfAbsent(staff, k -> new ArrayList<>()).add(n);
+        // Qui puoi eventualmente notificare event receiver dedicati
     }
 
     public void addHolidays(Holidays h) {
-        // logica per associare ferie a staff
+        Staff staff = getStaffBySerialNumber(h.getWorker().getSerialNumber());
+        if (staff == null) {
+            System.out.println("Staff not found for holidays.");
+            return;
+        }
+        staffHolidaysMap.computeIfAbsent(staff, k -> new ArrayList<>()).add(h);
+        // Qui puoi eventualmente notificare event receiver dedicati
     }
 }
