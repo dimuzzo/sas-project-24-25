@@ -1,5 +1,6 @@
 package catering.businesslogic.staff;
 
+import catering.businesslogic.user.User;
 import catering.businesslogic.summaryform.SummaryForm;
 import catering.businesslogic.staffnote.StaffNote;
 import catering.businesslogic.holidays.Holidays;
@@ -70,8 +71,8 @@ public class StaffManager {
     /**
      * Cerca uno staff nella lista tramite serialNumber.
      */
-    public Staff getStaffBySerialNumber(int serialNumber) {
-        for (Staff s : staffDataList.getStaff()) {
+    public Staff getStaff(int serialNumber) {
+        for (Staff s : staffDataList.getStaffDataList()) {
             if (s.getSerialNumber() == serialNumber) {
                 return s;
             }
@@ -98,6 +99,19 @@ public class StaffManager {
         return rl;
     }
 
+    public boolean addStaff(User currentUser, int serialNumber, String name, String email, String phoneNumber,
+                            String taxCode, String primaryMansion, boolean available, boolean permanent) {
+        boolean added = staffDataList.tryInsertStaff(currentUser, serialNumber, name, email, phoneNumber, taxCode, primaryMansion, available, permanent);
+        if (added) notifyStaffAdded(getStaff(serialNumber));
+        return added;
+    }
+
+    public boolean removeStaff(User currentUser, Staff s) {
+        boolean removed = staffDataList.tryRemoveStaff(currentUser, s);
+        if (removed) notifyStaffRemoved(s);
+        return removed;
+    }
+
     public void assignRole(Staff worker, Role rl) {
         rl.setWorker(worker);
         rl.setAssigned(true);
@@ -105,7 +119,7 @@ public class StaffManager {
     }
 
     public void addStaffNote(StaffNote n) {
-        Staff staff = getStaffBySerialNumber(n.getStaff().getSerialNumber());
+        Staff staff = getStaff(n.getStaff().getSerialNumber());
         if (staff == null) {
             System.out.println("Staff not found for note.");
             return;
@@ -115,7 +129,7 @@ public class StaffManager {
     }
 
     public void addHolidays(Holidays h) {
-        Staff staff = getStaffBySerialNumber(h.getWorker().getSerialNumber());
+        Staff staff = getStaff(h.getWorker().getSerialNumber());
         if (staff == null) {
             System.out.println("Staff not found for holidays.");
             return;

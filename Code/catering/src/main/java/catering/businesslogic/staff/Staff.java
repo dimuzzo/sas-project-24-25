@@ -114,6 +114,19 @@ public class Staff {
     // Metodi di caricamento/salvataggio DB
     // =========================
 
+    private static Staff fromResultSet(ResultSet rs) throws SQLException {
+        Staff s = new Staff();
+        s.serialNumber = rs.getInt("serial_number");
+        s.name = rs.getString("name");
+        s.email = rs.getString("email");
+        s.phoneNumber = rs.getString("phone_number");
+        s.taxCode = rs.getString("tax_code");
+        s.primaryMansion = rs.getString("primary_mansion");
+        s.available = rs.getBoolean("available");
+        s.permanent = rs.getBoolean("permanent");
+        return s;
+    }
+
     /**
      * Carica tutti gli Staff dal DB
      * @return lista di Staff
@@ -125,16 +138,7 @@ public class Staff {
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
-                Staff s = new Staff();
-                s.serialNumber = rs.getInt("serial_number");
-                s.name = rs.getString("name");
-                s.email = rs.getString("email");
-                s.phoneNumber = rs.getString("phone_number");
-                s.taxCode = rs.getString("tax_code");
-                s.primaryMansion = rs.getString("primary_mansion");
-                s.available = rs.getBoolean("available");
-                s.permanent = rs.getBoolean("permanent");
-
+                Staff s = fromResultSet(rs);
                 staffList.add(s);
             }
         });
@@ -142,27 +146,17 @@ public class Staff {
         return staffList;
     }
 
-    /**
-     * Carica un singolo Staff dal DB per serialNumber
-     * @param serialNumber identificativo unico
-     * @return Staff caricato o null se non trovato
-     */
     public static Staff loadStaff(int serialNumber) {
         final Staff[] resultHolder = new Staff[1];
         String query = "SELECT * FROM Staff WHERE serial_number = ?";
 
-        PersistenceManager.executeQuery(query, rs -> {
-            Staff s = new Staff();
-            s.serialNumber = rs.getInt("serial_number");
-            s.name = rs.getString("name");
-            s.email = rs.getString("email");
-            s.phoneNumber = rs.getString("phone_number");
-            s.taxCode = rs.getString("tax_code");
-            s.primaryMansion = rs.getString("primary_mansion");
-            s.available = rs.getBoolean("available");
-            s.permanent = rs.getBoolean("permanent");
-
-            resultHolder[0] = s;
+        PersistenceManager.executeQuery(query, new ResultHandler() {
+            @Override
+            public void handle(ResultSet rs) throws SQLException {
+                if (rs.next()) {
+                    resultHolder[0] = fromResultSet(rs);
+                }
+            }
         }, serialNumber);
 
         return resultHolder[0];
@@ -173,43 +167,47 @@ public class Staff {
      * @return true se successo, false altrimenti
      */
     public boolean save() {
-        // Non rifiutare se serialNumber è già assegnato, perché viene esternamente passato
-
         String query = "INSERT INTO Staff (serial_number, name, email, phone_number, tax_code, primary_mansion, available, permanent) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-
-        PersistenceManager.executeUpdate(query, serialNumber, name, email, phoneNumber, taxCode, primaryMansion, available, permanent);
-
-        // Non sovrascrivere serialNumber, è già corretto
-
-        return true; // eventualmente gestire errori, ma lasciamo così per ora
+        try {
+            int rows = PersistenceManager.executeUpdate(query, serialNumber, name, email, phoneNumber, taxCode, primaryMansion, available, permanent);
+            return rows > 0;
+        } catch (Exception e) {
+            System.err.println("Error while saving staff: " + e.getMessage());
+            return false;
+        }
     }
 
-    /**
-     * Aggiorna un Staff esistente nel DB
-     * @return true se successo, false altrimenti
-     */
     public boolean update() {
-        if (serialNumber == 0) return false; // non esiste nel DB
+        if (serialNumber == 0) return false;
 
         String query = "UPDATE Staff SET name = ?, email = ?, phone_number = ?, tax_code = ?, " +
                 "primary_mansion = ?, available = ?, permanent = ? WHERE serial_number = ?";
-
-        int rows = PersistenceManager.executeUpdate(query, name, email, phoneNumber, taxCode, primaryMansion, available, permanent, serialNumber);
-
-        return rows > 0;
+        try {
+            int rows = PersistenceManager.executeUpdate(query, name, email, phoneNumber, taxCode,
+                    primaryMansion, available, permanent, serialNumber);
+            return rows > 0;
+        } catch (Exception e) {
+            System.err.println("Error while updating staff: " + e.getMessage());
+            return false;
+        }
     }
 
     public boolean delete() {
-        if (serialNumber == 0) return false; // non esiste nel DB
+        if (serialNumber == 0) return false;
 
         String query = "DELETE FROM Staff WHERE serial_number = ?";
-        int rows = PersistenceManager.executeUpdate(query, serialNumber);
-        if (rows > 0) {
-            serialNumber = 0;  // resetto serialNumber per indicare che non è più salvato
-            return true;
+        try {
+            int rows = PersistenceManager.executeUpdate(query, serialNumber);
+            if (rows > 0) {
+                serialNumber = 0; // resetto lo stato interno
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            System.err.println("Error while deleting staff: " + e.getMessage());
+            return false;
         }
-        return false;
     }
 
     // =========================

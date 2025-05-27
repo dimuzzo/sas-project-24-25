@@ -7,9 +7,9 @@ DROP TABLE IF EXISTS `Staff`;
 
 DROP TABLE IF EXISTS `StaffDataList`;
 
-DROP TABLE IF EXISTS `StaffNote`;
+DROP TABLE IF EXISTS `StaffNotes`;
 
-DROP TABLE IF EXISTS `SummaryForm`;
+DROP TABLE IF EXISTS `SummaryForms`;
 
 DROP TABLE IF EXISTS `EventRoles`;
 
@@ -109,24 +109,24 @@ CREATE TABLE
     );
 
 -- === Tabella ponte SummaryFormEvents ===
-CREATE TABLE
-    `SummaryFormEvents` (
-        `summary_form_id` INTEGER NOT NULL,
-        `event_id` INTEGER NOT NULL,
-        PRIMARY KEY (`summary_form_id`, `event_id`),
-        FOREIGN KEY (`summary_form_id`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
-        FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`) ON DELETE CASCADE
-    );
+-- CREATE TABLE
+--     `SummaryFormEvents` (
+--         `summary_form_id` INTEGER NOT NULL,
+--         `event_id` INTEGER NOT NULL,
+--         PRIMARY KEY (`summary_form_id`, `event_id`),
+--         FOREIGN KEY (`summary_form_id`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
+--         FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`) ON DELETE CASCADE
+--     );
 
 -- === Tabella ponte SummaryFormRoles ===
-CREATE TABLE
-    `SummaryFormRoles` (
-        `summary_form_id` INTEGER NOT NULL,
-        `role_id` INTEGER NOT NULL,
-        PRIMARY KEY (`summary_form_id`, `role_id`),
-        FOREIGN KEY (`summary_form_id`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
-        FOREIGN KEY (`role_id`) REFERENCES `Roles`(`id`) ON DELETE CASCADE
-    );
+-- CREATE TABLE
+--     `SummaryFormRoles` (
+--         `summary_form_id` INTEGER NOT NULL,
+--         `role_id` INTEGER NOT NULL,
+--         PRIMARY KEY (`summary_form_id`, `role_id`),
+--         FOREIGN KEY (`summary_form_id`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
+--         FOREIGN KEY (`role_id`) REFERENCES `Roles`(`id`) ON DELETE CASCADE
+--     );
 
 CREATE TABLE
     `EventRoles` (

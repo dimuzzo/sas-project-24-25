@@ -1,7 +1,11 @@
 package catering.businesslogic.staff;
 
 import catering.businesslogic.user.User;
+import catering.persistence.PersistenceManager;
+import catering.persistence.ResultHandler;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -13,14 +17,15 @@ public class StaffDataList {
     private User owner;
 
     // ========================
-    // Creazione
+    // Creazione e caricamento da DB
     // ========================
 
     public static StaffDataList create(User owner) {
         StaffDataList dataList = new StaffDataList();
-        dataList.staffDataList = new ArrayList<>();
-        dataList.receivers = new ArrayList<>();
         dataList.owner = Objects.requireNonNull(owner, "Owner cannot be null");
+        dataList.receivers = new ArrayList<>();
+        // Carica i dati dal DB
+        dataList.staffDataList = Staff.loadAllStaff();
         return dataList;
     }
 
@@ -67,13 +72,36 @@ public class StaffDataList {
         return this.owner != null && this.owner.equals(user);
     }
 
-    public List<Staff> getStaff() {
-        return staffDataList;
+    public List<Staff> getStaffDataList() {
+        return new ArrayList<>(staffDataList);
     }
 
     // ========================
     // Operazioni CRUD
     // ========================
+
+    public boolean save(){
+        String query = "INSERT INTO StaffDataList (owner_id, staff_serial_number) " + "VALUES (?, ?)";
+        try {
+            int rows = PersistenceManager.executeUpdate(query, owner.getId(), Staff.getSerialNumber());
+            return rows > 0;
+        } catch (Exception e) {
+            System.err.println("Error while saving staff data list: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean delete(){
+        if(!isOwner(owner)) return false;
+        String query = "DELETE FROM StaffDataList WHERE owner_id = ?";
+        try {
+            int rows = PersistenceManager.executeUpdate(query, owner.getId());
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error while deleting staff: " + e.getMessage());
+            return false;
+        }
+    }
 
     public boolean tryInsertStaff(User currentUser, int serialNumber, String name, String email, String phoneNumber,
                                   String taxCode, String primaryMansion, boolean available, boolean permanent) {
@@ -87,7 +115,7 @@ public class StaffDataList {
     public boolean insertStaffData(int serialNumber, String name, String email, String phoneNumber,
                                    String taxCode, String primaryMansion,
                                    boolean available, boolean permanent) {
-        if (getStaffBySerialNumber(serialNumber) != null) {
+        if (getStaff(serialNumber) != null) {
             return false; // già presente
         }
 
@@ -95,11 +123,9 @@ public class StaffDataList {
         s.setAvailability(available);
 
         if (s.save()) {  // salva nel DB
-            boolean added = staffDataList.add(s);
-            if (added) {
-                notifyStaffDataAdded(s);
-            }
-            return added;
+            staffDataList.add(s);
+            notifyStaffDataAdded(s);
+            return true;
         }
         return false;
     }
@@ -117,7 +143,7 @@ public class StaffDataList {
     public boolean updateStaffData(Staff s, String name, String newEmail, String newPhoneNumber,
                                    String taxCode, String newPrimaryMansion,
                                    boolean availability, boolean permanent) {
-        Staff existing = getStaffBySerialNumber(s.getSerialNumber());
+        Staff existing = getStaff(s.getSerialNumber());
         if (existing != null) {
             existing.setName(name);
             existing.setEmail(newEmail);
@@ -126,11 +152,10 @@ public class StaffDataList {
             existing.setPrimaryMansion(newPrimaryMansion);
             existing.setAvailability(availability);
             existing.setPermanent(permanent);
-            boolean updated = existing.update(); // aggiorna il DB
-            if (updated) {
+            if (existing.update()) { // aggiorna il DB
                 notifyStaffDataUpdated(existing);
+                return true;
             }
-            return updated;
         }
         return false;
     }
@@ -182,7 +207,7 @@ public class StaffDataList {
     // Utility interna
     // ========================
 
-    private Staff getStaffBySerialNumber(int serialNumber) {
+    private Staff getStaff(int serialNumber) {
         for (Staff s : staffDataList) {
             if (s.getSerialNumber() == serialNumber) {
                 return s;

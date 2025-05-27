@@ -33,7 +33,7 @@ public class StaffNoteManager {
     }
 
     public Staff getStaffBySerialNumber(int serialNumber) {
-        return staffManager.getStaffBySerialNumber(serialNumber);
+        return staffManager.getStaff(serialNumber);
     }
 
     public StaffNote createStaffNote(User owner, Staff worker, String description, Date date) {

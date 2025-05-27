@@ -36,7 +36,7 @@ public class HolidaysManager {
      * Ottiene uno staff usando il serialNumber come chiave univoca.
      */
     public Staff getStaffBySerialNumber(int serialNumber) {
-        return staffManager.getStaffBySerialNumber(serialNumber);
+        return staffManager.getStaff(serialNumber);
     }
 
     public Holidays createHolidays(User owner, Staff worker, Date period) {
