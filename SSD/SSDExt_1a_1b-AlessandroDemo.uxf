@@ -1493,7 +1493,7 @@ layer=2</panel_attributes>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-8. gestisceRichiestaFeriePersonale(Personale, periodo)
+8. gestisceRichiestaFeriePersonale(Personale, periodo, assegnato)
 fg=DARK_GRAY</panel_attributes>
     <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
   </element>
@@ -1963,7 +1963,7 @@ fg=GRAY</panel_attributes>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-8. gestisceRichiestaFeriePersonale(Personale, periodo)
+8. gestisceRichiestaFeriePersonale(Personale, periodo, assegnato)
 fg=DARK_GRAY</panel_attributes>
     <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
   </element>
@@ -2149,7 +2149,7 @@ fg=GRAY</panel_attributes>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-8. gestisceRichiestaFeriePersonale(Personale, periodo)
+8. gestisceRichiestaFeriePersonale(Personale, periodo, assegnato)
 fg=DARK_GRAY</panel_attributes>
     <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
   </element>
@@ -2335,7 +2335,7 @@ fg=GRAY</panel_attributes>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-8. gestisceRichiestaFeriePersonale(Personale, periodo)
+8. gestisceRichiestaFeriePersonale(Personale, periodo, assegnato)
 fg=DARK_GRAY</panel_attributes>
     <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
   </element>
@@ -2600,7 +2600,7 @@ layer=3</panel_attributes>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-8. gestisceRichiestaFeriePersonale(Personale, periodo)
+8. gestisceRichiestaFeriePersonale(Personale, periodo, assegnato)
 fg=DARK_GRAY</panel_attributes>
     <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
   </element>
@@ -3099,7 +3099,7 @@ layer=3</panel_attributes>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-8. gestisceRichiestaFeriePersonale(Personale, periodo)
+8. gestisceRichiestaFeriePersonale(Personale, periodo, assegnato)
 fg=DARK_GRAY</panel_attributes>
     <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
   </element>
@@ -3566,7 +3566,7 @@ layer=3</panel_attributes>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=-&gt;&gt;&gt;
-8. gestisceRichiestaFeriePersonale(Personale, periodo)
+8. gestisceRichiestaFeriePersonale(Personale, periodo, assegnato)
 fg=BLACK</panel_attributes>
     <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>
   </element>
@@ -3915,7 +3915,7 @@ layer=1</panel_attributes>
       <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-8a.1a Errore periodo di ferie già assegnato
+8a.1a Errore richiesta di ferie già assegnata
 fg=red
 layer=2</panel_attributes>
     <additional_attributes>10.0;20.0;510.0;20.0</additional_attributes>

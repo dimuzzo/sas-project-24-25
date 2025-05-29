@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>11</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>330</y>
-      <w>33</w>
-      <h>330</h>
+      <x>152</x>
+      <y>384</y>
+      <w>24</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
@@ -15,10 +15,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>363</y>
-      <w>297</w>
-      <h>44</h>
+      <x>152</x>
+      <y>408</y>
+      <w>216</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 getStaffDataList( )</panel_attributes>
@@ -27,10 +27,10 @@ getStaffDataList( )</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>572</x>
-      <y>286</y>
-      <w>253</w>
-      <h>55</h>
+      <x>248</x>
+      <y>352</y>
+      <w>184</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>staffMgr:
 staffManager</panel_attributes>
@@ -39,10 +39,10 @@ staffManager</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>715</x>
-      <y>330</y>
-      <w>33</w>
-      <h>330</h>
+      <x>352</x>
+      <y>384</y>
+      <w>24</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=.
 </panel_attributes>
@@ -51,10 +51,10 @@ staffManager</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>715</x>
-      <y>385</y>
-      <w>22</w>
-      <h>220</h>
+      <x>352</x>
+      <y>424</y>
+      <w>16</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -62,10 +62,10 @@ staffManager</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>583</y>
-      <w>297</w>
-      <h>44</h>
+      <x>152</x>
+      <y>568</y>
+      <w>216</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 sdl</panel_attributes>
@@ -74,10 +74,10 @@ sdl</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>418</x>
-      <y>264</y>
-      <w>99</w>
-      <h>77</h>
+      <x>136</x>
+      <y>336</y>
+      <w>72</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>UI</panel_attributes>
     <additional_attributes/>
@@ -85,10 +85,10 @@ sdl</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>572</x>
-      <y>176</y>
-      <w>374</w>
-      <h>44</h>
+      <x>248</x>
+      <y>272</y>
+      <w>272</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>halign=center
 *3 getStaffDataList*
@@ -100,10 +100,10 @@ fontsize=20
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>286</x>
-      <y>451</y>
-      <w>957</w>
-      <h>165</h>
+      <x>40</x>
+      <y>472</y>
+      <w>696</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>alt 
 fg=#761C8C
@@ -115,7 +115,7 @@ fg=#761C8C
 
 
 
--.
+
 fontsize=11
 </panel_attributes>
     <additional_attributes/>
@@ -123,10 +123,10 @@ fontsize=11
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>462</y>
-      <w>297</w>
-      <h>44</h>
+      <x>152</x>
+      <y>480</y>
+      <w>216</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 throw UseCaseLogicException</panel_attributes>
@@ -135,10 +135,10 @@ throw UseCaseLogicException</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>726</x>
-      <y>418</y>
-      <w>330</w>
-      <h>44</h>
+      <x>360</x>
+      <y>448</y>
+      <w>240</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 user</panel_attributes>
@@ -147,10 +147,10 @@ user</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>726</x>
-      <y>396</y>
-      <w>330</w>
-      <h>44</h>
+      <x>360</x>
+      <y>432</y>
+      <w>240</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 getCurrentUser( )</panel_attributes>
@@ -159,10 +159,10 @@ getCurrentUser( )</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1034</x>
-      <y>330</y>
-      <w>33</w>
-      <h>330</h>
+      <x>584</x>
+      <y>384</y>
+      <w>24</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;280.0</additional_attributes>
@@ -170,10 +170,10 @@ getCurrentUser( )</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>891</x>
-      <y>286</y>
-      <w>308</w>
-      <h>55</h>
+      <x>480</x>
+      <y>352</y>
+      <w>224</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>userMgr:
 UserManager
@@ -183,38 +183,12 @@ UserManager
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1034</x>
-      <y>418</y>
-      <w>22</w>
-      <h>22</h>
+      <x>584</x>
+      <y>448</y>
+      <w>16</w>
+      <h>16</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Text</id>
-    <coordinates>
-      <x>319</x>
-      <y>539</y>
-      <w>132</w>
-      <h>33</h>
-    </coordinates>
-    <panel_attributes>[!sdl.isOwner(user))]
-style=wordwrap
-fontsize=11
-fg=#761C8C</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>440</x>
-      <y>528</y>
-      <w>297</w>
-      <h>44</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-throw StaffDataListException</panel_attributes>
-    <additional_attributes>10.0;20.0;250.0;20.0</additional_attributes>
   </element>
 </diagram>

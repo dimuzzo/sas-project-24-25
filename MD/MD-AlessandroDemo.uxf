@@ -571,9 +571,10 @@ permanente: si/no</panel_attributes>
       <w>136</w>
       <h>64</h>
     </coordinates>
-    <panel_attributes>Ferie personale
+    <panel_attributes>Richiesta ferie
 --
-periodo: data</panel_attributes>
+periodo: data
+assegnato: si/no</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -776,7 +777,7 @@ m1=1
     <panel_attributes>lt=-
 m1=0...n
 m2=0...1
-richiede &gt;</panel_attributes>
+effettua &gt;</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;120.0;220.0;120.0</additional_attributes>
   </element>
   <element>

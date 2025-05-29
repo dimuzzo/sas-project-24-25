@@ -4,8 +4,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>147</y>
+      <x>126</x>
+      <y>133</y>
       <w>21</w>
       <h>749</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>182</y>
+      <x>126</x>
+      <y>168</y>
       <w>217</w>
       <h>35</h>
     </coordinates>
@@ -28,8 +28,8 @@ description, date)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>483</x>
-      <y>119</y>
+      <x>231</x>
+      <y>105</y>
       <w>203</w>
       <h>35</h>
     </coordinates>
@@ -40,8 +40,8 @@ StaffNoteManager</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>581</x>
-      <y>147</y>
+      <x>329</x>
+      <y>133</y>
       <w>21</w>
       <h>749</h>
     </coordinates>
@@ -51,8 +51,8 @@ StaffNoteManager</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>581</x>
-      <y>196</y>
+      <x>329</x>
+      <y>182</y>
       <w>14</w>
       <h>658</h>
     </coordinates>
@@ -62,8 +62,8 @@ StaffNoteManager</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>840</y>
+      <x>126</x>
+      <y>826</y>
       <w>217</w>
       <h>28</h>
     </coordinates>
@@ -74,8 +74,8 @@ n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>364</y>
+      <x>336</x>
+      <y>350</y>
       <w>189</w>
       <h>35</h>
     </coordinates>
@@ -87,8 +87,8 @@ description, date)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>763</x>
-      <y>364</y>
+      <x>511</x>
+      <y>350</y>
       <w>126</w>
       <h>35</h>
     </coordinates>
@@ -98,8 +98,8 @@ description, date)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>819</x>
-      <y>392</y>
+      <x>567</x>
+      <y>378</y>
       <w>21</w>
       <h>294</h>
     </coordinates>
@@ -109,8 +109,8 @@ description, date)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>819</x>
-      <y>399</y>
+      <x>567</x>
+      <y>385</y>
       <w>14</w>
       <h>252</h>
     </coordinates>
@@ -120,8 +120,8 @@ description, date)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>826</x>
-      <y>455</y>
+      <x>574</x>
+      <y>441</y>
       <w>147</w>
       <h>49</h>
     </coordinates>
@@ -132,8 +132,8 @@ this.worker=worker</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>637</y>
+      <x>336</x>
+      <y>623</y>
       <w>245</w>
       <h>28</h>
     </coordinates>
@@ -144,8 +144,8 @@ n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>665</y>
+      <x>336</x>
+      <y>651</y>
       <w>161</w>
       <h>49</h>
     </coordinates>
@@ -156,8 +156,8 @@ setCurrentStaffNote(n)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>693</x>
-      <y>119</y>
+      <x>441</x>
+      <y>105</y>
       <w>196</w>
       <h>35</h>
     </coordinates>
@@ -169,8 +169,8 @@ UserManager
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>784</x>
-      <y>147</y>
+      <x>532</x>
+      <y>133</y>
       <w>21</w>
       <h>742</h>
     </coordinates>
@@ -180,8 +180,8 @@ UserManager
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>189</y>
+      <x>336</x>
+      <y>175</y>
       <w>210</w>
       <h>28</h>
     </coordinates>
@@ -192,8 +192,8 @@ getCurrentUser( )</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>203</y>
+      <x>336</x>
+      <y>189</y>
       <w>210</w>
       <h>28</h>
     </coordinates>
@@ -204,8 +204,8 @@ user</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>784</x>
-      <y>203</y>
+      <x>532</x>
+      <y>189</y>
       <w>14</w>
       <h>14</h>
     </coordinates>
@@ -215,8 +215,8 @@ user</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>378</x>
-      <y>252</y>
+      <x>126</x>
+      <y>238</y>
       <w>217</w>
       <h>28</h>
     </coordinates>
@@ -227,8 +227,8 @@ throw UseCaseLogicException</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>497</x>
-      <y>770</y>
+      <x>245</x>
+      <y>756</y>
       <w>665</w>
       <h>56</h>
     </coordinates>
@@ -240,8 +240,8 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1050</x>
-      <y>119</y>
+      <x>798</x>
+      <y>105</y>
       <w>133</w>
       <h>35</h>
     </coordinates>
@@ -254,8 +254,8 @@ staffNoteEventReceiver
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1106</x>
-      <y>147</y>
+      <x>854</x>
+      <y>133</y>
       <w>21</w>
       <h>749</h>
     </coordinates>
@@ -266,8 +266,8 @@ staffNoteEventReceiver
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>595</x>
-      <y>798</y>
+      <x>343</x>
+      <y>784</y>
       <w>525</w>
       <h>35</h>
     </coordinates>
@@ -279,8 +279,8 @@ updateStaffNoteCreated(n)
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1106</x>
-      <y>812</y>
+      <x>854</x>
+      <y>798</y>
       <w>14</w>
       <h>14</h>
     </coordinates>
@@ -291,8 +291,8 @@ updateStaffNoteCreated(n)
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>826</x>
-      <y>616</y>
+      <x>574</x>
+      <y>602</y>
       <w>182</w>
       <h>28</h>
     </coordinates>
@@ -303,8 +303,8 @@ create(staffNoteFeatures.length)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>994</x>
-      <y>616</y>
+      <x>742</x>
+      <y>602</y>
       <w>133</w>
       <h>28</h>
     </coordinates>
@@ -316,8 +316,8 @@ fontsize=12</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>357</x>
-      <y>105</y>
+      <x>105</x>
+      <y>91</y>
       <w>63</w>
       <h>49</h>
     </coordinates>
@@ -327,8 +327,8 @@ fontsize=12</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>588</x>
-      <y>756</y>
+      <x>336</x>
+      <y>742</y>
       <w>14</w>
       <h>77</h>
     </coordinates>
@@ -338,8 +338,8 @@ fontsize=12</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>294</x>
-      <y>238</y>
+      <x>42</x>
+      <y>224</y>
       <w>938</w>
       <h>630</h>
     </coordinates>
@@ -366,8 +366,8 @@ fontsize=11
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>588</x>
-      <y>700</y>
+      <x>336</x>
+      <y>686</y>
       <w>14</w>
       <h>14</h>
     </coordinates>
@@ -377,8 +377,8 @@ fontsize=11
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>721</y>
+      <x>336</x>
+      <y>707</y>
       <w>175</w>
       <h>49</h>
     </coordinates>
@@ -389,8 +389,8 @@ notifyStaffNoteCreated(n)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>672</x>
-      <y>70</y>
+      <x>420</x>
+      <y>56</y>
       <w>238</w>
       <h>28</h>
     </coordinates>
@@ -404,8 +404,8 @@ fontsize=20
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>826</x>
-      <y>511</y>
+      <x>574</x>
+      <y>497</y>
       <w>182</w>
       <h>49</h>
     </coordinates>
@@ -416,8 +416,8 @@ this.description=description</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>826</x>
-      <y>567</y>
+      <x>574</x>
+      <y>553</y>
       <w>126</w>
       <h>49</h>
     </coordinates>
@@ -428,8 +428,8 @@ this.date=date</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>826</x>
-      <y>399</y>
+      <x>574</x>
+      <y>385</y>
       <w>133</w>
       <h>49</h>
     </coordinates>
@@ -440,8 +440,8 @@ this.owner=user</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>896</x>
-      <y>119</y>
+      <x>644</x>
+      <y>105</y>
       <w>133</w>
       <h>35</h>
     </coordinates>
@@ -454,8 +454,8 @@ StaffDataList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>280</y>
+      <x>336</x>
+      <y>266</y>
       <w>378</w>
       <h>28</h>
     </coordinates>
@@ -466,8 +466,8 @@ getStaff(serialNumber)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>294</y>
+      <x>336</x>
+      <y>280</y>
       <w>378</w>
       <h>28</h>
     </coordinates>
@@ -478,8 +478,8 @@ s</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>952</x>
-      <y>147</y>
+      <x>700</x>
+      <y>133</y>
       <w>21</w>
       <h>210</h>
     </coordinates>
@@ -490,8 +490,8 @@ s</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>952</x>
-      <y>294</y>
+      <x>700</x>
+      <y>280</y>
       <w>14</w>
       <h>14</h>
     </coordinates>
@@ -499,22 +499,10 @@ s</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>378</x>
-      <y>329</y>
-      <w>217</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-throw StaffDataListException</panel_attributes>
-    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
-  </element>
-  <element>
     <id>Text</id>
     <coordinates>
-      <x>301</x>
-      <y>336</y>
+      <x>49</x>
+      <y>322</y>
       <w>84</w>
       <h>21</h>
     </coordinates>
@@ -523,5 +511,17 @@ style=wordwrap
 fontsize=11
 fg=#761C8C</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>126</x>
+      <y>315</y>
+      <w>217</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+throw StaffDataListException</panel_attributes>
+    <additional_attributes>10.0;20.0;290.0;20.0</additional_attributes>
   </element>
 </diagram>
