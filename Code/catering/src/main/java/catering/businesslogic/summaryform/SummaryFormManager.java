@@ -1,30 +1,30 @@
 package catering.businesslogic.summaryform;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import catering.businesslogic.CatERing;
 import catering.businesslogic.UseCaseLogicException;
 import catering.businesslogic.event.Event;
 import catering.businesslogic.user.User;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SummaryFormManager {
-    private List<SummaryFormEventReceiver> receivers = new ArrayList<>();
+    private List<SummaryFormEventReceiver> eventReceivers = new ArrayList<>();
 
-    public void addReceiver(SummaryFormEventReceiver er) {
-        receivers.add(er);
+    public void addEventReceiver(SummaryFormEventReceiver er) {
+        eventReceivers.add(er);
     }
 
-    public void removeReceiver(SummaryFormEventReceiver er) {
-        receivers.remove(er);
+    public void removeEventReceiver(SummaryFormEventReceiver er) {
+        eventReceivers.remove(er);
     }
 
     private void notifySummaryFormCreated(SummaryForm sf) {
-        for (SummaryFormEventReceiver r : receivers) r.updateSummaryFormCreated(sf);
+        for (SummaryFormEventReceiver r : eventReceivers) r.updateSummaryFormCreated(sf);
     }
 
     private void notifySummaryFormDeleted(SummaryForm sf) {
-        for (SummaryFormEventReceiver r : receivers) r.updateSummaryFormDeleted(sf);
+        for (SummaryFormEventReceiver r : eventReceivers) r.updateSummaryFormDeleted(sf);
     }
 
     public SummaryForm createSummaryForm(Event event, String description) throws UseCaseLogicException {

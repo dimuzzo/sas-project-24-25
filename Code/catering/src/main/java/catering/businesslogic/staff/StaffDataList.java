@@ -1,14 +1,11 @@
 package catering.businesslogic.staff;
 
-import catering.businesslogic.user.User;
-import catering.persistence.PersistenceManager;
-import catering.persistence.ResultHandler;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import catering.businesslogic.user.User;
+import catering.persistence.PersistenceManager;
 
 public class StaffDataList {
 
@@ -80,11 +77,18 @@ public class StaffDataList {
     // Operazioni CRUD
     // ========================
 
-    public boolean save(){
-        String query = "INSERT INTO StaffDataList (owner_id, staff_serial_number) " + "VALUES (?, ?)";
+    public boolean save() {
+        if (owner == null || staffDataList == null) {
+            return false;
+        }
+        // Ipotizziamo di voler salvare l'associazione per ogni membro dello staff nella lista
+        String query = "INSERT INTO StaffDataList (owner_id, staff_serial_number) VALUES (?, ?)";
         try {
-            int rows = PersistenceManager.executeUpdate(query, owner.getId(), Staff.getSerialNumber());
-            return rows > 0;
+            for (Staff staff : this.staffDataList) {
+                // Esegui un insert per ogni riga di associazione
+                PersistenceManager.executeUpdate(query, owner.getId(), staff.getSerialNumber());
+            }
+            return true;
         } catch (Exception e) {
             System.err.println("Error while saving staff data list: " + e.getMessage());
             return false;

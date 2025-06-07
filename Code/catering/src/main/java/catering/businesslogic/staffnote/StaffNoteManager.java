@@ -1,35 +1,35 @@
 package catering.businesslogic.staffnote;
 
-import catering.businesslogic.staff.Staff;
-import catering.businesslogic.staff.StaffManager;
-import catering.businesslogic.user.User;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import catering.businesslogic.staff.Staff;
+import catering.businesslogic.staff.StaffManager;
+import catering.businesslogic.user.User;
+
 public class StaffNoteManager {
-    private List<StaffNoteEventReceiver> receivers = new ArrayList<>();
+    private List<StaffNoteEventReceiver> eventReceivers = new ArrayList<>();
     private final StaffManager staffManager;
 
     public StaffNoteManager(StaffManager staffManager) {
         this.staffManager = staffManager;
     }
 
-    public void addReceiver(StaffNoteEventReceiver er) {
-        receivers.add(er);
+    public void addEventReceiver(StaffNoteEventReceiver er) {
+        eventReceivers.add(er);
     }
 
-    public void removeReceiver(StaffNoteEventReceiver er) {
-        receivers.remove(er);
+    public void removeEventReceiver(StaffNoteEventReceiver er) {
+        eventReceivers.remove(er);
     }
 
     private void notifyStaffNoteCreated(StaffNote n) {
-        for (StaffNoteEventReceiver r : receivers) r.updateStaffNoteCreated(n);
+        for (StaffNoteEventReceiver r : eventReceivers) r.updateStaffNoteCreated(n);
     }
 
     private void notifyStaffNoteDeleted(StaffNote n) {
-        for (StaffNoteEventReceiver r : receivers) r.updateStaffNoteDeleted(n);
+        for (StaffNoteEventReceiver r : eventReceivers) r.updateStaffNoteDeleted(n);
     }
 
     public Staff getStaffBySerialNumber(int serialNumber) {

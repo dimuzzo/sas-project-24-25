@@ -1,12 +1,12 @@
-package catering.businesslogic.holidays;
-
-import catering.businesslogic.user.User;
-import catering.businesslogic.staff.Staff;
+package catering.businesslogic.holidaysrequest;
 
 import java.sql.Date;
 import java.util.Objects;
 
-public class Holidays {
+import catering.businesslogic.staff.Staff;
+import catering.businesslogic.user.User;
+
+public class HolidaysRequest {
 
     // Attributi principali secondo il DCD
     private Staff worker;
@@ -14,15 +14,15 @@ public class Holidays {
     private final User owner;
 
     // Costruttore privato per forzare uso di create()
-    public Holidays(User owner, Staff worker, Date period) {
+    public HolidaysRequest(User owner, Staff worker, Date period) {
         this.owner = owner;
         this.worker = worker;
         this.period = period;
     }
 
     // Factory method conforme al DCD e contratto use case
-    public static Holidays create(User owner, Staff worker, Date period) {
-        return new Holidays(owner, worker, period);
+    public static HolidaysRequest create(User owner, Staff worker, Date period) {
+        return new HolidaysRequest(owner, worker, period);
     }
 
     // Getter
@@ -56,11 +56,11 @@ public class Holidays {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Holidays)) return false;
-        Holidays holidays = (Holidays) o;
-        return Objects.equals(worker, holidays.worker) &&
-                Objects.equals(period, holidays.period) &&
-                Objects.equals(owner, holidays.owner);
+        if (!(o instanceof HolidaysRequest)) return false;
+        HolidaysRequest holidaysRequest = (HolidaysRequest) o;
+        return Objects.equals(worker, holidaysRequest.worker) &&
+                Objects.equals(period, holidaysRequest.period) &&
+                Objects.equals(owner, holidaysRequest.owner);
     }
 
     @Override

@@ -1,7 +1,7 @@
 -- database: catering.db
 -- 1) FIRST REMOVE ALL TABLES (in reverse dependency order)
 
-DROP TABLE IF EXISTS `Holidays`;
+DROP TABLE IF EXISTS `HolidaysRequest`;
 
 DROP TABLE IF EXISTS `Staff`;
 
@@ -64,12 +64,12 @@ CREATE TABLE
         `phone_number` TEXT DEFAULT '',
         `tax_code` TEXT NOT NULL DEFAULT '',
         `primary_mansion` TEXT DEFAULT '',
-        `available` INTEGER NOT NULL DEFAULT 1,  -- 1 = true, 0 = false
-        `permanent` INTEGER NOT NULL DEFAULT 0   -- 1 = true, 0 = false
+        `available` INTEGER NOT NULL DEFAULT 1, 
+        `permanent` INTEGER NOT NULL DEFAULT 0   
     );
 
 CREATE TABLE
-    `Holidays` (
+    `HolidaysRequest` (
         `id` INTEGER PRIMARY KEY AUTOINCREMENT,
         `worker_id` INTEGER NOT NULL,
         `period` DATE NOT NULL,
@@ -108,26 +108,6 @@ CREATE TABLE
         FOREIGN KEY (`owner_id`) REFERENCES `Users`(`id`) ON DELETE CASCADE
     );
 
--- === Tabella ponte SummaryFormEvents ===
--- CREATE TABLE
---     `SummaryFormEvents` (
---         `summary_form_id` INTEGER NOT NULL,
---         `event_id` INTEGER NOT NULL,
---         PRIMARY KEY (`summary_form_id`, `event_id`),
---         FOREIGN KEY (`summary_form_id`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
---         FOREIGN KEY (`event_id`) REFERENCES `Events`(`id`) ON DELETE CASCADE
---     );
-
--- === Tabella ponte SummaryFormRoles ===
--- CREATE TABLE
---     `SummaryFormRoles` (
---         `summary_form_id` INTEGER NOT NULL,
---         `role_id` INTEGER NOT NULL,
---         PRIMARY KEY (`summary_form_id`, `role_id`),
---         FOREIGN KEY (`summary_form_id`) REFERENCES `SummaryForms`(`id`) ON DELETE CASCADE,
---         FOREIGN KEY (`role_id`) REFERENCES `Roles`(`id`) ON DELETE CASCADE
---     );
-
 CREATE TABLE
     `EventRoles` (
         `id` INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -135,7 +115,7 @@ CREATE TABLE
         `description` TEXT,
         `date` DATE NOT NULL,
         `is_assigned` INTEGER NOT NULL DEFAULT 0,
-        `staff_id` INTEGER,  -- può essere NULL se non assegnato
+        `staff_id` INTEGER NOT NULL,
         FOREIGN KEY (`staff_id`) REFERENCES `Staff`(`serial_number`) ON DELETE SET NULL
     );
 

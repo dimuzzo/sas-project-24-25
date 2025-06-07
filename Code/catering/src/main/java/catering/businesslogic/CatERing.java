@@ -1,7 +1,7 @@
 package catering.businesslogic;
 
 import catering.businesslogic.event.EventManager;
-import catering.businesslogic.holidays.HolidaysManager;
+import catering.businesslogic.holidaysrequest.HolidaysRequestManager;
 import catering.businesslogic.kitchen.KitchenTaskManager;
 import catering.businesslogic.menu.MenuManager;
 import catering.businesslogic.recipe.RecipeManager;
@@ -24,32 +24,41 @@ public class CatERing {
         return singleInstance;
     }
 
+    // Manager
     private MenuManager menuMgr;
     private RecipeManager recipeMgr;
     private UserManager userMgr;
     private EventManager eventMgr;
     private KitchenTaskManager kitchenTaskMgr;
     private ShiftManager shiftMgr;
-    private StaffManager staffMgr;
-    private StaffNoteManager staffNoteMgr;
-    private HolidaysManager holidaysMgr;
     private SummaryFormManager summaryFormMgr;
 
+    // Manager di sessione (inizializzati "pigramente")
+    private StaffManager staffMgr;
+    private StaffNoteManager staffNoteMgr;
+    private HolidaysRequestManager holidaysRequestMgr;
+
+    // Persistence
     private MenuPersistence menuPersistence;
     private KitchenTaskPersistence kitchenTaskPersistence;
     private StaffPersistence staffPersistence;
 
+    /**
+     * Il costruttore non crea più i manager dipendenti dalla sessione.
+     * Verranno creati al primo accesso tramite i loro metodi getter.
+     */
     private CatERing() {
         menuMgr = new MenuManager();
         recipeMgr = new RecipeManager();
         userMgr = new UserManager();
         eventMgr = new EventManager();
         kitchenTaskMgr = new KitchenTaskManager();
-        shiftMgr = new ShiftManager(); // Add this line to initialize ShiftManager
-        staffMgr = new StaffManager();
-        staffNoteMgr = new StaffNoteManager(staffMgr);
-        holidaysMgr = new HolidaysManager(staffMgr);
+        shiftMgr = new ShiftManager();
         summaryFormMgr = new SummaryFormManager();
+        
+        // staffMgr = new StaffManager(); // <-- RIMOSSO
+        // staffNoteMgr = new StaffNoteManager(staffMgr); // <-- RIMOSSO
+        // holidaysRequestMgr = new HolidaysRequestManager(staffMgr); // <-- RIMOSSO
 
         menuPersistence = new MenuPersistence();
         kitchenTaskPersistence = new KitchenTaskPersistence();
@@ -57,9 +66,27 @@ public class CatERing {
 
         menuMgr.addEventReceiver(menuPersistence);
         kitchenTaskMgr.addEventReceiver(kitchenTaskPersistence);
-        staffMgr.addEventReceiver(staffPersistence);
+        // staffMgr.addEventReceiver(staffPersistence); // <-- RIMOSSO (verrà aggiunto dopo la creazione)
     }
 
+    /**
+     * Esegue l'inizializzazione pigra dello StaffManager e dei suoi dipendenti.
+     * Questo metodo privato viene chiamato dai getter pubblici.
+     */
+    private void ensureSessionManagersInitialized() {
+        // Se lo staffMgr non è stato creato E c'è un utente loggato...
+        if (this.staffMgr == null && this.userMgr.getCurrentUser() != null) {
+            // ...allora crea tutto lo stack di manager di sessione.
+            this.staffMgr = new StaffManager(this.userMgr.getCurrentUser());
+            this.staffNoteMgr = new StaffNoteManager(this.staffMgr);
+            this.holidaysRequestMgr = new HolidaysRequestManager(this.staffMgr);
+
+            // E collega i listener necessari
+            this.staffMgr.addEventReceiver(this.staffPersistence);
+        }
+    }
+    
+    // Il main rimane ESATTAMENTE come lo hai fornito.
     public static void main(String[] args) {
         // Get the singleton instance which initializes all managers
         CatERing app = CatERing.getInstance();
@@ -76,74 +103,46 @@ public class CatERing {
         System.out.println("- Shift Manager: " + (app.getShiftManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- Staff Manager: " + (app.getStaffManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- StaffNote Manager: " + (app.getStaffNoteManager() != null ? "OK" : "NOT AVAILABLE"));
-        System.out.println("- Holidays Manager: " + (app.getHolidaysManager() != null ? "OK" : "NOT AVAILABLE"));
+        System.out.println("- HolidaysRequest Manager: " + (app.getHolidaysRequestManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- SummaryForm Manager: " + (app.getSummaryFormManager() != null ? "OK" : "NOT AVAILABLE"));
     }
 
-    public KitchenTaskManager getKitchenTaskManager() {
-        return kitchenTaskMgr; // Return the field that was properly initialized
+    // I GETTER DEI MANAGER DI SESSIONE ORA CONTROLLANO L'INIZIALIZZAZIONE
+
+    public StaffManager getStaffManager() {
+        ensureSessionManagersInitialized();
+        return this.staffMgr;
     }
 
-    public ShiftManager getShiftManager() {
-        return shiftMgr;
+    public StaffNoteManager getStaffNoteManager() {
+        ensureSessionManagersInitialized();
+        return this.staffNoteMgr;
     }
 
-    public void setShiftManager(ShiftManager shiftMgr) {
-        this.shiftMgr = shiftMgr;
+    public HolidaysRequestManager getHolidaysRequestManager() {
+        ensureSessionManagersInitialized();
+        return this.holidaysRequestMgr;
     }
 
-    public MenuManager getMenuManager() {
-        return menuMgr;
-    }
+    // GETTER E SETTER PER GLI ALTRI MANAGER (invariati)
 
-    public void setMenuManager(MenuManager menuMgr) {
-        this.menuMgr = menuMgr;
-    }
-
-    public RecipeManager getRecipeManager() {
-        return recipeMgr;
-    }
-
-    public void setRecipeManager(RecipeManager recipeMgr) {
-        this.recipeMgr = recipeMgr;
-    }
-
-    public UserManager getUserManager() {
-        return userMgr;
-    }
-
-    public void setUserManager(UserManager userMgr) {
-        this.userMgr = userMgr;
-    }
-
-    public EventManager getEventManager() {
-        return eventMgr;
-    }
-
-    public void setEventManager(EventManager eventMgr) {
-        this.eventMgr = eventMgr;
-    }
-
-    public void setKitchenTaskManager(KitchenTaskManager kitchenTaskMgr) {
-        this.kitchenTaskMgr = kitchenTaskMgr;
-    }
-
-    public StaffManager getStaffManager() { return staffMgr; }
-
-    public void setStaffManager(StaffManager staffMgr) { this.staffMgr = staffMgr; }
-
-    public StaffNoteManager getStaffNoteManager() { return staffNoteMgr; }
-
-    public void setStaffNoteManager(StaffNoteManager staffNoteMgr) {
-        this.staffNoteMgr = staffNoteMgr;
-    }
-
-    public HolidaysManager getHolidaysManager() { return holidaysMgr; }
-
-    public void setHolidaysManager(HolidaysManager holidaysMgr) { this.holidaysMgr = holidaysMgr; }
-
+    public KitchenTaskManager getKitchenTaskManager() { return kitchenTaskMgr; }
+    public ShiftManager getShiftManager() { return shiftMgr; }
+    public MenuManager getMenuManager() { return menuMgr; }
+    public RecipeManager getRecipeManager() { return recipeMgr; }
+    public UserManager getUserManager() { return userMgr; }
+    public EventManager getEventManager() { return eventMgr; }
     public SummaryFormManager getSummaryFormManager() { return summaryFormMgr; }
-
+    
+    // I setter potrebbero non essere necessari se la gestione è solo interna.
+    public void setShiftManager(ShiftManager shiftMgr) { this.shiftMgr = shiftMgr; }
+    public void setMenuManager(MenuManager menuMgr) { this.menuMgr = menuMgr; }
+    public void setRecipeManager(RecipeManager recipeMgr) { this.recipeMgr = recipeMgr; }
+    public void setUserManager(UserManager userMgr) { this.userMgr = userMgr; }
+    public void setEventManager(EventManager eventMgr) { this.eventMgr = eventMgr; }
+    public void setKitchenTaskManager(KitchenTaskManager kitchenTaskMgr) { this.kitchenTaskMgr = kitchenTaskMgr; }
+    public void setStaffManager(StaffManager staffMgr) { this.staffMgr = staffMgr; }
+    public void setStaffNoteManager(StaffNoteManager staffNoteMgr) { this.staffNoteMgr = staffNoteMgr; }
+    public void setHolidaysRequestManager(HolidaysRequestManager holidaysRequestMgr) { this.holidaysRequestMgr = holidaysRequestMgr; }
     public void setSummaryFormManager(SummaryFormManager summaryFormMgr) { this.summaryFormMgr = summaryFormMgr; }
-
 }
