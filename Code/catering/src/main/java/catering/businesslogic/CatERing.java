@@ -86,13 +86,28 @@ public class CatERing {
         }
     }
     
-    // Il main rimane ESATTAMENTE come lo hai fornito.
     public static void main(String[] args) {
-        // Get the singleton instance which initializes all managers
+        System.out.println("--- CatERing Application Start ---");
+        // Get the singleton instance which initializes global managers
         CatERing app = CatERing.getInstance();
+        System.out.println("Global managers initialized.");
 
-        System.out.println("CatERing application initialized successfully.");
+        // --- PASSAGGIO CHIAVE MANCANTE ---
+        // 1. Simula il login di un utente prima di controllare i manager di sessione
+        System.out.println("\nStep 1: Simulating user login...");
+        try {
+            // Usa un nome utente che sai esistere nel tuo database
+            app.getUserManager().fakeLogin("chef_mario"); 
+            System.out.println("User logged in successfully: " + app.getUserManager().getCurrentUser().getUserName());
+        } catch (Exception e) {
+            System.err.println("Login failed: " + e.getMessage());
+            // Se il login fallisce, i manager di sessione rimarranno giustamente "NOT AVAILABLE"
+        }
+        // ------------------------------------
 
+        // 2. Adesso che l'utente è (potenzialmente) loggato, controlla di nuovo la disponibilità
+        System.out.println("\nStep 2: Checking manager availability post-login...");
+        
         // Log which managers are available
         System.out.println("Available managers:");
         System.out.println("- Menu Manager: " + (app.getMenuManager() != null ? "OK" : "NOT AVAILABLE"));
@@ -101,6 +116,7 @@ public class CatERing {
         System.out.println("- Event Manager: " + (app.getEventManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- Kitchen Task Manager: " + (app.getKitchenTaskManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- Shift Manager: " + (app.getShiftManager() != null ? "OK" : "NOT AVAILABLE"));
+        // Questa volta, la chiamata a getStaffManager() troverà un utente e creerà l'istanza
         System.out.println("- Staff Manager: " + (app.getStaffManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- StaffNote Manager: " + (app.getStaffNoteManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- HolidaysRequest Manager: " + (app.getHolidaysRequestManager() != null ? "OK" : "NOT AVAILABLE"));
