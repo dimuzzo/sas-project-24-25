@@ -28,6 +28,10 @@ public class HolidaysRequestManager {
         for (HolidaysRequestEventReceiver r : eventReceivers) r.updateHolidaysRequestCreated(hr);
     }
 
+    public void notifyHolidaysRequestAssigned(HolidaysRequest hr) {
+        for (HolidaysRequestEventReceiver r : eventReceivers) r.updateHolidaysRequestAssigned(hr);
+    }
+
     private void notifyHolidaysRequestDeleted(HolidaysRequest hr) {
         for (HolidaysRequestEventReceiver r : eventReceivers) r.updateHolidaysRequestDeleted(hr);
     }
@@ -39,8 +43,8 @@ public class HolidaysRequestManager {
         return staffManager.getStaff(serialNumber);
     }
 
-    public HolidaysRequest createHolidaysRequest(User owner, Staff worker, Date period) {
-        HolidaysRequest hr = HolidaysRequest.create(owner, worker, period);
+    public HolidaysRequest createHolidaysRequest(User owner, Staff worker, Date period, boolean isAssigned) {
+        HolidaysRequest hr = HolidaysRequest.create(owner, worker, period, isAssigned);
         notifyHolidaysRequestCreated(hr);
         return hr;
     }

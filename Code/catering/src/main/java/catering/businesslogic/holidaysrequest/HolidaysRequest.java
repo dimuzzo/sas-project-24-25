@@ -11,18 +11,20 @@ public class HolidaysRequest {
     // Attributi principali secondo il DCD
     private Staff worker;
     private Date period;
+    private boolean isAssigned;
     private final User owner;
 
     // Costruttore privato per forzare uso di create()
-    public HolidaysRequest(User owner, Staff worker, Date period) {
+    public HolidaysRequest(User owner, Staff worker, Date period, boolean isAssigned) {
         this.owner = owner;
         this.worker = worker;
         this.period = period;
+        this.isAssigned = isAssigned;
     }
 
     // Factory method conforme al DCD e contratto use case
-    public static HolidaysRequest create(User owner, Staff worker, Date period) {
-        return new HolidaysRequest(owner, worker, period);
+    public static HolidaysRequest create(User owner, Staff worker, Date period, boolean isAssigned) {
+        return new HolidaysRequest(owner, worker, period, isAssigned);
     }
 
     // Getter
@@ -32,6 +34,10 @@ public class HolidaysRequest {
 
     public Date getPeriod() {
         return period;
+    }
+
+    public boolean isAssigned() {
+        return isAssigned;
     }
 
     public User getOwner() {
@@ -45,6 +51,10 @@ public class HolidaysRequest {
 
     public void setPeriod(Date period) {
         this.period = period;
+    }
+
+    public void setAssigned(boolean assigned) {
+        this.isAssigned = assigned;
     }
 
     // Controlla se l'utente è proprietario della richiesta ferie
