@@ -41,6 +41,11 @@ public class StaffManager {
         if (currentUser == null) {
             throw new IllegalArgumentException("CurrentUser cannot be null for StaffManager");
         }
+
+        if (!currentUser.isOrganizer()) {
+             throw new RoleException("Only organizers can manage staff");
+        }
+
         this.currentUser = currentUser;
         
         // CHIAVE: Inizializza la lista del personale usando il factory method corretto.
@@ -48,7 +53,7 @@ public class StaffManager {
         this.staffDataList = StaffDataList.create(this.currentUser);
     }
     
-    // METODI PER LA GESTIONE DEGLI EVENTI (invariati)
+    // METODI PER LA GESTIONE DEGLI EVENTI
     
     public void addEventReceiver(StaffEventReceiver er) {
         eventReceivers.add(er);
@@ -58,7 +63,7 @@ public class StaffManager {
         eventReceivers.remove(er);
     }
     
-    // METODI DI NOTIFICA (invariati)
+    // METODI DI NOTIFICA
 
     public void notifyStaffAdded(Staff s) {
         for (StaffEventReceiver r : eventReceivers) r.updateStaffAdded(s);
@@ -100,7 +105,7 @@ public class StaffManager {
         for (StaffEventReceiver r : eventReceivers) r.updateStaffDataDeleted(s, sdl);
     }
     
-    // METODI DI BUSINESS LOGIC (alcuni modificati)
+    // METODI DI BUSINESS LOGIC
     
     /**
      * Cerca uno staff nella lista tramite serialNumber.

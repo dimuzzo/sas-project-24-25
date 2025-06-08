@@ -73,6 +73,15 @@ public class StaffDataList {
         return new ArrayList<>(staffDataList);
     }
 
+    /**
+     * Restituisce l'utente proprietario di questa lista.
+     * Questo metodo è necessario per la classe StaffPersistence.
+     * @return L'utente proprietario.
+     */
+    public User getOwner() {
+        return this.owner;
+    }
+
     // ========================
     // Operazioni CRUD
     // ========================
