@@ -27,7 +27,7 @@ public class Role {
     /**
      * Factory method per creare un nuovo ruolo non assegnato
      */
-    public static Role create(String name, String description, Date date) {
+    public static Role create(String name, String description, Date date, boolean isAssigned) {
         Role role = new Role();
         role.name = name;
         role.description = description;
@@ -88,60 +88,39 @@ public class Role {
     // Persistence
     // ===========
 
-    /**
-     * Salva un nuovo ruolo nel database e recupera l'ID auto-generato,
-     * seguendo il pattern di Menu.create(Menu m).
-     * @param roleToSave L'oggetto Role da salvare, con ID=0.
+     /**
+     * Salva un nuovo ruolo nel DB e recupera l'ID.
      */
     public static void create(Role roleToSave) throws SQLException {
-        if (roleToSave.id != 0) return; // Già salvato
-        String query = "INSERT INTO EventRoles (name, description, date, is_assigned, staff_id) VALUES (?, ?, ?, ?, ?)";
+        if (roleToSave.id != 0) return;
+
+        String insertQuery = "INSERT INTO EventRoles (name, description, date, is_assigned, staff_id) VALUES (?, ?, ?, ?, ?)";
         Integer staffId = (roleToSave.worker != null) ? roleToSave.worker.getSerialNumber() : null;
 
-        PersistenceManager.executeBatchUpdate(query, 1, new BatchUpdateHandler() {
-            @Override
-            public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {
-                ps.setString(1, roleToSave.name);
-                ps.setString(2, roleToSave.description);
-                ps.setDate(3, roleToSave.date);
-                ps.setBoolean(4, roleToSave.isAssigned);
-                if (staffId != null) {
-                    ps.setInt(5, staffId);
-                } else {
-                    ps.setNull(5, java.sql.Types.INTEGER);
-                }
-            }
+        int rows = PersistenceManager.executeUpdate(insertQuery,
+                roleToSave.name,
+                roleToSave.description,
+                roleToSave.date,
+                roleToSave.isAssigned,
+                staffId
+        );
 
-            @Override
-            public void handleGeneratedIds(ResultSet rs, int count) throws SQLException {
-                // Assegna l'ID generato dal DB all'oggetto originale.
-                if (count == 0) {
-                    roleToSave.id = rs.getInt(1);
-                }
-            }
-        });
+        if (rows > 0) {
+            roleToSave.id = PersistenceManager.getLastId();
+        }
     }
 
-    /**
-     * Aggiorna un ruolo esistente nel DB. Questo rimane un metodo di istanza.
-     * @return true se l'aggiornamento è riuscito, false altrimenti.
-     */
     public boolean update() {
-        if (this.id == 0) return false; // Non si può aggiornare un ruolo non salvato.
+        if (this.id == 0) return false;
         String query = "UPDATE EventRoles SET name = ?, description = ?, date = ?, is_assigned = ?, staff_id = ? WHERE id = ?";
         Integer staffId = (worker != null) ? worker.getSerialNumber() : null;
         int rows = PersistenceManager.executeUpdate(query, this.name, this.description, this.date, this.isAssigned, staffId, this.id);
         return rows > 0;
     }
 
-    /**
-     * Cancella un ruolo dal DB. Questo rimane un metodo di istanza.
-     * @return true se la cancellazione è riuscita, false altrimenti.
-     */
     public boolean delete() throws RoleException {
         if (this.id == 0) return false;
         if (this.isAssigned()) {
-            // Lancia un'eccezione come specificato nel caso d'uso 2a.1a
             throw new RoleException("Il ruolo che si sta cercando di eliminare è in uso.");
         }
         String query = "DELETE FROM EventRoles WHERE id = ?";
@@ -149,59 +128,21 @@ public class Role {
         return rows > 0;
     }
 
+    // CODICE CORRETTO per Role.java
     public static Role loadRole(String name) {
         final Role[] resultHolder = new Role[1];
-        String query = "SELECT * FROM EventRoles WHERE id = ?";
+        String query = "SELECT * FROM EventRoles WHERE name = ?";
 
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
-                Role r = new Role();
-                r.name = rs.getString("name");
-                r.description = rs.getString("description");
-                r.date = rs.getDate("date");
-                r.isAssigned = rs.getBoolean("is_assigned");
-                int staffId = rs.getInt("staff_id");
-                if (!rs.wasNull()) {
-                    r.worker = Staff.loadStaff(staffId);
-                } else {
-                    r.worker = null;
-                }
-                resultHolder[0] = r;
+                // CORREZIONE: Non chiamare rs.next() qui.
+                resultHolder[0] = fromResultSet(rs);
             }
         }, name);
-
         return resultHolder[0];
     }
 
-    public static ArrayList<Role> loadAllRoles() {
-        ArrayList<Role> roles = new ArrayList<>();
-        String query = "SELECT * FROM EventRoles";
-
-        PersistenceManager.executeQuery(query, new ResultHandler() {
-            @Override
-            public void handle(ResultSet rs) throws SQLException {
-                Role r = new Role();
-                r.name = rs.getString("name");
-                r.description = rs.getString("description");
-                r.date = rs.getDate("date");
-                r.isAssigned = rs.getBoolean("is_assigned");
-                int staffId = rs.getInt("staff_id");
-                if (!rs.wasNull()) {
-                    r.worker = Staff.loadStaff(staffId);
-                } else {
-                    r.worker = null;
-                }
-                roles.add(r);
-            }
-        });
-
-        return roles;
-    }
-
-    /**
-     * Metodo di supporto per creare un oggetto Role da un ResultSet del database.
-     */
     private static Role fromResultSet(ResultSet rs) throws SQLException {
         Role r = new Role();
         r.id = rs.getInt("id");

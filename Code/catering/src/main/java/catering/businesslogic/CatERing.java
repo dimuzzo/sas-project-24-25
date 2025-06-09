@@ -97,7 +97,7 @@ public class CatERing {
         System.out.println("\nStep 1: Simulating user login...");
         try {
             // Usa un nome utente che sai esistere nel tuo database
-            app.getUserManager().fakeLogin("chef_mario"); 
+            app.getUserManager().fakeLogin("Giovanni"); 
             System.out.println("User logged in successfully: " + app.getUserManager().getCurrentUser().getUserName());
         } catch (Exception e) {
             System.err.println("Login failed: " + e.getMessage());

@@ -146,6 +146,7 @@ public class Staff {
         return staffList;
     }
 
+    // CODICE CORRETTO per Staff.java
     public static Staff loadStaff(int serialNumber) {
         final Staff[] resultHolder = new Staff[1];
         String query = "SELECT * FROM Staff WHERE serial_number = ?";
@@ -153,9 +154,9 @@ public class Staff {
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
-                if (rs.next()) {
-                    resultHolder[0] = fromResultSet(rs);
-                }
+                // CORREZIONE: Non chiamare rs.next() qui.
+                // Il PersistenceManager ha già posizionato il cursore.
+                resultHolder[0] = fromResultSet(rs);
             }
         }, serialNumber);
 
@@ -166,11 +167,16 @@ public class Staff {
      * Salva un nuovo Staff nel DB
      * @return true se successo, false altrimenti
      */
-    public boolean save() {
+    // In Staff.java
+
+    public boolean save() {       
         String query = "INSERT INTO Staff (serial_number, name, email, phone_number, tax_code, primary_mansion, available, permanent) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            int rows = PersistenceManager.executeUpdate(query, serialNumber, name, email, phoneNumber, taxCode, primaryMansion, available, permanent);
+            int availableInt = this.available ? 1 : 0;
+            int permanentInt = this.permanent ? 1 : 0;
+            
+            int rows = PersistenceManager.executeUpdate(query, serialNumber, name, email, phoneNumber, taxCode, primaryMansion, availableInt, permanentInt);
             return rows > 0;
         } catch (Exception e) {
             System.err.println("Error while saving staff: " + e.getMessage());

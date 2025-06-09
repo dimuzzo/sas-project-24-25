@@ -43,7 +43,7 @@ public class StaffManager {
         }
 
         if (!currentUser.isOrganizer()) {
-             throw new RoleException("Only organizers can manage staff");
+            throw new RoleException("Only organizers can manage staff");
         }
 
         this.currentUser = currentUser;
@@ -153,9 +153,9 @@ public class StaffManager {
         return removed;
     }
 
-    public Role createRole(Staff worker, String name, String description, Date date) {
+    public Role createRole(Staff worker, String name, String description, Date date, boolean isAssigned) {
         // Usa il factory method di Role per coerenza.
-        Role rl = Role.create(name, description, date);
+        Role rl = Role.create(name, description, date, isAssigned);
         if (worker != null) {
             rl.setWorker(worker);
         }

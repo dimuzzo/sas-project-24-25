@@ -115,7 +115,7 @@ CREATE TABLE
         `description` TEXT,
         `date` DATE NOT NULL,
         `is_assigned` INTEGER NOT NULL DEFAULT 0,
-        `staff_id` INTEGER NOT NULL,
+        `staff_id` INTEGER,
         FOREIGN KEY (`staff_id`) REFERENCES `Staff`(`serial_number`) ON DELETE SET NULL
     );
 

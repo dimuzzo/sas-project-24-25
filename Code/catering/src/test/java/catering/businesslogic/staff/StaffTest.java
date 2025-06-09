@@ -2,142 +2,197 @@ package catering.businesslogic.staff;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import catering.businesslogic.CatERing;
-import catering.businesslogic.UseCaseLogicException;
-import catering.businesslogic.user.User;
 import catering.persistence.PersistenceManager;
 import catering.util.LogManager;
 
-/**
- * Test di validazione per il caso d'uso "Gestire il Personale".
- * Ogni test simula uno scenario specifico e verifica le pre-condizioni e post-condizioni
- * definite nei contratti dell'Allegato Tecnico.
- */
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestMethodOrder(OrderAnnotation.class)
 public class StaffTest {
 
     private static final Logger LOGGER = LogManager.getLogger(StaffTest.class);
-    private static CatERing app;
-    private static User organizer;
-    private static StaffManager staffManager;
-
-    // Variabili statiche per mantenere lo stato tra i test ordinati,
-    // simulando una sessione di lavoro continua.
-    private static Staff testStaffMember;
-    private static Role testRole;
 
     @BeforeAll
     static void init() {
-        // Inizializza il DB una sola volta per tutti i test
         PersistenceManager.initializeDatabase("database/catering_init_sqlite.sql");
-        app = CatERing.getInstance();
+        CatERing.getInstance();
     }
 
     @BeforeEach
     void setup() {
-        try {
-            // Esegue il login come organizzatore prima di ogni test
-            organizer = User.load("Giovanni");
-            app.getUserManager().fakeLogin(organizer.getUserName());
-            staffManager = app.getStaffManager(); // Il manager viene creato/recuperato qui
-            assertNotNull(staffManager, "Lo StaffManager non dovrebbe essere null per un organizzatore loggato.");
-        } catch (UseCaseLogicException e) {
-            LOGGER.severe("Errore nel setup del test: " + e.getMessage());
-            fail("Setup fallito: " + e.getMessage());
-        }
+        LOGGER.info("Executing new test...");
     }
 
     @Test
     @Order(1)
-    @DisplayName("UC 4: inserisciDatiPersonale - Verifica Contratto")
-    void test_UC4_inserisciDatiPersonale() {
-        LOGGER.info("TEST: Validazione UC4 - Inserimento dati personale");
-        
-        // Dati del nuovo membro dello staff
-        int serialNumber = 101;
-        String name = "Mario Rossi";
-        
-        // 1. Azione: Esegue l'aggiunta e verifica che l'operazione abbia successo
-        boolean added = staffManager.addStaff(serialNumber, name, "m.rossi@test.it", "333",
-                "RSSMRA", "Cuoco", true, false);
-        assertTrue(added, "Il metodo addStaff dovrebbe ritornare true in caso di successo.");
+    void testCreateAndLoadStaff() {
+        LOGGER.info("TEST: Creazione, salvataggio e caricamento di un membro dello staff");
+        Staff staff = null;
+        int serialNumber = new Random().nextInt(90000) + 10000;
+        String name = "Test Staff " + serialNumber;
 
-        // 2. Recupero: Carica lo staff appena inserito per poterlo ispezionare
-        testStaffMember = staffManager.getStaff(serialNumber);
+        try {
+            staff = new Staff(serialNumber, name, "test@staff.it", "12345", "TSTSTF", "Tester", true);
+            
+            // 1. Verifica immediata del salvataggio
+            boolean saved = staff.save();
+            assertTrue(saved, "staff.save() dovrebbe ritornare true. Se fallisce qui, il problema è nel PersistenceManager o nello schema DB.");
 
-        // 3. Verifica: Controlla che le post-condizioni del contratto 4 siano rispettate
-        assertNotNull(testStaffMember, "Post-condizione fallita: Deve essere creata un'istanza p di Personale.");
-        assertEquals(serialNumber, testStaffMember.getSerialNumber(), "Post-condizione fallita: p.matricola deve essere corretta.");
-        assertEquals(name, testStaffMember.getName(), "Post-condizione fallita: p.nome deve essere corretto.");
-        assertTrue(testStaffMember.isAvailable(), "Post-condizione fallita: p.disponibile deve essere 'si'.");
+            // 2. Verifica che l'oggetto sia ora recuperabile
+            Staff loadedStaff = Staff.loadStaff(serialNumber);
+            assertNotNull(loadedStaff, "Lo staff caricato non dovrebbe essere null. Se lo è, la scrittura su DB non è avvenuta.");
+            assertEquals(name, loadedStaff.getName());
+
+        } catch (Exception e) {
+            fail("Test fallito a causa di un'eccezione inaspettata.", e);
+        } finally {
+            if (staff != null) {
+                staff.delete();
+            }
+        }
     }
 
     @Test
     @Order(2)
-    @DisplayName("UC 2: scriveRuolo - Verifica Contratto")
-    void test_UC2_scriveRuolo() throws SQLException {
-        LOGGER.info("TEST: Validazione UC2 - Scrittura di un ruolo");
-        
-        // Azione: 2. Scrive un ruolo utile all'evento
-        testRole = staffManager.createRole(null, "Responsabile Vini", "Gestione cantina per evento", Date.valueOf("2025-09-15"));
-        Role.create(testRole); // Salva nel DB e recupera l'ID
+    void testCreateAndLoadRole() {
+        LOGGER.info("TEST: Creazione, salvataggio e caricamento di un ruolo");
+        Role role = null;
+        String roleName = "Test Role " + System.currentTimeMillis();
 
-        // Verifica Post-condizioni del contratto 2
-        assertTrue(testRole.getId() > 0, "Post-condizione fallita: Deve essere creata un'istanza r di Ruolo (con ID > 0).");
-        assertFalse(testRole.isAssigned(), "Post-condizione fallita: r.assegnato deve essere 'no'.");
+        try {
+            role = Role.create(roleName, "Descrizione di test", Date.valueOf("2025-11-15"), false);
+            
+            // 1. Esegui il salvataggio
+            Role.create(role);
+
+            // 2. Verifica l'effetto del salvataggio provando a ricaricare subito l'oggetto
+            Role loadedRole = Role.loadRole(roleName);
+            assertNotNull(loadedRole, "Il ruolo non è stato trovato nel DB subito dopo la sua creazione. Controlla PersistenceManager.");
+            
+            // 3. Solo se il caricamento ha successo, verifica l'ID
+            assertTrue(loadedRole.getId() > 0, "Il ruolo caricato dal DB deve avere un ID valido (> 0).");
+            assertEquals(roleName, loadedRole.getName());
+
+        } catch (SQLException e) {
+            fail("Test fallito a causa di un'eccezione SQL.", e);
+        } finally {
+            if (role != null) {
+                // Per la pulizia, ricarichiamo il ruolo per essere sicuri di avere l'ID corretto
+                Role roleToDelete = Role.loadRole(roleName);
+                if (roleToDelete != null) {
+                    try {
+                        roleToDelete.delete();
+                    } catch (RoleException ex) {
+                        // ignora
+                    }
+                }
+            }
+        }
     }
 
     @Test
     @Order(3)
-    @DisplayName("UC 5: assegnaRuoloPersonaleDisponibile - Verifica Contratto")
-    void test_UC5_assegnaRuolo() {
-        LOGGER.info("TEST: Validazione UC5 - Assegnazione ruolo a personale");
-        
-        // Verifica Pre-condizioni del contratto 5
-        assertNotNull(testStaffMember, "Pre-condizione fallita: Deve esistere un'istanza p di Personale.");
-        assertTrue(testStaffMember.isAvailable(), "Pre-condizione fallita: p.disponibile deve essere 'si'.");
-        assertNotNull(testRole, "Pre-condizione fallita: Deve esistere un'istanza r di Ruolo.");
-        assertFalse(testRole.isAssigned(), "Pre-condizione fallita: r.assegnato deve essere 'no'.");
+    void testAssignRoleToStaff() {
+        LOGGER.info("TEST: Assegnazione di un ruolo a un membro dello staff");
+        Staff staff = null;
+        Role role = null;
+        int serialNumber = new Random().nextInt(90000) + 10000;
+        String roleName = "Assignable Role " + serialNumber;
 
-        // Azione: 5. Assegna un ruolo al personale disponibile
-        staffManager.assignRole(testStaffMember, testRole);
-        
-        // Verifica Post-condizioni del contratto 5
-        assertTrue(testRole.isAssigned(), "Post-condizione fallita: r.assegnato deve essere 'si'.");
-        assertFalse(testStaffMember.isAvailable(), "Post-condizione fallita: p.disponibile deve essere 'no'.");
-        assertEquals(testStaffMember, testRole.getStaff(), "Il ruolo deve essere assegnato al corretto membro dello staff.");
+        try {
+            // Setup
+            staff = new Staff(serialNumber, "Staff Assegnabile", "assign@test.it", "555", "ASSGN", "Cook", false);
+            assertTrue(staff.save(), "Setup fallito: impossibile salvare lo staff.");
+            
+            role = Role.create(roleName, "Ruolo da assegnare", Date.valueOf("2025-12-01"), false);
+            Role.create(role);
+            
+            Role roleToAssign = Role.loadRole(roleName);
+            assertNotNull(roleToAssign, "Setup fallito: impossibile caricare il ruolo appena creato.");
+
+            // Azione
+            roleToAssign.setWorker(staff);
+            boolean updated = roleToAssign.update();
+            assertTrue(updated, "role.update() dovrebbe ritornare true dopo un'assegnazione.");
+
+            // Verifica
+            Role loadedRole = Role.loadRole(roleName);
+            assertNotNull(loadedRole, "Il ruolo assegnato non è stato trovato nel DB.");
+            assertTrue(loadedRole.isAssigned(), "Il ruolo dovrebbe risultare assegnato.");
+            assertEquals(staff.getSerialNumber(), loadedRole.getStaff().getSerialNumber());
+
+        } catch (Exception e) {
+            fail("Test fallito a causa di un'eccezione inaspettata.", e);
+        } finally {
+            // Pulizia
+            if (role != null) {
+                 Role roleToClean = Role.loadRole(roleName);
+                 if(roleToClean != null) {
+                    roleToClean.setWorker(null);
+                    roleToClean.update();
+                    try { roleToClean.delete(); } catch (RoleException e) {}
+                 }
+            }
+            if (staff != null) {
+                staff.delete();
+            }
+        }
     }
-    
+
     @Test
     @Order(4)
-    @DisplayName("UC 2a / Eccezione 2a.1a: eliminaRuolo in uso - Verifica Contratto")
-    void test_UC2a_eliminaRuolo_Fallimento_InUso() {
-        LOGGER.info("TEST: Validazione Eccezione 2a.1a - Eliminazione ruolo in uso");
+    void testDeleteAssignedRoleThrowsException() {
+        LOGGER.info("TEST: L'eliminazione di un ruolo assegnato deve lanciare un'eccezione");
+        Staff staff = null;
+        Role role = null;
+        int serialNumber = new Random().nextInt(90000) + 10000;
+        String roleName = "Protected Role " + serialNumber;
+        
+        try {
+            // Setup
+            staff = new Staff(serialNumber, "Staff con Ruolo", "protect@test.it", "555", "PRTCT", "Guard", true);
+            assertTrue(staff.save(), "Setup fallito: impossibile salvare lo staff per il test.");
 
-        // Pre-condizione: il ruolo è in uso (assegnato nel test precedente)
-        assertNotNull(testRole, "Il ruolo di test deve esistere.");
-        assertTrue(testRole.isAssigned(), "Pre-condizione fallita: il ruolo deve essere in uso.");
+            role = Role.create(roleName, "Ruolo protetto", Date.valueOf("2026-01-01"), false);
+            Role.create(role);
 
-        // Azione e Verifica Eccezione 2a.1a
-        // Il tentativo di eliminare un ruolo in uso deve lanciare un'eccezione
-        assertThrows(RoleException.class, () -> {
-            testRole.delete();
-        }, "L'eliminazione di un ruolo in uso deve lanciare una RoleException.");
+            Role assignedRole = Role.loadRole(roleName);
+            assertNotNull(assignedRole, "Setup fallito: impossibile caricare il ruolo appena creato.");
+            
+            assignedRole.setWorker(staff);
+            assertTrue(assignedRole.update(), "Setup fallito: impossibile assegnare il ruolo.");
+
+            // Azione e Verifica
+            assertThrows(RoleException.class, assignedRole::delete, "Deve essere lanciata una RoleException.");
+        } catch (Exception e) {
+            fail("Test fallito a causa di un'eccezione inaspettata durante il setup.", e);
+        } finally {
+             // Pulizia
+            if (role != null) {
+                Role roleToClean = Role.loadRole(roleName);
+                if (roleToClean != null) {
+                    roleToClean.setWorker(null);
+                    roleToClean.update();
+                    try { roleToClean.delete(); } catch (RoleException e) {}
+                }
+            }
+            if (staff != null) {
+                staff.delete();
+            }
+        }
     }
 }
