@@ -4,7 +4,7 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>272</x>
+      <x>112</x>
       <y>280</y>
       <w>24</w>
       <h>416</h>
@@ -15,19 +15,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>272</x>
+      <x>112</x>
       <y>304</y>
       <w>216</w>
       <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-deleteHolidaysRequest(hr)</panel_attributes>
+deleteHolidaysRequest(worker, hr)</panel_attributes>
     <additional_attributes>250.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>392</x>
+      <x>232</x>
       <y>248</y>
       <w>176</w>
       <h>40</h>
@@ -39,7 +39,7 @@ HolidaysRequestManager</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>472</x>
+      <x>312</x>
       <y>280</y>
       <w>24</w>
       <h>416</h>
@@ -51,7 +51,7 @@ HolidaysRequestManager</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>472</x>
+      <x>312</x>
       <y>320</y>
       <w>16</w>
       <h>336</h>
@@ -62,7 +62,7 @@ HolidaysRequestManager</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>256</x>
+      <x>96</x>
       <y>232</y>
       <w>72</w>
       <h>56</h>
@@ -73,7 +73,7 @@ HolidaysRequestManager</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>560</x>
+      <x>400</x>
       <y>184</y>
       <w>272</w>
       <h>32</h>
@@ -88,7 +88,7 @@ fontsize=20
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>160</x>
+      <x>0</x>
       <y>368</y>
       <w>1008</w>
       <h>296</h>
@@ -117,7 +117,7 @@ fontsize=11
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>272</x>
+      <x>112</x>
       <y>376</y>
       <w>216</w>
       <h>32</h>
@@ -129,7 +129,7 @@ throw UseCaseLogicException</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>320</x>
       <y>344</y>
       <w>240</w>
       <h>32</h>
@@ -141,7 +141,7 @@ user</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>320</x>
       <y>328</y>
       <w>240</w>
       <h>32</h>
@@ -153,7 +153,7 @@ getCurrentUser( )</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>704</x>
+      <x>544</x>
       <y>280</y>
       <w>24</w>
       <h>416</h>
@@ -164,7 +164,7 @@ getCurrentUser( )</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>600</x>
+      <x>440</x>
       <y>248</y>
       <w>224</w>
       <h>40</h>
@@ -177,7 +177,7 @@ UserManager
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>704</x>
+      <x>544</x>
       <y>344</y>
       <w>16</w>
       <h>16</h>
@@ -188,7 +188,7 @@ UserManager
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1000</x>
+      <x>840</x>
       <y>248</y>
       <w>168</w>
       <h>40</h>
@@ -202,7 +202,7 @@ HolidaysRequestEventReceiver
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>320</x>
       <y>520</y>
       <w>240</w>
       <h>48</h>
@@ -214,7 +214,7 @@ notifyHolidaysRequestDeleted(hr)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>480</x>
+      <x>320</x>
       <y>552</y>
       <w>16</w>
       <h>88</h>
@@ -225,7 +225,7 @@ notifyHolidaysRequestDeleted(hr)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>488</x>
+      <x>328</x>
       <y>584</y>
       <w>600</w>
       <h>40</h>
@@ -238,7 +238,7 @@ updateHolidaysRequestDeleted(hr)
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>384</x>
+      <x>224</x>
       <y>576</y>
       <w>728</w>
       <h>72</h>
@@ -251,7 +251,7 @@ fg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1072</x>
+      <x>912</x>
       <y>280</y>
       <w>24</w>
       <h>416</h>
@@ -263,7 +263,7 @@ fg=blue</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1072</x>
+      <x>912</x>
       <y>600</y>
       <w>16</w>
       <h>16</h>
@@ -275,7 +275,7 @@ fg=blue</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>184</x>
+      <x>24</x>
       <y>488</y>
       <w>96</w>
       <h>24</h>
@@ -289,7 +289,7 @@ fg=#761C8C</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>272</x>
+      <x>112</x>
       <y>480</y>
       <w>216</w>
       <h>32</h>
@@ -301,7 +301,7 @@ throw StaffDataListException</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>320</x>
       <y>448</y>
       <w>432</w>
       <h>32</h>
@@ -313,7 +313,7 @@ s</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>480</x>
+      <x>320</x>
       <y>432</y>
       <w>432</w>
       <h>32</h>
@@ -325,7 +325,7 @@ getStaff(serialNumber)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>832</x>
+      <x>672</x>
       <y>248</y>
       <w>152</w>
       <h>40</h>
@@ -339,7 +339,7 @@ StaffDataList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>896</x>
+      <x>736</x>
       <y>280</y>
       <w>24</w>
       <h>240</h>
@@ -351,7 +351,7 @@ StaffDataList
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>896</x>
+      <x>736</x>
       <y>448</y>
       <w>16</w>
       <h>16</h>

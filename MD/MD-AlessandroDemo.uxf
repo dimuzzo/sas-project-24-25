@@ -219,23 +219,6 @@ m1=0...n
     <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1048</x>
-      <y>120</y>
-      <w>224</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Una voce puo' comparire in un 
-menu' all'interno di una sezione
-oppure come voce "libera" quindi 
-verrà valorizzata  una e una sola 
-delle due  relazioni appartiene
-
-bg=yellow</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
       <x>488</x>

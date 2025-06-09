@@ -5,4 +5,3 @@ public interface HolidaysRequestEventReceiver {
     void updateHolidaysRequestAssigned(HolidaysRequest hr);
     void updateHolidaysRequestDeleted(HolidaysRequest hr);
 }
-

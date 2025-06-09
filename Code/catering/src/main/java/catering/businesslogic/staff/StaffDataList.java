@@ -192,6 +192,35 @@ public class StaffDataList {
         return false;
     }
 
+    // METODI DI PERSISTENZA PURA
+    // Questi vengono chiamati solo da StaffPersistence per evitare ricorsione.
+    
+    /**
+     * Crea nel database l'associazione tra l'owner di questa lista e un membro dello staff.
+     * NON invia notifiche.
+     */
+    public boolean addStaffAssociation(Staff staff) {
+        if (owner != null && staff != null) {
+            String query = "INSERT INTO StaffDataList (owner_id, staff_serial_number) VALUES (?, ?)";
+            int rows = PersistenceManager.executeUpdate(query, owner.getId(), staff.getSerialNumber());
+            return rows > 0;
+        }
+        return false;
+    }
+
+    /**
+     * Rimuove dal database l'associazione tra l'owner di questa lista e un membro dello staff.
+     * NON invia notifiche.
+     */
+    public boolean removeStaffAssociation(Staff staff) {
+        if (owner != null && staff != null) {
+            String query = "DELETE FROM StaffDataList WHERE owner_id = ? AND staff_serial_number = ?";
+            int rows = PersistenceManager.executeUpdate(query, owner.getId(), staff.getSerialNumber());
+            return rows > 0;
+        }
+        return false;
+    }
+
     // ========================
     // Filtri
     // ========================

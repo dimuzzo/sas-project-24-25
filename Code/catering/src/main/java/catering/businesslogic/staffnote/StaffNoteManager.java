@@ -28,6 +28,11 @@ public class StaffNoteManager {
         for (StaffNoteEventReceiver r : eventReceivers) r.updateStaffNoteCreated(n);
     }
 
+    // Aggiunto per il caso d'uso 6a
+    private void notifyStaffNoteUpdated(StaffNote n) {
+        for (StaffNoteEventReceiver r : eventReceivers) r.updateStaffNoteUpdated(n);
+    }
+    
     private void notifyStaffNoteDeleted(StaffNote n) {
         for (StaffNoteEventReceiver r : eventReceivers) r.updateStaffNoteDeleted(n);
     }
@@ -38,7 +43,30 @@ public class StaffNoteManager {
 
     public StaffNote createStaffNote(User owner, Staff worker, String description, Date date) {
         StaffNote n = StaffNote.create(owner, worker, description, date);
-        notifyStaffNoteCreated(n);
-        return n;
+        if (n.save()) { // Salva la nota nel DB
+            notifyStaffNoteCreated(n);
+            return n;
+        }
+        return null; // Ritorna null se il salvataggio fallisce
+    }
+
+    public void updateStaffNote(Staff worker, StaffNote note, String newDescription, Date newDate) throws StaffNoteException {
+        if (!note.getStaff().equals(worker)) {
+            throw new StaffNoteException("Eccezione: la nota non appartiene al lavoratore specificato.");
+        }
+        note.setDescription(newDescription);
+        note.setDate(newDate);
+        if (note.update()) {
+            notifyStaffNoteUpdated(note);
+        }
+    }
+
+    public void deleteStaffNote(Staff worker, StaffNote note) throws StaffNoteException {
+        if (!note.getStaff().equals(worker)) {
+            throw new StaffNoteException("Eccezione: la nota non appartiene al lavoratore specificato.");
+        }
+        if (note.delete()) {
+            notifyStaffNoteDeleted(note);
+        }
     }
 }

@@ -74,6 +74,7 @@ CREATE TABLE
         `worker_id` INTEGER NOT NULL,
         `period` DATE NOT NULL,
         `owner_id` INTEGER NOT NULL,
+        `is_assigned` INTEGER NOT NULL DEFAULT 0,
         FOREIGN KEY (`worker_id`) REFERENCES `Staff`(`serial_number`) ON DELETE CASCADE,
         FOREIGN KEY (`owner_id`) REFERENCES `Users`(`id`) ON DELETE CASCADE
     );

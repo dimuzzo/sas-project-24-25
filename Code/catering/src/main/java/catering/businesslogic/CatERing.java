@@ -10,9 +10,12 @@ import catering.businesslogic.staff.StaffManager;
 import catering.businesslogic.staffnote.StaffNoteManager;
 import catering.businesslogic.summaryform.SummaryFormManager;
 import catering.businesslogic.user.UserManager;
+import catering.persistence.HolidaysRequestPersistence;
 import catering.persistence.KitchenTaskPersistence;
 import catering.persistence.MenuPersistence;
+import catering.persistence.StaffNotePersistence;
 import catering.persistence.StaffPersistence;
+import catering.persistence.SummaryFormPersistence;
 
 public class CatERing {
     private static CatERing singleInstance;
@@ -42,6 +45,9 @@ public class CatERing {
     private MenuPersistence menuPersistence;
     private KitchenTaskPersistence kitchenTaskPersistence;
     private StaffPersistence staffPersistence;
+    private HolidaysRequestPersistence holidaysRequestPersistence;
+    private StaffNotePersistence staffNotePersistence;
+    private SummaryFormPersistence summaryFormPersistence;
 
     /**
      * Il costruttore non crea più i manager dipendenti dalla sessione.
@@ -55,18 +61,17 @@ public class CatERing {
         kitchenTaskMgr = new KitchenTaskManager();
         shiftMgr = new ShiftManager();
         summaryFormMgr = new SummaryFormManager();
-        
-        // staffMgr = new StaffManager(); // <-- RIMOSSO
-        // staffNoteMgr = new StaffNoteManager(staffMgr); // <-- RIMOSSO
-        // holidaysRequestMgr = new HolidaysRequestManager(staffMgr); // <-- RIMOSSO
 
         menuPersistence = new MenuPersistence();
         kitchenTaskPersistence = new KitchenTaskPersistence();
         staffPersistence = new StaffPersistence();
+        holidaysRequestPersistence = new HolidaysRequestPersistence();
+        staffNotePersistence = new StaffNotePersistence();
+        summaryFormPersistence = new SummaryFormPersistence();
 
         menuMgr.addEventReceiver(menuPersistence);
         kitchenTaskMgr.addEventReceiver(kitchenTaskPersistence);
-        // staffMgr.addEventReceiver(staffPersistence); // <-- RIMOSSO (verrà aggiunto dopo la creazione)
+        summaryFormMgr.addEventReceiver(summaryFormPersistence);
     }
 
     /**
@@ -83,6 +88,8 @@ public class CatERing {
 
             // E collega i listener necessari
             this.staffMgr.addEventReceiver(this.staffPersistence);
+            this.holidaysRequestMgr.addEventReceiver(this.holidaysRequestPersistence);
+            this.staffNoteMgr.addEventReceiver(this.staffNotePersistence);
         }
     }
     
@@ -92,7 +99,6 @@ public class CatERing {
         CatERing app = CatERing.getInstance();
         System.out.println("Global managers initialized.");
 
-        // --- PASSAGGIO CHIAVE MANCANTE ---
         // 1. Simula il login di un utente prima di controllare i manager di sessione
         System.out.println("\nStep 1: Simulating user login...");
         try {
@@ -142,23 +148,31 @@ public class CatERing {
 
     // GETTER E SETTER PER GLI ALTRI MANAGER (invariati)
 
-    public KitchenTaskManager getKitchenTaskManager() { return kitchenTaskMgr; }
-    public ShiftManager getShiftManager() { return shiftMgr; }
-    public MenuManager getMenuManager() { return menuMgr; }
-    public RecipeManager getRecipeManager() { return recipeMgr; }
-    public UserManager getUserManager() { return userMgr; }
-    public EventManager getEventManager() { return eventMgr; }
-    public SummaryFormManager getSummaryFormManager() { return summaryFormMgr; }
-    
-    // I setter potrebbero non essere necessari se la gestione è solo interna.
-    public void setShiftManager(ShiftManager shiftMgr) { this.shiftMgr = shiftMgr; }
-    public void setMenuManager(MenuManager menuMgr) { this.menuMgr = menuMgr; }
-    public void setRecipeManager(RecipeManager recipeMgr) { this.recipeMgr = recipeMgr; }
-    public void setUserManager(UserManager userMgr) { this.userMgr = userMgr; }
-    public void setEventManager(EventManager eventMgr) { this.eventMgr = eventMgr; }
-    public void setKitchenTaskManager(KitchenTaskManager kitchenTaskMgr) { this.kitchenTaskMgr = kitchenTaskMgr; }
-    public void setStaffManager(StaffManager staffMgr) { this.staffMgr = staffMgr; }
-    public void setStaffNoteManager(StaffNoteManager staffNoteMgr) { this.staffNoteMgr = staffNoteMgr; }
-    public void setHolidaysRequestManager(HolidaysRequestManager holidaysRequestMgr) { this.holidaysRequestMgr = holidaysRequestMgr; }
-    public void setSummaryFormManager(SummaryFormManager summaryFormMgr) { this.summaryFormMgr = summaryFormMgr; }
+    public KitchenTaskManager getKitchenTaskManager() { 
+        return kitchenTaskMgr; 
+    }
+
+    public ShiftManager getShiftManager() { 
+        return shiftMgr; 
+    }
+
+    public MenuManager getMenuManager() { 
+        return menuMgr; 
+    }
+
+    public RecipeManager getRecipeManager() { 
+        return recipeMgr; 
+    }
+
+    public UserManager getUserManager() { 
+        return userMgr; 
+    }
+
+    public EventManager getEventManager() { 
+        return eventMgr; 
+    }
+
+    public SummaryFormManager getSummaryFormManager() { 
+        return summaryFormMgr; 
+    }
 }

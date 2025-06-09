@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>450</x>
-      <y>72</y>
+      <x>729</x>
+      <y>54</y>
       <w>306</w>
       <h>36</h>
     </coordinates>
@@ -19,31 +19,31 @@ fontsize=20
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>126</x>
-      <y>180</y>
+      <x>405</x>
+      <y>162</y>
       <w>27</w>
-      <h>468</h>
+      <h>522</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;560.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>126</x>
-      <y>207</y>
+      <x>405</x>
+      <y>189</y>
       <w>243</w>
       <h>36</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-deleteStaffNote(n)</panel_attributes>
+deleteStaffNote(worker, n)</panel_attributes>
     <additional_attributes>250.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>234</x>
-      <y>144</y>
+      <x>513</x>
+      <y>126</y>
       <w>207</w>
       <h>45</h>
     </coordinates>
@@ -54,22 +54,22 @@ StaffNoteManager</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>351</x>
-      <y>180</y>
+      <x>630</x>
+      <y>162</y>
       <w>27</w>
-      <h>468</h>
+      <h>522</h>
     </coordinates>
     <panel_attributes>lt=.
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;560.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>351</x>
-      <y>225</y>
+      <x>630</x>
+      <y>207</y>
       <w>18</w>
-      <h>378</h>
+      <h>423</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -77,8 +77,8 @@ StaffNoteManager</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>108</x>
-      <y>126</y>
+      <x>387</x>
+      <y>108</y>
       <w>81</w>
       <h>63</h>
     </coordinates>
@@ -88,10 +88,10 @@ StaffNoteManager</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>0</x>
-      <y>279</y>
-      <w>1134</w>
-      <h>333</h>
+      <x>270</x>
+      <y>261</y>
+      <w>1143</w>
+      <h>378</h>
     </coordinates>
     <panel_attributes>alt 
 fg=#761C8C
@@ -110,6 +110,11 @@ fg=#761C8C
 
 
 -.
+
+
+
+
+-.
 fontsize=11
 </panel_attributes>
     <additional_attributes/>
@@ -117,8 +122,8 @@ fontsize=11
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>126</x>
-      <y>288</y>
+      <x>405</x>
+      <y>270</y>
       <w>243</w>
       <h>36</h>
     </coordinates>
@@ -129,8 +134,8 @@ throw UseCaseLogicException</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>252</y>
+      <x>639</x>
+      <y>234</y>
       <w>270</w>
       <h>36</h>
     </coordinates>
@@ -141,8 +146,8 @@ user</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>234</y>
+      <x>639</x>
+      <y>216</y>
       <w>270</w>
       <h>36</h>
     </coordinates>
@@ -153,19 +158,19 @@ getCurrentUser( )</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>612</x>
-      <y>180</y>
+      <x>891</x>
+      <y>162</y>
       <w>27</w>
-      <h>468</h>
+      <h>513</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;550.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>495</x>
-      <y>144</y>
+      <x>774</x>
+      <y>126</y>
       <w>252</w>
       <h>45</h>
     </coordinates>
@@ -177,8 +182,8 @@ UserManager
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>612</x>
-      <y>252</y>
+      <x>891</x>
+      <y>234</y>
       <w>18</w>
       <h>18</h>
     </coordinates>
@@ -188,8 +193,8 @@ UserManager
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>945</x>
-      <y>144</y>
+      <x>1224</x>
+      <y>126</y>
       <w>171</w>
       <h>45</h>
     </coordinates>
@@ -202,8 +207,8 @@ StaffNoteEventReceiver
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>450</y>
+      <x>639</x>
+      <y>477</y>
       <w>225</w>
       <h>54</h>
     </coordinates>
@@ -214,8 +219,8 @@ notifyStaffNoteDeleted(n)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>360</x>
-      <y>486</y>
+      <x>639</x>
+      <y>513</y>
       <w>18</w>
       <h>99</h>
     </coordinates>
@@ -225,8 +230,8 @@ notifyStaffNoteDeleted(n)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>369</x>
-      <y>522</y>
+      <x>648</x>
+      <y>549</y>
       <w>675</w>
       <h>45</h>
     </coordinates>
@@ -238,8 +243,8 @@ updateStaffNoteDeleted(n)
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>252</x>
-      <y>513</y>
+      <x>531</x>
+      <y>540</y>
       <w>819</w>
       <h>81</h>
     </coordinates>
@@ -251,20 +256,20 @@ fg=blue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1026</x>
-      <y>180</y>
+      <x>1305</x>
+      <y>162</y>
       <w>27</w>
-      <h>468</h>
+      <h>513</h>
     </coordinates>
     <panel_attributes>lt=.
 </panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;500.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;550.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1026</x>
-      <y>540</y>
+      <x>1305</x>
+      <y>567</y>
       <w>18</w>
       <h>18</h>
     </coordinates>
@@ -275,8 +280,8 @@ fg=blue</panel_attributes>
   <element>
     <id>Text</id>
     <coordinates>
-      <x>27</x>
-      <y>414</y>
+      <x>306</x>
+      <y>396</y>
       <w>108</w>
       <h>27</h>
     </coordinates>
@@ -289,8 +294,8 @@ fg=#761C8C</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>126</x>
-      <y>405</y>
+      <x>405</x>
+      <y>387</y>
       <w>243</w>
       <h>36</h>
     </coordinates>
@@ -301,8 +306,8 @@ throw StaffDataListException</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>369</y>
+      <x>639</x>
+      <y>351</y>
       <w>486</w>
       <h>36</h>
     </coordinates>
@@ -313,8 +318,8 @@ s</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>351</y>
+      <x>639</x>
+      <y>333</y>
       <w>486</w>
       <h>36</h>
     </coordinates>
@@ -325,8 +330,8 @@ getStaff(serialNumber)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>756</x>
-      <y>144</y>
+      <x>1035</x>
+      <y>126</y>
       <w>171</w>
       <h>45</h>
     </coordinates>
@@ -339,8 +344,8 @@ StaffDataList
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>828</x>
-      <y>180</y>
+      <x>1107</x>
+      <y>162</y>
       <w>27</w>
       <h>270</h>
     </coordinates>
@@ -351,12 +356,38 @@ StaffDataList
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>828</x>
-      <y>369</y>
+      <x>1107</x>
+      <y>351</y>
       <w>18</w>
       <h>18</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>270</x>
+      <y>441</y>
+      <w>144</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>[!n.getStaff().equals(worker)]
+style=wordwrap
+fontsize=11
+fg=#761C8C</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>432</y>
+      <w>243</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+throw StaffNoteException</panel_attributes>
+    <additional_attributes>10.0;20.0;250.0;20.0</additional_attributes>
   </element>
 </diagram>

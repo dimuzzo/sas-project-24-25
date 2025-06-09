@@ -289,31 +289,6 @@ updateRoleCreated(rl)
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>872</x>
-      <y>616</y>
-      <w>208</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;.
-create(roleFeatures.length)</panel_attributes>
-    <additional_attributes>240.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1064</x>
-      <y>616</y>
-      <w>144</w>
-      <h>32</h>
-    </coordinates>
-    <panel_attributes>featureValues:
-boolean[roleFeatures.length]
-fontsize=12</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLPackage</id>
     <coordinates>
       <x>336</x>

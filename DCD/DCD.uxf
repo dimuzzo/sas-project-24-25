@@ -97,7 +97,7 @@ fg=black</panel_attributes>
     </coordinates>
     <panel_attributes>StaffManager
 --
--staffFeatures: String[]
+
 --
 
 +addReceiver(er: StaffEventReceiver)
@@ -345,19 +345,22 @@ fg=black</panel_attributes>
     </coordinates>
     <panel_attributes>StaffNoteManager
 --
--staffNoteFeatures: String[]
+
 --
 
 +addReceiver(er: StaffNoteEventReceiver)
 +removeReceiver(er: StaffNoteEventReceiver)
 
 -notifyStaffNoteCreated(n: StaffNote)
+-notifyStaffNoteUpdated(n: StaffNote)
 -notifyStaffNoteDeleted(n: StaffNote)
 
 --
 
 +getStaff(serialNumber: int): Staff
 +createStaffNote(worker: Staff, description: String, date: Date): StaffNote
++updateStaffNote(worker: Staff, newDescription: String, date: Date, n: StaffNote)
++deleteStaffNote(worker: Staff, n: StaffNote)
 
 fg=black
 </panel_attributes>
@@ -995,7 +998,7 @@ bg=#B8E0E0
     </coordinates>
     <panel_attributes>ShiftManager
 --
--shiftFeatures: String[]
+
 --
 
 +addEventReceiver(er: ShiftEventReceiver)
@@ -1278,6 +1281,7 @@ StaffNoteEventReceiver
 
 --
 /+updateStaffNoteCreated(n: StaffNote)/
+/+updateStaffNoteUpdated(n: StaffNote)/
 /+updateStaffNoteDeleted(n: StaffNote)/
 </panel_attributes>
     <additional_attributes/>
@@ -1382,7 +1386,7 @@ fg=black</panel_attributes>
     </coordinates>
     <panel_attributes>HolidaysRequestManager
 --
--holidaysRequestFeatures: String[]
+
 --
 
 +addReceiver(er: HolidaysRequestEventReceiver)
@@ -1396,7 +1400,8 @@ fg=black</panel_attributes>
 
 +getStaff(serialNumber: int): Staff
 +createHolidaysRequest(worker: Staff, period: Date): HolidaysRequest
-+assignHolidaysRequest(worker: Staff, hr: HolidaysRequest) 
++assignHolidaysRequest(worker: Staff, hr: HolidaysRequest)
++deleteHolidaysRequest(worker: Staff, hr: HolidaysRequest)  
 
 fg=black
 </panel_attributes>

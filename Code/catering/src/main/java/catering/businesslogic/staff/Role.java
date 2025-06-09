@@ -1,14 +1,11 @@
 package catering.businesslogic.staff;
 
-import catering.persistence.BatchUpdateHandler;
-import catering.persistence.PersistenceManager;
-import catering.persistence.ResultHandler;
-
 import java.sql.Date;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+
+import catering.persistence.PersistenceManager;
+import catering.persistence.ResultHandler;
 
 public class Role {
 
@@ -136,7 +133,6 @@ public class Role {
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
-                // CORREZIONE: Non chiamare rs.next() qui.
                 resultHolder[0] = fromResultSet(rs);
             }
         }, name);

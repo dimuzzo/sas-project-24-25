@@ -289,31 +289,6 @@ updateStaffNoteCreated(n)
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>574</x>
-      <y>602</y>
-      <w>182</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;.
-create(staffNoteFeatures.length)</panel_attributes>
-    <additional_attributes>240.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>742</x>
-      <y>602</y>
-      <w>133</w>
-      <h>28</h>
-    </coordinates>
-    <panel_attributes>featureValues:
-boolean[staffNoteFeatures.length]
-fontsize=12</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLPackage</id>
     <coordinates>
       <x>105</x>

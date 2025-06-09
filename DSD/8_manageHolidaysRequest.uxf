@@ -304,31 +304,6 @@ updateHolidaysRequestCreated(hr)
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>954</x>
-      <y>657</y>
-      <w>297</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;.
-create(holidaysRequestFeatures.length)</panel_attributes>
-    <additional_attributes>310.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1233</x>
-      <y>657</y>
-      <w>216</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>featureValues:
-boolean[holidaysRequestFeatures.length]
-fontsize=12</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLPackage</id>
     <coordinates>
       <x>351</x>

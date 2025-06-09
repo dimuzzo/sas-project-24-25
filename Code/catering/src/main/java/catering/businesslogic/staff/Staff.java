@@ -146,7 +146,6 @@ public class Staff {
         return staffList;
     }
 
-    // CODICE CORRETTO per Staff.java
     public static Staff loadStaff(int serialNumber) {
         final Staff[] resultHolder = new Staff[1];
         String query = "SELECT * FROM Staff WHERE serial_number = ?";
@@ -154,8 +153,6 @@ public class Staff {
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
-                // CORREZIONE: Non chiamare rs.next() qui.
-                // Il PersistenceManager ha già posizionato il cursore.
                 resultHolder[0] = fromResultSet(rs);
             }
         }, serialNumber);

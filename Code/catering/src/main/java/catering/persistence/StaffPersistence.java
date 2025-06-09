@@ -7,7 +7,6 @@ import catering.businesslogic.staff.RoleException;
 import catering.businesslogic.staff.Staff;
 import catering.businesslogic.staff.StaffDataList;
 import catering.businesslogic.staff.StaffEventReceiver;
-import catering.businesslogic.user.User;
 
 public class StaffPersistence implements StaffEventReceiver {
 
@@ -55,14 +54,11 @@ public class StaffPersistence implements StaffEventReceiver {
         rl.update();
     }
 
-
-    // METODI AGGIUNTI E COMPLETATI
-
     @Override
     public void updateStaffDataListCreated(StaffDataList sdl) {
         // Questo evento non è strettamente necessario se le singole aggiunte
         // vengono gestite, ma per completezza potrebbe salvare l'intera lista di associazioni.
-        // Lasciato vuoto perché le operazioni atomiche sono gestite sotto.
+        sdl.save();
     }
 
     @Override
@@ -76,11 +72,8 @@ public class StaffPersistence implements StaffEventReceiver {
     public void updateStaffDataAdded(Staff s, StaffDataList sdl) {
         // Quando un membro dello staff (s) viene aggiunto a una lista (sdl),
         // crea la singola riga di associazione nella tabella StaffDataList.
-        User owner = sdl.getOwner();
-        if (owner != null) {
-            String query = "INSERT INTO StaffDataList (owner_id, staff_serial_number) VALUES (?, ?)";
-            PersistenceManager.executeUpdate(query, owner.getId(), s.getSerialNumber());
-        }
+        // Un membro è stato aggiunto alla lista, quindi salviamo l'associazione.
+        sdl.addStaffAssociation(s);
     }
 
     @Override
@@ -94,10 +87,6 @@ public class StaffPersistence implements StaffEventReceiver {
     public void updateStaffDataDeleted(Staff s, StaffDataList sdl) {
         // Quando un membro dello staff (s) viene rimosso da una lista (sdl),
         // cancella la singola riga di associazione.
-        User owner = sdl.getOwner();
-        if (owner != null) {
-            String query = "DELETE FROM StaffDataList WHERE owner_id = ? AND staff_serial_number = ?";
-            PersistenceManager.executeUpdate(query, owner.getId(), s.getSerialNumber());
-        }
+        sdl.removeStaffAssociation(s);
     }
 }
