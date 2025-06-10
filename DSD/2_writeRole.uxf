@@ -356,7 +356,7 @@ notifyRoleCreated(rl)</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>624</x>
-      <y>16</y>
+      <y>32</y>
       <w>272</w>
       <h>32</h>
     </coordinates>

@@ -17,15 +17,13 @@ import catering.persistence.StaffNotePersistence;
 import catering.persistence.StaffPersistence;
 import catering.persistence.SummaryFormPersistence;
 
+/**
+ * The main entry point for the CatERing application logic.
+ * This class follows the Singleton pattern to provide a single, centralized
+ * access point to all application managers.
+ */
 public class CatERing {
     private static CatERing singleInstance;
-
-    public static CatERing getInstance() {
-        if (singleInstance == null) {
-            singleInstance = new CatERing();
-        }
-        return singleInstance;
-    }
 
     // Manager
     private MenuManager menuMgr;
@@ -36,12 +34,12 @@ public class CatERing {
     private ShiftManager shiftMgr;
     private SummaryFormManager summaryFormMgr;
 
-    // Manager di sessione (inizializzati "pigramente")
+    // Session-specific managers (initialized lazily)
     private StaffManager staffMgr;
     private StaffNoteManager staffNoteMgr;
     private HolidaysRequestManager holidaysRequestMgr;
 
-    // Persistence
+    // Persistence Receivers
     private MenuPersistence menuPersistence;
     private KitchenTaskPersistence kitchenTaskPersistence;
     private StaffPersistence staffPersistence;
@@ -50,10 +48,12 @@ public class CatERing {
     private SummaryFormPersistence summaryFormPersistence;
 
     /**
-     * Il costruttore non crea più i manager dipendenti dalla sessione.
-     * Verranno creati al primo accesso tramite i loro metodi getter.
+     * Private constructor to enforce the Singleton pattern.
+     * It initializes all global managers and registers their persistence listeners.
+     * Session-dependent managers are not created here; they are initialized on first access.
      */
     private CatERing() {
+        // Initialize global managers
         menuMgr = new MenuManager();
         recipeMgr = new RecipeManager();
         userMgr = new UserManager();
@@ -62,6 +62,7 @@ public class CatERing {
         shiftMgr = new ShiftManager();
         summaryFormMgr = new SummaryFormManager();
 
+        // Initialize persistence receivers
         menuPersistence = new MenuPersistence();
         kitchenTaskPersistence = new KitchenTaskPersistence();
         staffPersistence = new StaffPersistence();
@@ -69,49 +70,63 @@ public class CatERing {
         staffNotePersistence = new StaffNotePersistence();
         summaryFormPersistence = new SummaryFormPersistence();
 
+        // Wire up persistence for global managers
         menuMgr.addEventReceiver(menuPersistence);
         kitchenTaskMgr.addEventReceiver(kitchenTaskPersistence);
         summaryFormMgr.addEventReceiver(summaryFormPersistence);
     }
 
     /**
-     * Esegue l'inizializzazione pigra dello StaffManager e dei suoi dipendenti.
-     * Questo metodo privato viene chiamato dai getter pubblici.
+     * Provides access to the single instance of the CatERing application.
+     * @return The singleton instance of CatERing.
+     */
+    public static CatERing getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new CatERing();
+        }
+        return singleInstance;
+    }
+
+    /**
+     * Ensures that session-specific managers (like StaffManager) are initialized.
+     * This private helper method implements a lazy-initialization pattern. It is called
+     * by the public getters of session-dependent managers.
      */
     private void ensureSessionManagersInitialized() {
-        // Se lo staffMgr non è stato creato E c'è un utente loggato...
+        // If staffMgr has not been created AND a user is currently logged in...
         if (this.staffMgr == null && this.userMgr.getCurrentUser() != null) {
-            // ...allora crea tutto lo stack di manager di sessione.
+            // ...then create the entire stack of session managers.
             this.staffMgr = new StaffManager(this.userMgr.getCurrentUser());
             this.staffNoteMgr = new StaffNoteManager(this.staffMgr);
             this.holidaysRequestMgr = new HolidaysRequestManager(this.staffMgr);
 
-            // E collega i listener necessari
+            // And wire up the necessary persistence listeners for them
             this.staffMgr.addEventReceiver(this.staffPersistence);
             this.holidaysRequestMgr.addEventReceiver(this.holidaysRequestPersistence);
             this.staffNoteMgr.addEventReceiver(this.staffNotePersistence);
         }
     }
     
+    /**
+     * A demonstration entry point for the application.
+     * @param args Command line arguments (not used).
+     */
     public static void main(String[] args) {
         System.out.println("--- CatERing Application Start ---");
         // Get the singleton instance which initializes global managers
         CatERing app = CatERing.getInstance();
         System.out.println("Global managers initialized.");
 
-        // 1. Simula il login di un utente prima di controllare i manager di sessione
+        // Simulate a user login before checking session managers
         System.out.println("\nStep 1: Simulating user login...");
         try {
-            // Usa un nome utente che sai esistere nel tuo database
             app.getUserManager().fakeLogin("Giovanni"); 
             System.out.println("User logged in successfully: " + app.getUserManager().getCurrentUser().getUserName());
         } catch (Exception e) {
             System.err.println("Login failed: " + e.getMessage());
-            // Se il login fallisce, i manager di sessione rimarranno giustamente "NOT AVAILABLE"
         }
-        // ------------------------------------
 
-        // 2. Adesso che l'utente è (potenzialmente) loggato, controlla di nuovo la disponibilità
+        // Now that the user is (potentially) logged in, check manager availability again
         System.out.println("\nStep 2: Checking manager availability post-login...");
         
         // Log which managers are available
@@ -122,15 +137,14 @@ public class CatERing {
         System.out.println("- Event Manager: " + (app.getEventManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- Kitchen Task Manager: " + (app.getKitchenTaskManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- Shift Manager: " + (app.getShiftManager() != null ? "OK" : "NOT AVAILABLE"));
-        // Questa volta, la chiamata a getStaffManager() troverà un utente e creerà l'istanza
         System.out.println("- Staff Manager: " + (app.getStaffManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- StaffNote Manager: " + (app.getStaffNoteManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- HolidaysRequest Manager: " + (app.getHolidaysRequestManager() != null ? "OK" : "NOT AVAILABLE"));
         System.out.println("- SummaryForm Manager: " + (app.getSummaryFormManager() != null ? "OK" : "NOT AVAILABLE"));
     }
 
-    // I GETTER DEI MANAGER DI SESSIONE ORA CONTROLLANO L'INIZIALIZZAZIONE
 
+    // Getters for session managers now ensure initialization before returning
     public StaffManager getStaffManager() {
         ensureSessionManagersInitialized();
         return this.staffMgr;
@@ -146,7 +160,7 @@ public class CatERing {
         return this.holidaysRequestMgr;
     }
 
-    // GETTER E SETTER PER GLI ALTRI MANAGER (invariati)
+    // Getters and Setters
 
     public KitchenTaskManager getKitchenTaskManager() { 
         return kitchenTaskMgr; 

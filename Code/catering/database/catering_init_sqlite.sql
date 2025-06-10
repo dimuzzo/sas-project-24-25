@@ -140,7 +140,6 @@ CREATE TABLE
         `description` TEXT DEFAULT ''
     );
 
--- Tables with simple dependencies
 CREATE TABLE
     `Events` (
         `id` INTEGER PRIMARY KEY AUTOINCREMENT,

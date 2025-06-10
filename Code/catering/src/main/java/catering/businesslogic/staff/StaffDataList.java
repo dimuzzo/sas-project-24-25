@@ -7,35 +7,45 @@ import java.util.Objects;
 import catering.businesslogic.user.User;
 import catering.persistence.PersistenceManager;
 
+/**
+ * Represents a list of staff members managed by a specific owner (User).
+ * This class acts as a repository for an organizer's session, holding an in-memory
+ * list of staff and handling business logic for adding, updating, and removing them.
+ */
 public class StaffDataList {
 
     private List<StaffEventReceiver> receivers;
     private List<Staff> staffDataList;
     private User owner;
 
-    // ========================
-    // Creazione e caricamento da DB
-    // ========================
-
+    /**
+     * Factory method to create a new StaffDataList for a specific owner.
+     * Note: This implementation loads ALL existing staff members from the database,
+     * not just those associated with the owner.
+     * @param owner The User who owns this list. Must not be null.
+     * @return A new instance of StaffDataList.
+     */
     public static StaffDataList create(User owner) {
         StaffDataList dataList = new StaffDataList();
         dataList.owner = Objects.requireNonNull(owner, "Owner cannot be null");
         dataList.receivers = new ArrayList<>();
-        // Carica i dati dal DB
+        // Loads all staff from the DB upon creation
         dataList.staffDataList = Staff.loadAllStaff();
         return dataList;
     }
 
-    // ========================
-    // Gestione receivers
-    // ========================
-
+    /**
+     * Adds an event receiver to be notified of staff data list-related changes.
+     * @param receiver The event receiver to add.
+     */
     public void addReceiver(StaffEventReceiver receiver) {
         if (this.receivers == null) {
             this.receivers = new ArrayList<>();
         }
         this.receivers.add(receiver);
     }
+
+    // Notifaction Methods
 
     public void notifyStaffDataAdded(Staff s) {
         if (receivers != null) {
@@ -61,100 +71,88 @@ public class StaffDataList {
         }
     }
 
-    // ========================
-    // Accessor e controllo ownership
-    // ========================
-
+    /**
+     * Checks if the given user is the owner of this list.
+     * @param user The user to check.
+     * @return true if the user is the owner, false otherwise.
+     */
     public boolean isOwner(User user) {
         return this.owner != null && this.owner.equals(user);
     }
 
+    /**
+     * Returns a safe copy of the internal staff list.
+     * @return A new list containing the staff members.
+     */
     public List<Staff> getStaffDataList() {
         return new ArrayList<>(staffDataList);
     }
 
     /**
-     * Restituisce l'utente proprietario di questa lista.
-     * Questo metodo è necessario per la classe StaffPersistence.
-     * @return L'utente proprietario.
+     * Returns the owner of this list.
+     * This method is needed by the StaffPersistence class.
+     * @return The owner User object.
      */
     public User getOwner() {
         return this.owner;
     }
 
-    // ========================
-    // Operazioni CRUD
-    // ========================
+    // Business Logic Methods
 
-    public boolean save() {
-        if (owner == null || staffDataList == null) {
-            return false;
-        }
-        // Ipotizziamo di voler salvare l'associazione per ogni membro dello staff nella lista
-        String query = "INSERT INTO StaffDataList (owner_id, staff_serial_number) VALUES (?, ?)";
-        try {
-            for (Staff staff : this.staffDataList) {
-                // Esegui un insert per ogni riga di associazione
-                PersistenceManager.executeUpdate(query, owner.getId(), staff.getSerialNumber());
-            }
-            return true;
-        } catch (Exception e) {
-            System.err.println("Error while saving staff data list: " + e.getMessage());
-            return false;
-        }
-    }
-
-    public boolean delete(){
-        if(!isOwner(owner)) return false;
-        String query = "DELETE FROM StaffDataList WHERE owner_id = ?";
-        try {
-            int rows = PersistenceManager.executeUpdate(query, owner.getId());
-            return true;
-        } catch (Exception e) {
-            System.err.println("Error while deleting staff: " + e.getMessage());
-            return false;
-        }
-    }
-
+    /**
+     * A safe gateway for inserting a new staff member. It checks for user authorization first.
+     * @throws StaffDataListException if the current user is not the owner of the list.
+     */
     public boolean tryInsertStaff(User currentUser, int serialNumber, String name, String email, String phoneNumber,
-                                  String taxCode, String primaryMansion, boolean available, boolean permanent) {
+                                  String taxCode, String primaryMansion, boolean available, boolean permanent) throws StaffDataListException {
         if (!isOwner(currentUser)) {
-            System.out.println("Error: the user is not authorized, he's not the owner of the list.");
-            return false;
+            throw new StaffDataListException("User is not authorized to modify this list as it is not an organizer.");
         }
         return insertStaffData(serialNumber, name, email, phoneNumber, taxCode, primaryMansion, available, permanent);
     }
 
+    /**
+     * Inserts a new staff member into the system. This involves saving the Staff
+     * entity and then updating the in-memory list.
+     * @return true if the staff member was created and saved successfully, false otherwise.
+     */
     public boolean insertStaffData(int serialNumber, String name, String email, String phoneNumber,
                                    String taxCode, String primaryMansion,
-                                   boolean available, boolean permanent) { // Riceve entrambi i booleani
+                                   boolean available, boolean permanent) {
         if (getStaff(serialNumber) != null) {
-            return false; // già presente
+            return false; // already exists
         }
 
-        // Il costruttore di Staff vuole solo 'permanent'. 'available' viene impostato dopo.
+        // The Staff constructor only requires 'permanent'. 'available' is set afterwards.
         Staff s = new Staff(serialNumber, name, email, phoneNumber, taxCode, primaryMansion, permanent);
-        s.setAvailability(available); // Imposta la disponibilità qui
+        s.setAvailability(available);
 
-        if (s.save()) {
+        if (s.save()) { // saves to the DB
             staffDataList.add(s);
-            // Questa notifica serve a StaffPersistence per salvare l'associazione nella tabella StaffDataList
+            // This notification is used by StaffPersistence to save the association in the StaffDataList table
             notifyStaffDataAdded(s);
             return true;
         }
         return false;
     }
 
+    /**
+     * A safe gateway for updating a staff member. It checks for user authorization first.
+     * @throws StaffDataListException if the current user is not the owner of the list.
+     */
     public boolean tryUpdateStaff(User currentUser, Staff s, String name, String newEmail, String newPhoneNumber,
                                   String taxCode, String newPrimaryMansion,
-                                  boolean availability, boolean permanent) {
+                                  boolean availability, boolean permanent) throws StaffDataListException {
         if (!isOwner(currentUser)) {
-            System.out.println("Error: the user is not authorized, he's not the owner of the list.");
-            return false;
+            throw new StaffDataListException("User is not authorized to modify this list as it is not an organizer.");
         }
         return updateStaffData(s, name, newEmail, newPhoneNumber, taxCode, newPrimaryMansion, availability, permanent);
     }
 
+    /**
+     * Updates an existing staff member's information.
+     * @return true if the staff member was found and updated successfully, false otherwise.
+     */
     public boolean updateStaffData(Staff s, String name, String newEmail, String newPhoneNumber,
                                    String taxCode, String newPrimaryMansion,
                                    boolean availability, boolean permanent) {
@@ -167,7 +165,7 @@ public class StaffDataList {
             existing.setPrimaryMansion(newPrimaryMansion);
             existing.setAvailability(availability);
             existing.setPermanent(permanent);
-            if (existing.update()) { // aggiorna il DB
+            if (existing.update()) { // updates the DB
                 notifyStaffDataUpdated(existing);
                 return true;
             }
@@ -175,16 +173,25 @@ public class StaffDataList {
         return false;
     }
 
-    public boolean tryRemoveStaff(User currentUser, Staff s) {
+    /**
+     * A safe gateway for removing a staff member. It checks for user authorization first.
+     * @throws StaffDataListException if the current user is not the owner of the list.
+     */
+    public boolean tryRemoveStaff(User currentUser, Staff s) throws StaffDataListException {
         if (!isOwner(currentUser)) {
-            System.out.println("Error: the user is not authorized, he's not the owner of the list.");
-            return false;
+            throw new StaffDataListException("User is not authorized to modify this list as it is not an organizer.");
         }
         return removeStaffData(s);
     }
 
+    /**
+     * Removes a staff member completely from the system.
+     * This deletes the staff member from the main Staff table and removes them from the in-memory list.
+     * @param s The Staff object to remove.
+     * @return true if the staff member was deleted successfully, false otherwise.
+     */
     public boolean removeStaffData(Staff s) {
-        if (s.delete()) {  // prima cancella dal DB
+        if (s.delete()) {  // first, delete from the DB
             boolean removed = staffDataList.removeIf(existing -> existing.getSerialNumber() == s.getSerialNumber());
             if (removed) {
                 notifyStaffDataDeleted(s);
@@ -194,11 +201,13 @@ public class StaffDataList {
         return false;
     }
 
-    // METODI DI PERSISTENZA PURA
+    // Pure Persistence Methods
     
     /**
-     * Crea nel database l'associazione tra l'owner di questa lista e un membro dello staff.
-     * NON invia notifiche.
+     * Creates the association in the database between this list's owner and a staff member.
+     * This method does NOT fire any events to prevent recursive loops.
+     * @param staff The staff member to associate.
+     * @return true if the operation is successful.
      */
     public boolean addStaffAssociation(Staff staff) {
         if (owner != null && staff != null) {
@@ -210,8 +219,10 @@ public class StaffDataList {
     }
 
     /**
-     * Rimuove dal database l'associazione tra l'owner di questa lista e un membro dello staff.
-     * NON invia notifiche.
+     * Removes the association in the database between this list's owner and a staff member.
+     * This method does NOT fire any events.
+     * @param staff The staff member to disassociate.
+     * @return true if the operation is successful.
      */
     public boolean removeStaffAssociation(Staff staff) {
         if (owner != null && staff != null) {
@@ -222,10 +233,30 @@ public class StaffDataList {
         return false;
     }
 
-    // ========================
-    // Filtri
-    // ========================
+    /**
+     * Deletes all staff associations for this list's owner from the database.
+     * This is a bulk operation.
+     * @return true if the operation was successful, false otherwise.
+     */
+    public boolean deleteAllAssociations() {
+        if (owner == null) return false;
+        String query = "DELETE FROM StaffDataList WHERE owner_id = ?";
+        try {
+            PersistenceManager.executeUpdate(query, owner.getId());
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error while deleting all staff data list associations: " + e.getMessage());
+            return false;
+        }
+    }
 
+    // Filter Methods
+
+    /**
+     * Filters the current list to find staff members by their availability.
+     * @param availability The availability status to filter by.
+     * @return A new list containing only the matching staff members.
+     */
     public List<Staff> getAvailable(boolean availability) {
         List<Staff> result = new ArrayList<>();
         for (Staff s : staffDataList) {
@@ -236,6 +267,11 @@ public class StaffDataList {
         return result;
     }
 
+    /**
+     * Filters the current list to find staff members by their employment type.
+     * @param permanent The permanent status to filter by.
+     * @return A new list containing only the matching staff members.
+     */
     public List<Staff> getPermanent(boolean permanent) {
         List<Staff> result = new ArrayList<>();
         for (Staff s : staffDataList) {
@@ -246,10 +282,13 @@ public class StaffDataList {
         return result;
     }
 
-    // ========================
-    // Utility interna
-    // ========================
+    // Internal Utilities
 
+    /**
+     * Finds a staff member in the local list by their serial number.
+     * @param serialNumber The serial number to search for.
+     * @return The Staff object if found in the list, otherwise null.
+     */
     private Staff getStaff(int serialNumber) {
         for (Staff s : staffDataList) {
             if (s.getSerialNumber() == serialNumber) {

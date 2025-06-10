@@ -4,18 +4,21 @@ import catering.businesslogic.holidaysrequest.HolidaysRequest;
 import catering.businesslogic.holidaysrequest.HolidaysRequestEventReceiver;
 import catering.businesslogic.staff.Staff;
 
+/**
+ * Handles database persistence for HolidaysRequest objects by listening to events.
+ */
 public class HolidaysRequestPersistence implements HolidaysRequestEventReceiver {
 
     @Override
     public void updateHolidaysRequestCreated(HolidaysRequest hr) {
-        // Quando il manager crea una richiesta, noi la salviamo.
+        // When the manager creates a request, we save it to the database.
         hr.save();
     }
 
     @Override
     public void updateHolidaysRequestAssigned(HolidaysRequest hr) {
-        // Quando il manager assegna una richiesta, noi aggiorniamo il suo stato
-        // e lo stato del lavoratore nel database.
+        // When the manager assigns a request, we update its status and the
+        // worker's availability in the database.
         Staff worker = hr.getWorker();
         hr.update();
         if (worker != null) {
@@ -25,7 +28,7 @@ public class HolidaysRequestPersistence implements HolidaysRequestEventReceiver 
 
     @Override
     public void updateHolidaysRequestDeleted(HolidaysRequest hr) {
-        // Quando il manager cancella una richiesta, noi la cancelliamo dal DB.
+        // When the manager deletes a request, we delete it from the database.
         hr.delete();
     }
 }
