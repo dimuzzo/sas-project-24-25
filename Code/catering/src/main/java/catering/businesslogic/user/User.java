@@ -1,3 +1,6 @@
+/**
+ * * @author Alessandro Demo, Matricola 1049825
+ */
 package catering.businesslogic.user;
 
 import catering.persistence.PersistenceManager;
@@ -37,7 +40,9 @@ public class User {
         return userRoles.contains(UserRole.CHEF);
     }
 
-    public boolean isOrganizer() { return userRoles.contains(UserRole.ORGANIZZATORE); }
+    public boolean isOrganizer() { 
+        return userRoles.contains(UserRole.ORGANIZZATORE); 
+    }
 
     public String getUserName() {
         return username;

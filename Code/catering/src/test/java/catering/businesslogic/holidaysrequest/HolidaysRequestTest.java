@@ -1,3 +1,6 @@
+/**
+ * * @author Alessandro Demo, Matricola 1049825
+ */
 package catering.businesslogic.holidaysrequest;
 
 import java.sql.Date;
