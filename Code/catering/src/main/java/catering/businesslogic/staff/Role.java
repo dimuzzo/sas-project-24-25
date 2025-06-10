@@ -145,7 +145,7 @@ public class Role {
     public boolean delete() throws RoleException {
         if (this.id == 0) return false;
         if (this.isAssigned()) {
-            throw new RoleException("Il ruolo che si sta cercando di eliminare è in uso.");
+            throw new RoleException("The role you are trying to delete is in use.");
         }
         String query = "DELETE FROM EventRoles WHERE id = ?";
         int rows = PersistenceManager.executeUpdate(query, this.id);
