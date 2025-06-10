@@ -156,6 +156,14 @@ public class StaffDataList {
     public boolean updateStaffData(Staff s, String name, String newEmail, String newPhoneNumber,
                                    String taxCode, String newPrimaryMansion,
                                    boolean availability, boolean permanent) {
+        // Validation block 
+        if (name == null || name.trim().isEmpty()) {
+            throw new StaffDataListException("Staff name cannot be null or empty.");
+        }
+        if (newEmail == null || !newEmail.contains("@")) {
+            throw new StaffDataListException("Email format is not valid.");
+        }
+        
         Staff existing = getStaff(s.getSerialNumber());
         if (existing != null) {
             existing.setName(name);
