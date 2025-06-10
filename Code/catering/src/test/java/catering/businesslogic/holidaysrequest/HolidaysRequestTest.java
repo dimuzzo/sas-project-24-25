@@ -1,6 +1,8 @@
 package catering.businesslogic.holidaysrequest;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -22,10 +24,16 @@ import org.junit.jupiter.api.TestMethodOrder;
 import catering.businesslogic.CatERing;
 import catering.businesslogic.UseCaseLogicException;
 import catering.businesslogic.staff.Staff;
+import catering.businesslogic.staff.StaffManager;
 import catering.businesslogic.user.User;
 import catering.persistence.PersistenceManager;
 import catering.util.LogManager;
 
+/**
+ * Validation tests for the "Manage Holidays Request" use case.
+ * This class tests the business logic within the HolidaysRequestManager and its interaction
+ * with the persistence layer. Each test is designed to be independent.
+ */
 @TestMethodOrder(OrderAnnotation.class)
 public class HolidaysRequestTest {
 
@@ -34,139 +42,173 @@ public class HolidaysRequestTest {
     private static HolidaysRequestManager holidaysRequestManager;
     private static User organizer;
 
-    // Aggiungo una variabile d'istanza per lo staff di test
-    private Staff testStaff;
+    // Lists to track temporary entities for automated cleanup
+    private final List<Staff> tempStaffList = new ArrayList<>();
+    private final List<HolidaysRequest> tempRequestList = new ArrayList<>();
 
+    /**
+     * Initializes the database once for the entire test class.
+     */
     @BeforeAll
     static void init() {
         PersistenceManager.initializeDatabase("database/catering_init_sqlite.sql");
         app = CatERing.getInstance();
     }
 
+    /**
+     * Runs before each test to ensure a clean state.
+     * It logs in an organizer user and initializes a fresh StaffManager instance.
+     */
     @BeforeEach
     void setup() {
         try {
-            // Login dell'organizzatore e setup del manager
             organizer = User.load("Giovanni");
             app.getUserManager().fakeLogin(organizer.getUserName());
             holidaysRequestManager = app.getHolidaysRequestManager();
-            assertNotNull(holidaysRequestManager, "Lo holidaysManager non dovrebbe essere null per un organizzatore loggato.");
-            
-            // Creazione di uno staff pulito per ogni test
-            int sNum = new Random().nextInt(900000) + 100000;
-            testStaff = new Staff(sNum, "Staff Ferie " + sNum, "ferie@test.com", "444", "FERIESFF", "Tester", true);
-            assertTrue(testStaff.save(), "Setup fallito: salvataggio dello staff temporaneo.");
-
+            assertNotNull(holidaysRequestManager, "HolidaysRequestManager should not be null for a logged-in organizer.");
         } catch (UseCaseLogicException e) {
-            fail("Setup fallito: " + e.getMessage());
+            fail("Test setup failed: " + e.getMessage());
         }
     }
 
+    /**
+     * Cleans up all temporary entities created during a test.
+     * This method runs after each test to ensure a clean state for the next one.
+     */
     @AfterEach
-    void tearDown() {
-        // Pulizia dello staff creato dopo ogni test per garantire l'isolamento
-        if (testStaff != null) {
-            testStaff.delete();
+    void cleanup() {
+        // Delete requests first
+        for (HolidaysRequest hr : tempRequestList) {
+            if (HolidaysRequest.load(hr.getId()) != null) {
+                hr.delete();
+            }
         }
+        // Then delete the staff
+        StaffManager staffManager = app.getStaffManager(); // Get staff manager for cleanup
+        for (Staff staff : tempStaffList) {
+            staffManager.removeStaff(staff);
+        }
+        tempRequestList.clear();
+        tempStaffList.clear();
     }
 
+    // --- HELPER METHODS ---
+
+    /**
+     * Helper to create and save a temporary staff member via the StaffManager.
+     * @return The created Staff object.
+     */
+    private Staff createTestStaff() {
+        StaffManager staffManager = app.getStaffManager();
+        int sNum = new Random().nextInt(900000) + 100000;
+        String name = "Holiday Staff " + sNum;
+        boolean added = staffManager.addStaff(sNum, name, name.replace(" ", ".") + "@test.com", "555-HOLIDAY", "HLY" + sNum, "Tester", true);
+        assertTrue(added, "Helper method failed: could not add staff.");
+
+        Staff staff = Staff.loadStaff(sNum);
+        assertNotNull(staff, "Helper method failed: could not load created staff.");
+        tempStaffList.add(staff); // Track for cleanup
+        return staff;
+    }
+
+    /**
+     * Helper to create a temporary holidays request via the HolidaysRequestManager.
+     * @return The created HolidaysRequest object.
+     */
+    private HolidaysRequest createTestHolidaysRequest(Staff staff) {
+        HolidaysRequest hr = holidaysRequestManager.createHolidaysRequest(organizer, staff, Date.valueOf("2025-08-15"));
+        assertNotNull(hr, "Helper method failed to create a holiday request.");
+        tempRequestList.add(hr); // Track for cleanup
+        return hr;
+    }
+
+    // --- TESTS ---
+
+    /**
+     * Corresponds to Contract 8: gestisciRichiestaFeriePersonale.
+     */
     @Test
     @Order(1)
-    void test_UC8_createHolidaysRequest() {
-        LOGGER.info("TEST: UC8 - Creazione richiesta ferie");
-        HolidaysRequest hr = null;
-        try {
-            // AZIONE
-            hr = holidaysRequestManager.createHolidaysRequest(organizer, testStaff, Date.valueOf("2025-08-10"));
+    void test_manageHolidaysRequest() {
+        LOGGER.info("TEST: Contract 8 - Managing a holiday request");
+        // ARRANGE
+        Staff staff = createTestStaff();
 
-            // VERIFICA
-            assertNotNull(hr, "La richiesta di ferie creata non deve essere null.");
-            assertTrue(hr.getId() > 0, "La richiesta salvata deve avere un ID dal DB.");
-            assertFalse(hr.isAssigned(), "Una nuova richiesta non deve essere assegnata.");
+        // ACT
+        HolidaysRequest hr = holidaysRequestManager.createHolidaysRequest(organizer, staff, Date.valueOf("2025-08-10"));
+        tempRequestList.add(hr); // Add to cleanup list
 
-            HolidaysRequest loadedHr = HolidaysRequest.load(hr.getId());
-            assertNotNull(loadedHr, "La richiesta deve essere ricaricabile dal DB.");
-            assertEquals(testStaff.getSerialNumber(), loadedHr.getWorker().getSerialNumber());
+        // ASSERT
+        assertNotNull(hr, "The created holiday request should not be null.");
+        assertTrue(hr.getId() > 0, "A saved request must have a DB-generated ID.");
+        assertFalse(hr.isAssigned(), "A new request should not be assigned (approved).");
 
-        } finally {
-            if (hr != null) {
-                holidaysRequestManager.deleteHolidaysRequest(testStaff, hr);
-            }
-        }
+        HolidaysRequest loadedHr = HolidaysRequest.load(hr.getId());
+        assertNotNull(loadedHr, "The request should be reloadable from the DB.");
+        assertEquals(staff.getSerialNumber(), loadedHr.getWorker().getSerialNumber());
     }
 
+    /**
+     * Corresponds to Contract 8a (Extension scenario): assegnaRichiestaFeriePersonale.
+     */
     @Test
     @Order(2)
-    void test_UC8a_assignHolidaysRequest_Success() {
-        LOGGER.info("TEST: UC8a - Assegnazione (successo) richiesta ferie");
-        HolidaysRequest hr = null;
-        try {
-            // SETUP
-            hr = holidaysRequestManager.createHolidaysRequest(organizer, testStaff, Date.valueOf("2025-09-15"));
-            assertNotNull(hr, "Setup fallito: la richiesta di ferie non è stata creata.");
-            assertTrue(testStaff.isAvailable(), "Pre-condizione: lo staff deve essere disponibile.");
+    void test_assignHolidaysRequest_Success() {
+        LOGGER.info("TEST: Contract 8a (Extension scenario) - Assigning (approving) a holiday request successfully");
+        // ARRANGE
+        Staff staff = createTestStaff();
+        HolidaysRequest hr = createTestHolidaysRequest(staff);
+        assertTrue(staff.isAvailable(), "Pre-condition: the staff member must be available.");
 
-            // AZIONE
-            holidaysRequestManager.assignHolidaysRequest(testStaff, hr);
+        // ACT
+        holidaysRequestManager.assignHolidaysRequest(staff, hr);
 
-            // VERIFICA
-            HolidaysRequest loadedHr = HolidaysRequest.load(hr.getId());
-            Staff updatedStaff = Staff.loadStaff(testStaff.getSerialNumber());
+        // ASSERT
+        HolidaysRequest loadedHr = HolidaysRequest.load(hr.getId());
+        Staff updatedStaff = Staff.loadStaff(staff.getSerialNumber());
 
-            assertTrue(loadedHr.isAssigned(), "Post-condizione: la richiesta deve risultare assegnata.");
-            assertFalse(updatedStaff.isAvailable(), "Post-condizione: lo staff deve risultare non disponibile.");
-
-        } finally {
-            if (hr != null) {
-                holidaysRequestManager.deleteHolidaysRequest(testStaff, hr);
-            }
-        }
+        assertTrue(loadedHr.isAssigned(), "Post-condition: the request should be marked as assigned.");
+        assertFalse(updatedStaff.isAvailable(), "Post-condition: the staff member should be marked as unavailable.");
     }
 
+    /**
+     * Corresponds to Contract 8a (Exception scenario): assegnaRichiestaFeriePersonale.
+     */
     @Test
     @Order(3)
-    void test_UC8a_assignHolidaysRequest_FailureAlreadyAssigned() {
-        LOGGER.info("TEST: UC8a - Assegnazione (fallimento) richiesta già assegnata");
-        HolidaysRequest hr = null;
-        try {
-            // SETUP
-            hr = holidaysRequestManager.createHolidaysRequest(organizer, testStaff, Date.valueOf("2025-11-20"));
-            assertNotNull(hr, "Setup fallito: impossibile creare la richiesta.");
-            
-            // Prima assegnazione (corretta)
-            holidaysRequestManager.assignHolidaysRequest(testStaff, hr);
-            assertTrue(hr.isAssigned(), "Pre-condizione: la richiesta deve essere già assegnata.");
+    void test_assignHolidaysRequest_AlreadyAssignedException() {
+        LOGGER.info("TEST: Contract 8a (Exception scenario) - Assigning an already assigned request should fail");
+        // ARRANGE
+        Staff staff = createTestStaff();
+        HolidaysRequest hr = createTestHolidaysRequest(staff);
 
-            // CORREZIONE: Crea una variabile finale per la lambda
-            final HolidaysRequest requestToFail = hr;
-            
-            // AZIONE E VERIFICA ECCEZIONE - Usa la nuova variabile nella lambda
-            assertThrows(HolidaysRequestException.class, () -> {
-                holidaysRequestManager.assignHolidaysRequest(testStaff, requestToFail);
-            }, "Deve essere lanciata una HolidaysRequestException per richieste già assegnate.");
-
-        } finally {
-            if (hr != null) {
-                holidaysRequestManager.deleteHolidaysRequest(testStaff, hr);
-            }
-        }
+        // First assignment (should succeed)
+        holidaysRequestManager.assignHolidaysRequest(staff, hr);
+        assertTrue(hr.isAssigned(), "Pre-condition: the request must already be assigned.");
+        
+        // ACT & ASSERT
+        assertThrows(HolidaysRequestException.class, () -> {
+            holidaysRequestManager.assignHolidaysRequest(staff, hr);
+        }, "A HolidaysRequestException should be thrown for already assigned requests.");
     }
 
+    /**
+     * Corresponds to Contract 8b (Extension scenario): eliminaRichiestaFeriePersonale.
+     */
     @Test
     @Order(4)
     void test_UC8b_deleteHolidaysRequest() {
-        LOGGER.info("TEST: UC8b - Eliminazione richiesta ferie");
-        HolidaysRequest hr = null;
-        // SETUP
-        hr = holidaysRequestManager.createHolidaysRequest(organizer, testStaff, Date.valueOf("2025-12-25"));
-        assertNotNull(hr, "Setup fallito: la richiesta da cancellare non è stata creata.");
-        int hrId = hr.getId();
+        LOGGER.info("TEST: Contract 8b (Extension scenario) - Deleting a holiday request");
+        // ARRANGE
+        Staff staff = createTestStaff();
+        HolidaysRequest hr = createTestHolidaysRequest(staff);
+        int hrId = hr.getId(); // Save ID before deletion
 
-        // AZIONE
-        holidaysRequestManager.deleteHolidaysRequest(testStaff, hr);
+        // ACT
+        holidaysRequestManager.deleteHolidaysRequest(staff, hr);
 
-        // VERIFICA
+        // ASSERT
         HolidaysRequest loadedHr = HolidaysRequest.load(hrId);
-        assertNull(loadedHr, "La richiesta cancellata non dovrebbe più essere presente nel DB.");
+        assertNull(loadedHr, "The deleted request should no longer be present in the DB.");
     }
 }

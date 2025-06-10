@@ -55,8 +55,7 @@ public class HolidaysRequestManager {
     }
 
     /**
-     * Creates a new holiday request and triggers its persistence.
-     * Corresponds to UC8.
+     * Creates (manages) a new holiday request and triggers its persistence.
      * @return The created HolidaysRequest, or null if saving fails.
      */    
     public HolidaysRequest createHolidaysRequest(User owner, Staff worker, Date period) {
