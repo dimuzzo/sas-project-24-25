@@ -99,7 +99,6 @@ CREATE TABLE
         FOREIGN KEY (`owner_id`) REFERENCES `Users`(`id`) ON DELETE CASCADE
     );
 
--- === Tabella principale SummaryForms ===
 CREATE TABLE
     `SummaryForms` (
         `id` INTEGER PRIMARY KEY AUTOINCREMENT,

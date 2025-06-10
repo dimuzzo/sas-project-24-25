@@ -3,6 +3,7 @@ package catering.businesslogic.staffnote;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import catering.businesslogic.staff.Staff;
 import catering.businesslogic.user.User;
@@ -89,6 +90,15 @@ public class StaffNote {
             result[0] = fromResultSet(rs);
         }, noteId);
         return result[0];
+    }
+
+    public static ArrayList<StaffNote> loadAllFor(Staff worker) {
+        ArrayList<StaffNote> notes = new ArrayList<>();
+        String query = "SELECT * FROM StaffNotes WHERE worker_serial_number = ?";
+        PersistenceManager.executeQuery(query, rs -> {
+            notes.add(fromResultSet(rs));
+        }, worker.getSerialNumber());
+        return notes;
     }
 
     private static StaffNote fromResultSet(ResultSet rs) throws SQLException {

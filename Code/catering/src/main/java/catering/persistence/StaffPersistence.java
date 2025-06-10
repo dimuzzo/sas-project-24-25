@@ -10,8 +10,6 @@ import catering.businesslogic.staff.StaffEventReceiver;
 
 public class StaffPersistence implements StaffEventReceiver {
 
-    // METODI GIÀ CORRETTI
-
     @Override
     public void updateStaffAdded(Staff s) {
         // Quando un nuovo staff viene creato nella logica,
@@ -50,7 +48,23 @@ public class StaffPersistence implements StaffEventReceiver {
 
     @Override
     public void updateRoleAssigned(Role rl) {
-        // Quando un ruolo viene assegnato o modificato, aggiorna il record nel DB.
+        // Salva lo stato del ruolo (assegnato) e del lavoratore (non disponibile)
+        rl.getStaff().update();
+        rl.update();
+    }
+
+    @Override
+    public void updateRoleUnassigned(Role rl, Staff s) {
+        // Salva lo stato del ruolo (non assegnato) e del lavoratore (disponibile)
+        s.update();
+        rl.update();
+    }
+
+    @Override
+    public void updateRoleReassigned(Role rl, Staff s) {
+        // Salva lo stato del vecchio lavoratore, del nuovo e del ruolo
+        s.update();
+        rl.getStaff().update(); // rl.getStaff() ora ritorna il *nuovo* lavoratore
         rl.update();
     }
 
@@ -78,9 +92,9 @@ public class StaffPersistence implements StaffEventReceiver {
 
     @Override
     public void updateStaffDataUpdated(Staff s, StaffDataList sdl) {
-        // L'aggiornamento dei dati di un membro dello staff (es. cambio email)
-        // è gestito dal metodo s.update(). La tabella di associazione StaffDataList
-        // non cambia, quindi questo metodo può rimanere vuoto.
+        // Quando i dati di uno Staff vengono aggiornati,
+        // questo metodo si assicura che le modifiche vengano salvate nel DB.
+        s.update();
     }
 
     @Override

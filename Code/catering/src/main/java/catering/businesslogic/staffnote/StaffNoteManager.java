@@ -41,6 +41,11 @@ public class StaffNoteManager {
         return staffManager.getStaff(serialNumber);
     }
 
+    public List<StaffNote> getNotesFor(Staff worker) {
+        if (worker == null) return new ArrayList<>();
+        return StaffNote.loadAllFor(worker);
+    }
+
     public StaffNote createStaffNote(User owner, Staff worker, String description, Date date) {
         StaffNote n = StaffNote.create(owner, worker, description, date);
         if (n.save()) { // Salva la nota nel DB

@@ -239,4 +239,78 @@ public class StaffTest {
             }
         }
     }
+
+    @Test
+    @Order(7) 
+    void test_UC5b_deleteRoleAssignment() {
+        LOGGER.info("TEST NUOVO: UC5b - Eliminazione assegnazione");
+        Staff tempStaff = null;
+        Role tempRole = null;
+        try {
+            // SETUP
+            int sNum = new Random().nextInt(900000) + 100000;
+            // Usa la firma corretta di addStaff
+            assertTrue(staffManager.addStaff(sNum, "Staff con Assegnazione", "del-assign@test.com", "333", "DELASG", "Cameriere", false));
+            tempStaff = Staff.loadStaff(sNum);
+            assertNotNull(tempStaff, "Setup fallito: creazione staff.");
+            
+            // Usa la firma corretta di createRole
+            String roleName = "Ruolo da Rimuovere " + sNum;
+            tempRole = staffManager.createRole(null, roleName, "Descrizione", Date.valueOf("2025-11-20"), false);
+            assertNotNull(tempRole, "Setup fallito: creazione ruolo.");
+
+            staffManager.assignRole(tempStaff, tempRole);
+
+            // Pre-condizioni
+            Staff loadedStaff = Staff.loadStaff(tempStaff.getSerialNumber());
+            assertFalse(loadedStaff.isAvailable(), "Pre-condizione: lo staff non deve essere disponibile.");
+            assertTrue(tempRole.isAssigned(), "Pre-condizione: il ruolo deve essere assegnato.");
+
+            // AZIONE
+            staffManager.deleteRoleAssignment(tempStaff, tempRole);
+
+            // VERIFICA post-condizioni
+            Role loadedRole = Role.loadRole(tempRole.getName());
+            loadedStaff = Staff.loadStaff(tempStaff.getSerialNumber());
+            assertTrue(loadedStaff.isAvailable(), "Post-condizione: lo staff deve tornare disponibile.");
+            assertFalse(loadedRole.isAssigned(), "Post-condizione: il ruolo non deve più essere assegnato.");
+
+        } finally {
+            if (tempRole != null) try { tempRole.delete(); } catch (RoleException e) {}
+            if (tempStaff != null) staffManager.removeStaff(tempStaff);
+        }
+    }
+
+    @Test
+    @Order(8) 
+    void test_UC7a_setPermanentStatus() {
+        LOGGER.info("TEST NUOVO: UC7a - Modifica tipologia assunzione");
+        Staff tempStaff = null;
+        try {
+            // SETUP
+            int sNum = new Random().nextInt(900000) + 100000;
+            // Usa la firma corretta di addStaff
+            assertTrue(staffManager.addStaff(sNum, "Staff Occasionale", "occasional@test.com", "444", "OCCSFF", "Barista", false));
+            tempStaff = Staff.loadStaff(sNum);
+            assertNotNull(tempStaff, "Setup fallito: creazione staff.");
+            assertFalse(tempStaff.isPermanent(), "Pre-condizione: lo staff deve essere occasionale.");
+
+            // AZIONE
+            staffManager.setPermanentStatus(tempStaff, true);
+            
+            // VERIFICA
+            Staff loadedStaff = Staff.loadStaff(tempStaff.getSerialNumber());
+            assertTrue(loadedStaff.isPermanent(), "Post-condizione: lo staff deve essere diventato permanente.");
+
+            // Azione inversa per completezza
+            staffManager.setPermanentStatus(loadedStaff, false);
+            loadedStaff = Staff.loadStaff(tempStaff.getSerialNumber());
+            assertFalse(loadedStaff.isPermanent(), "Post-condizione: lo staff deve tornare occasionale.");
+            
+        } finally {
+            if (tempStaff != null) {
+                staffManager.removeStaff(tempStaff);
+            }
+        }
+    }
 }

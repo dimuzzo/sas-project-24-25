@@ -85,6 +85,14 @@ public class StaffManager {
         for (StaffEventReceiver r : eventReceivers) r.updateRoleAssigned(rl);
     }
 
+    private void notifyRoleUnassigned(Role rl, Staff s) {
+        for (StaffEventReceiver r : eventReceivers) r.updateRoleUnassigned(rl, s);
+    }
+    
+    private void notifyRoleReassigned(Role rl, Staff s) {
+        for (StaffEventReceiver r : eventReceivers) r.updateRoleReassigned(rl, s);
+    }
+
     public void notifyStaffDataListCreated(StaffDataList sdl) {
         for (StaffEventReceiver r : eventReceivers) r.updateStaffDataListCreated(sdl);
     }
@@ -128,28 +136,23 @@ public class StaffManager {
 
     /**
      * Aggiunge un nuovo membro dello staff.
-     * Non richiede più il parametro `currentUser`, ma usa quello interno.
+     * La logica è interamente delegata a StaffDataList, che già gestisce
+     * il salvataggio e le notifiche per la persistenza delle associazioni.
      */
     public boolean addStaff(int serialNumber, String name, String email, String phoneNumber,
-                            String taxCode, String primaryMansion, boolean available, boolean permanent) {
-        // Usa `this.currentUser` per il controllo di autorizzazione.
-        boolean added = staffDataList.tryInsertStaff(this.currentUser, serialNumber, name, email, phoneNumber, taxCode, primaryMansion, available, permanent);
-        if (added) {
-            notifyStaffAdded(getStaff(serialNumber));
-        }
+                            String taxCode, String primaryMansion, boolean permanent) {
+        // La firma del tuo costruttore Staff accetta un solo booleano (permanent)
+        // e imposta 'available' a true di default. Rispettiamo questo.
+        boolean added = staffDataList.insertStaffData(serialNumber, name, email, phoneNumber, taxCode, primaryMansion, true, permanent);
         return added;
     }
 
     /**
      * Rimuove un membro dello staff.
-     * Non richiede più il parametro `currentUser`.
+     * La logica è interamente delegata a StaffDataList.
      */
     public boolean removeStaff(Staff s) {
-        // Usa `this.currentUser` per il controllo di autorizzazione.
-        boolean removed = staffDataList.tryRemoveStaff(this.currentUser, s);
-        if (removed) {
-            notifyStaffRemoved(s);
-        }
+        boolean removed = staffDataList.removeStaffData(s);
         return removed;
     }
 
@@ -167,11 +170,66 @@ public class StaffManager {
         if (worker == null || rl == null) {
             throw new RoleException("Worker and Role cannot be null for assignment.");
         }
-        rl.setWorker(worker);
-        rl.setAssigned(true);
-        // È buona pratica salvare l'aggiornamento nel DB
-        rl.update(); 
+        if (!worker.isAvailable() || rl.isAssigned()) {
+            throw new RoleException("Worker not available or role already assigned.");
+        }
+        worker.setAvailability(false);
+        rl.setWorker(worker); // Questo imposta anche isAssigned a true
         notifyRoleAssigned(rl);
+    }
+
+    /**
+     * Corrisponde letteralmente a UC5b: eliminaAssegnazioneRuoloPersonaleDisponibile
+     */
+    public void deleteRoleAssignment(Staff worker, Role role) {
+        // Pre-condizioni
+        if (role == null || worker == null || !worker.equals(role.getStaff()) || worker.isAvailable() || !role.isAssigned()) {
+            throw new RoleException("Pre-condizioni per eliminare l'assegnazione non soddisfatte.");
+        }
+        Staff staffToUpdate = role.getStaff();
+
+        // Post-condizioni
+        role.setWorker(null);           // -> r.assegnato = no
+        staffToUpdate.setAvailability(true); // -> p.disponibile = si
+        
+        notifyRoleUnassigned(role, staffToUpdate);
+    }
+
+    /**
+     * Corrisponde a UC5a, Scenario 1: "cambiare lavoratore"
+     * Per farlo, il metodo necessita del nuovo lavoratore come parametro esplicito.
+     */
+    public void modifyAssignmentByChangingWorker(Staff newWorker, Role role) {
+        // Pre-condizioni
+        if (role == null || !role.isAssigned() || newWorker == null || !newWorker.isAvailable()) {
+            throw new RoleException("Pre-condizioni per cambiare lavoratore non soddisfatte.");
+        }
+        Staff oldWorker = role.getStaff();
+        
+        // Post-condizioni
+        oldWorker.setAvailability(true); // -> p.disponibile = si
+        newWorker.setAvailability(false);
+        role.setWorker(newWorker);      // -> r.assegnato rimane si, ma con nuovo worker
+        
+        notifyRoleReassigned(role, oldWorker);
+    }
+
+    /**
+     * Corrisponde a UC5a, Scenario 2: "cambiare ruolo"
+     * Per farlo, il metodo necessita del nuovo ruolo come parametro esplicito.
+     */
+    public void modifyAssignmentByChangingRole(Staff worker, Role oldRole, Role newRole) {
+        // Pre-condizioni
+        if (worker == null || oldRole == null || !oldRole.getStaff().equals(worker) || newRole == null || newRole.isAssigned()) {
+            throw new RoleException("Pre-condizioni per cambiare ruolo non soddisfatte.");
+        }
+        
+        // Post-condizioni
+        oldRole.setWorker(null);      // -> r(vecchio).assegnato = no
+        newRole.setWorker(worker);    // -> p.disponibile rimane no, assegnato a nuovo ruolo
+        
+        notifyRoleUnassigned(oldRole, worker);
+        notifyRoleAssigned(newRole);
     }
 
     public void addStaffNote(StaffNote n) {
@@ -190,5 +248,23 @@ public class StaffManager {
             return;
         }
         staffHolidaysRequestMap.computeIfAbsent(staff, k -> new ArrayList<>()).add(hr);
+    }
+
+    public void setPermanentStatus(Staff worker, boolean isPermanent) {
+        if (worker == null) {
+            throw new IllegalArgumentException("Worker cannot be null.");
+        }
+        
+        // 1. Modifica lo stato dell'oggetto in memoria
+        worker.setPermanent(isPermanent);
+        
+        // 2. Salva direttamente le modifiche nel database
+        boolean updated = worker.update();
+        if (!updated) {
+            throw new RuntimeException("Failed to update staff permanent status in database");
+        }
+        
+        // 3. Notifica il sistema che i dati sono cambiati (per la UI, ecc.)
+        staffDataList.notifyStaffDataUpdated(worker);
     }
 }

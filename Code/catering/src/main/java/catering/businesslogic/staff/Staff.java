@@ -122,8 +122,8 @@ public class Staff {
         s.phoneNumber = rs.getString("phone_number");
         s.taxCode = rs.getString("tax_code");
         s.primaryMansion = rs.getString("primary_mansion");
-        s.available = rs.getBoolean("available");
-        s.permanent = rs.getBoolean("permanent");
+        s.available = rs.getInt("available") == 1; 
+        s.permanent = rs.getInt("permanent") == 1;
         return s;
     }
 
@@ -187,8 +187,11 @@ public class Staff {
         String query = "UPDATE Staff SET name = ?, email = ?, phone_number = ?, tax_code = ?, " +
                 "primary_mansion = ?, available = ?, permanent = ? WHERE serial_number = ?";
         try {
+            int availableInt = this.available ? 1 : 0;
+            int permanentInt = this.permanent ? 1 : 0;
+
             int rows = PersistenceManager.executeUpdate(query, name, email, phoneNumber, taxCode,
-                    primaryMansion, available, permanent, serialNumber);
+                    primaryMansion, availableInt, permanentInt, serialNumber);
             return rows > 0;
         } catch (Exception e) {
             System.err.println("Error while updating staff: " + e.getMessage());
@@ -232,6 +235,6 @@ public class Staff {
 
     @Override
     public String toString() {
-        return name + " (" + email + "), SN: " + serialNumber;
+        return name + " (" + email + "), Serial Number: " + serialNumber;
     }
 }

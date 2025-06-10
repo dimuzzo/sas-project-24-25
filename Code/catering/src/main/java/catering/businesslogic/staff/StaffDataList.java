@@ -37,7 +37,7 @@ public class StaffDataList {
         this.receivers.add(receiver);
     }
 
-    private void notifyStaffDataAdded(Staff s) {
+    public void notifyStaffDataAdded(Staff s) {
         if (receivers != null) {
             for (StaffEventReceiver r : receivers) {
                 r.updateStaffDataAdded(s, this);
@@ -45,7 +45,7 @@ public class StaffDataList {
         }
     }
 
-    private void notifyStaffDataUpdated(Staff s) {
+    public void notifyStaffDataUpdated(Staff s) {
         if (receivers != null) {
             for (StaffEventReceiver r : receivers) {
                 r.updateStaffDataUpdated(s, this);
@@ -53,7 +53,7 @@ public class StaffDataList {
         }
     }
 
-    private void notifyStaffDataDeleted(Staff s) {
+    public void notifyStaffDataDeleted(Staff s) {
         if (receivers != null) {
             for (StaffEventReceiver r : receivers) {
                 r.updateStaffDataDeleted(s, this);
@@ -127,16 +127,18 @@ public class StaffDataList {
 
     public boolean insertStaffData(int serialNumber, String name, String email, String phoneNumber,
                                    String taxCode, String primaryMansion,
-                                   boolean available, boolean permanent) {
+                                   boolean available, boolean permanent) { // Riceve entrambi i booleani
         if (getStaff(serialNumber) != null) {
             return false; // già presente
         }
 
+        // Il costruttore di Staff vuole solo 'permanent'. 'available' viene impostato dopo.
         Staff s = new Staff(serialNumber, name, email, phoneNumber, taxCode, primaryMansion, permanent);
-        s.setAvailability(available);
+        s.setAvailability(available); // Imposta la disponibilità qui
 
-        if (s.save()) {  // salva nel DB
+        if (s.save()) {
             staffDataList.add(s);
+            // Questa notifica serve a StaffPersistence per salvare l'associazione nella tabella StaffDataList
             notifyStaffDataAdded(s);
             return true;
         }
@@ -193,7 +195,6 @@ public class StaffDataList {
     }
 
     // METODI DI PERSISTENZA PURA
-    // Questi vengono chiamati solo da StaffPersistence per evitare ricorsione.
     
     /**
      * Crea nel database l'associazione tra l'owner di questa lista e un membro dello staff.
