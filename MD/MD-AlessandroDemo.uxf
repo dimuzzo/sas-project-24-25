@@ -595,9 +595,9 @@ nome: testo</panel_attributes>
       <w>264</w>
       <h>416</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
-m1=0...n
-m2=1
+    <panel_attributes>lt=-
+m1=1...n
+m2=1...n
 
 
 
@@ -611,7 +611,7 @@ m2=1
   
   
   
-    comprende ^</panel_attributes>
+    lavora con &gt;</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;480.0;310.0;480.0</additional_attributes>
   </element>
   <element>
@@ -622,10 +622,10 @@ m2=1
       <w>320</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
-m1=1
+    <panel_attributes>lt=-
+m1=1...n
 m2=0...n
-comprende &gt;</panel_attributes>
+&lt; lavora con</panel_attributes>
     <additional_attributes>10.0;20.0;380.0;20.0</additional_attributes>
   </element>
   <element>
