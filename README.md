@@ -7,9 +7,6 @@ Compiling su laptop:
 - Maven -> Lifecycle -> clean -> compile -> test
 
 - EXTRA: La Risposta per l'Esame
-Se il professore nota la differenza tra Role.create() e Staff.save(), la tua risposta può essere:
-
-"Assolutamente. È una differenza voluta che ho mantenuto come punto di riflessione pratica sui principi di progettazione e refactoring che abbiamo studiato.
 
 Nel progetto, ho esplorato due pattern di persistenza validi:
 
