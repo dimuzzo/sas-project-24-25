@@ -214,3 +214,7 @@ L’organizzatore può poi decidere di modificare alcuni aspetti dei turni inser
 - Installare Apache Maven ed inserire il PATH sia nelle variabili di sistema sia nelle variabili di VSCode
 - I test funzionano correttamente tutti e 12
 - Maven -> Lifecycle -> clean -> compile -> test
+
+---
+
+> Created with passion by [Alessandro Demo](https://github.com/dimuzzo)  
